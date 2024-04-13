@@ -1,29 +1,29 @@
 #--- LIBRARY NAME ---#
 NAME = ludum_dare_55
 
-#--- COMMAND VARIABLES ---#
+#--- COMPILER AND FLAGS ---#
 CXX = g++
-CFLAGS = -Wall -std=c++11 -I/Users/$(USER)/homebrew/include
-LDFLAGS = -L/Users/$(USER)/homebrew/lib -lglfw -framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo
+CFLAGS = -Wall -std=c++11
+RAYLIB_SRC = 
+RAYLIB_OBJ = 
 
 #--- OS DETECTION ---#
 ifeq ($(OS),Windows_NT)
-    LDFLAGS += -lopengl32 -lgdi32 -lwinmm
+    CFLAGS += -Iinclude -Ic:/raylib/include
+    LDFLAGS = -Lc:/raylib/lib -lraylib -lopengl32 -lgdi32 -lwinmm
 else
     UNAME_S := $(shell uname -s)
     ifeq ($(UNAME_S),Linux)
-        LDFLAGS += -lGL -lm -lrt -lX11
-        INSTALL_CMD = dpkg -l | grep -qw libglfw3 || sudo apt-get install libglfw3 libglfw3-dev
+        CFLAGS += -Iinclude -I/usr/local/include
+        LDFLAGS = -L/usr/local/lib -lraylib -lGL -lm -lrt -lX11
     endif
     ifeq ($(UNAME_S),Darwin)
-        LDFLAGS += -framework CoreVideo -framework IOKit -framework Cocoa -framework GLUT -framework OpenGL
-        INSTALL_CMD = brew list glfw > /dev/null 2>&1 || brew install glfw
+        CFLAGS += -I/Users/$(USER)/homebrew/include
+        LDFLAGS = -L/Users/$(USER)/homebrew/lib -framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo
+        RAYLIB_SRC = $(wildcard lib/raylib/src/*.c)
+        RAYLIB_OBJ = $(patsubst %.c,%.o,$(RAYLIB_SRC))
     endif
 endif
-
-#--- RAYLIB ---#
-RAYLIB_SRC = $(wildcard lib/raylib/src/*.c)
-RAYLIB_OBJ = $(patsubst %.c,%.o,$(RAYLIB_SRC))
 
 #--- OBJECT ---#
 SRC = $(wildcard src/*.cpp)
@@ -34,7 +34,6 @@ all: dependencies $(NAME)
 
 dependencies:
 	@echo "Checking and installing the necessary dependencies..."
-	# @$(INSTALL_CMD)
 
 $(NAME): $(RAYLIB_OBJ) $(OBJ)
 	$(CXX) $(CFLAGS) $(OBJ) $(RAYLIB_OBJ) -o $(NAME) $(LDFLAGS)
@@ -56,4 +55,4 @@ fclean: clean
 
 re:	fclean all
 
-.PHONY: all re
+.PHONY: all clean fclean re run
