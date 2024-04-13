@@ -19,19 +19,17 @@ else
 endif
 
 
-TEST = $(shell test -e raylib ; echo "$$?")
-
 # Compiler and flags
 CC				=	c++
-CFLAGS			=	-Wall -Werror -Wextra -g -std=c++11 
+CFLAGS			=	-Wall -Werror -Wextra -g -std=c++11
 #-fsanitize=address
 RM				=	rm -f
 
 # Sources are all .c files
-SRCS	=	test.cpp\
-			importTexture.cpp
+SRCS	=	ImageFormat.cpp\
+			importTexture.cpp\
+			test.cpp\
 
-#env -i ./minishell
 
 OBJS	=	$(SRCS:.cpp=.o)
 
@@ -40,10 +38,6 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -lraylib -lGL -lm -lpthread -ldl -lrt -lX11 -o $(NAME)
-
-mem: all
-	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes --track-fds=yes --suppressions=/tmp/supp.txt ./minishell 
-
 
 # Removes objects
 clean:

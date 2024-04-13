@@ -16,3 +16,6 @@ typedef struct s_ImageFormat
 }	t_ImageFormat;
 
 typedef map<int , vector<t_ImageFormat> > Layer;
+
+void	InitMapLayer(Layer &map);
+void	AddImageFormatToLayer(Layer& input, int y, t_ImageFormat& img);

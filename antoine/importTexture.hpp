@@ -8,5 +8,5 @@
 
 using std::vector;
 
-Texture2D	importImageToTexture2D(const char *name);
-vector<Texture2D>	ImportFileTexture(char **filesName);
+Texture2D			importImageToTexture2D(const char *name);
+vector<Texture2D>	ImportFileTexture(const char* const filesName[]);

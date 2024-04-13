@@ -14,7 +14,7 @@ Texture2D	importImageToTexture2D(const char *name) {
 	return (result);
 }
 
-vector<Texture2D>	ImportFileTexture(char **filesName) {
+vector<Texture2D>	ImportFileTexture(const char* const filesName[]) {
 	vector<Texture2D>	result;
 	if (!filesName)
 		return (result);
