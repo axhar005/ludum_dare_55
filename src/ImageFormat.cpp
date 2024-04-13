@@ -1,4 +1,4 @@
-#include "ImageFormat.hpp"
+#include "../inc/ImageFormat.hpp"
 
 void	InitMapLayer(Layer &map) {
 	if (map.empty()) {

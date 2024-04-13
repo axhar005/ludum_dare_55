@@ -1,4 +1,4 @@
-#include "importTexture.hpp"
+#include "../inc/importTexture.hpp"
 
 /// @brief take file name
 /// @param name path
