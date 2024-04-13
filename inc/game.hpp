@@ -11,23 +11,17 @@
 #define LARGE_MENU_TEXT 100
 
 typedef enum GameScreen { LOGO = 0, TITLE, GAMEPLAY, PAUSE, ENDING } GameScreen;
+typedef enum MenuType { MAIN, SETTINGS, DEATH} MenuType;
 
 typedef struct MenuStruct
 {
 	Rectangle box1;
 	Rectangle box2;
 	Rectangle box3;
-	Vector2 box1center;
-	Vector2 box2center;
-	Vector2 box3center;
-
-	Rectangle text1;
-	Rectangle text2;
-	Rectangle text3;
-	Vector2 text1center;
-	Vector2 text2center;
-	Vector2 text3center;
 } Menu;
 
+//Menu and Menu utils
 void drawMainMenu(MenuStruct menu);
-void drawMainMenuText(MenuStruct menu);
+Vector2 getTextCenter(std::string str, int font_size);
+void drawBoxWithText(Rectangle rec, float thick, std::string str, int font_size);
+void initMenu(Menu *menu);

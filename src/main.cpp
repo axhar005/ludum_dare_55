@@ -8,8 +8,9 @@ int main(void)
 
 	GameScreen currentScreen = TITLE; //TODO: CHANGE THIS
 
-	// DECLARE VARIABLES HERE
+	// DECLARE VARIABLES HERE -------------------------------------------
 	Menu menu;
+	initMenu(&menu);
 	int framesCounter = 0;          // Useful to count frames
 	SetTargetFPS(60);               // Set desired framerate (frames-per-second)
 
@@ -33,7 +34,6 @@ int main(void)
 			case TITLE:
 			{
 				// TODO: Update TITLE screen variables here!
-
 				// Press enter to change to GAMEPLAY screen
 				
 			} break;
@@ -63,10 +63,8 @@ int main(void)
 			} break;
 			default: break;
 		}
-		//----------------------------------------------------------------------------------
 
 		// Draw
-		//----------------------------------------------------------------------------------
 		BeginDrawing();
 
 			ClearBackground(RAYWHITE);
@@ -85,7 +83,6 @@ int main(void)
 					// TODO: Draw TITLE screen here!
 					ClearBackground(GREEN);
 					drawMainMenu(menu);
-					drawMainMenuText(menu);
 					
 				} break;
 				case GAMEPLAY:
@@ -112,16 +109,13 @@ int main(void)
 			}
 
 		EndDrawing();
-		//----------------------------------------------------------------------------------
 	}
 
 	// De-Initialization
-	//--------------------------------------------------------------------------------------
 
 	// TODO: Unload all loaded data (textures, fonts, audio) here!
 
 	CloseWindow();        // Close window and OpenGL context
-	//--------------------------------------------------------------------------------------
 
 	return 0;
 }
