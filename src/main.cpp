@@ -12,7 +12,13 @@ int main(void)
 	Menu menu;
 	int framesCounter = 0;          // Useful to count frames
 	SetTargetFPS(60);               // Set desired framerate (frames-per-second)
-
+	//
+	Layer	layers;                 //game obj live here
+	InitMapLayer(layers);
+	Texture2D cat = importImageToTexture2D("antoine/cat.png");
+	t_ObjFormat	obj = MakeObj(cat);
+	AddImageFormatToLayer(layers, 0, obj);
+	//
 	while (!WindowShouldClose())    // Detect window close button or ESC key
 	{
 		// Update
@@ -40,7 +46,7 @@ int main(void)
 			case GAMEPLAY:
 			{
 				// TODO: Update GAMEPLAY screen variables here!
-
+				
 				// Press enter to change to ENDING screen
 				if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
 				{
@@ -70,7 +76,10 @@ int main(void)
 		BeginDrawing();
 
 			ClearBackground(RAYWHITE);
-
+			render(layers);
+			layers[0][0].vec2.x++;
+			if (layers[0][0].vec2.x == 300)
+				layers[0][0].kill();
 			switch(currentScreen)
 			{
 				case LOGO:
