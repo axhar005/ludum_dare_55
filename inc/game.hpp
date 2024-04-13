@@ -1,11 +1,18 @@
 #pragma once
 
-// #include <raylib.h>
-#include "../lib/raylib/src/raylib.h"
-#include "ImageFormat.hpp"
+# if (__APPLE__ || __MACH__)
+	#include "../lib/raylib/src/raylib.h"
+# else
+	#include <raylib.h>
+# endif
+
+#include "imageFormat.hpp"
 #include "importTexture.hpp"
 #include <iostream>
 #include <string>
+#include <stdexcept>
+#include <vector>
+
 
 #define SCREENWIDTH 1366
 #define SCREENHEIGHT 768

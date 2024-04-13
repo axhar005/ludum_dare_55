@@ -1,11 +1,6 @@
 #pragma once
 
-// #include <raylib.h>
-#include "../lib/raylib/src/raylib.h"
-#include <stdexcept>
-#include <string.h>
-#include <vector>
-#include <iostream>
+#include "../inc/game.hpp"
 
 using std::vector;
 
