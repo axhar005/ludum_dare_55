@@ -1,6 +1,7 @@
 #pragma once
 
-#include <raylib.h>
+// #include <raylib.h>
+#include "../lib/raylib/src/raylib.h"
 #include <stdexcept>
 #include <string.h>
 #include <vector>

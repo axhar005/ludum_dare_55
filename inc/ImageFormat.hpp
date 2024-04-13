@@ -1,6 +1,7 @@
 #pragma once
 
-#include <raylib.h>
+// #include <raylib.h>
+#include "../lib/raylib/src/raylib.h"
 #include <map>
 #include <vector>
 #include <unistd.h>
