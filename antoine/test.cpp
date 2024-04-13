@@ -1,6 +1,5 @@
-#include <iostream>
 #include <raylib.h>
-#include <vector>
+#include "importTexture.hpp"
 
 using std::vector;
 
@@ -8,9 +7,7 @@ using std::vector;
 
 int main(void) {
 	InitWindow(800, 800, "test window");
-	Image cat = LoadImage("cat.png");
-	Texture2D	pic = LoadTextureFromImage(cat);
-	UnloadImage(cat);
+	Texture2D	pic = importImageToTexture2D("cat.png");
 	SetTargetFPS(60);
 	while (!WindowShouldClose()) {
 		BeginDrawing();

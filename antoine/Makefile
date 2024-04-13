@@ -28,11 +28,12 @@ CFLAGS			=	-Wall -Werror -Wextra -g -std=c++11
 RM				=	rm -f
 
 # Sources are all .c files
-SRCS	=	test.c\
+SRCS	=	test.cpp\
+			importTexture.cpp
 
 #env -i ./minishell
 
-OBJS	=	$(SRCS:.c=.o)
+OBJS	=	$(SRCS:.cpp=.o)
 
 all: $(NAME)
 	@printf $(L)$(CYN) \n\n			correction is made by $(USER)\n\n  $(RESET)\n$(L)
