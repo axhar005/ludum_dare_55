@@ -1,9 +1,12 @@
+#--- LIBRARY NAME ---#
+NAME = ludum_dare_55
+
+#--- COMMAND VARIABLES ---#
 CXX = g++
 CFLAGS = -Wall -std=c++11 -I/Users/$(USER)/homebrew/include
 LDFLAGS = -L/Users/$(USER)/homebrew/lib -lglfw -framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo
 
-
-# Détection du système d'exploitation
+#--- OS DETECTION ---#
 ifeq ($(OS),Windows_NT)
     LDFLAGS += -lopengl32 -lgdi32 -lwinmm
 else
@@ -18,21 +21,23 @@ else
     endif
 endif
 
-# Ajouter les fichiers source de Raylib
-RAYLIB_SRC = $(wildcard raylib/src/*.c)
+#--- RAYLIB ---#
+RAYLIB_SRC = $(wildcard lib/raylib/src/*.c)
 RAYLIB_OBJ = $(patsubst %.c,%.o,$(RAYLIB_SRC))
 
+#--- OBJECT ---#
 SRC = $(wildcard src/*.cpp)
 OBJ = $(patsubst %.cpp,%.o,$(SRC))
 
-all: dependencies myproject
+#--- RULES ---#
+all: dependencies $(NAME)
 
 dependencies:
-	@echo "Vérification et installation des dépendances nécessaires..."
+	@echo "Checking and installing the necessary dependencies..."
 	@$(INSTALL_CMD)
 
-myproject: $(RAYLIB_OBJ) $(OBJ)
-	$(CXX) $(CFLAGS) $(OBJ) $(RAYLIB_OBJ) -o $@ $(LDFLAGS)
+$(NAME): $(RAYLIB_OBJ) $(OBJ)
+	$(CXX) $(CFLAGS) $(OBJ) $(RAYLIB_OBJ) -o $(NAME) $(LDFLAGS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -40,5 +45,15 @@ myproject: $(RAYLIB_OBJ) $(OBJ)
 %.o: %.cpp
 	$(CXX) $(CFLAGS) -c $< -o $@
 
+run: re
+	./$(NAME)
+
 clean:
-	rm -f $(RAYLIB_OBJ) $(OBJ) myproject
+	rm -f $(OBJ)
+
+fclean: clean
+	rm -f $(NAME)
+
+re:	fclean all
+
+.PHONY: all re
