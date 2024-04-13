@@ -2,6 +2,8 @@
 
 // #include <raylib.h>
 #include "../lib/raylib/src/raylib.h"
+#include "ImageFormat.hpp"
+#include "importTexture.hpp"
 #include <iostream>
 #include <string>
 
