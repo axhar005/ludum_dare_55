@@ -1,16 +1,54 @@
 #include "../inc/game.hpp"
 
-// void DrawRectangleLines(int posX, int posY, int width, int height, Color color)
+//Logic
 
-void drawMainMenu(MenuStruct menu)
+int buttonDetection(Menu *menu, GameScreen *currentScreen)
 {
-	drawBoxWithText(menu.box1, 5, "PLAY GAME", MEDIUM_MENU_TEXT);
-	drawBoxWithText(menu.box2, 5, "SETTINGS", MEDIUM_MENU_TEXT);
-	drawBoxWithText(menu.box3, 5, "SETTINGS", MEDIUM_MENU_TEXT);
-	
-	//static text
-	DrawText("GAME NAME", 20, 20, LARGE_MENU_TEXT, DARKGREEN);
-    DrawText("PRESS ESC to EXIT", 120, 220, SMALL_MENU_TEXT, DARKGREEN);
+	if (CheckCollisionPointRec(GetMousePosition(), menu->box1) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+	{
+		std::cout << "a" << std::endl;
+		*currentScreen = GAMEPLAY;
+	}
+	else if (CheckCollisionPointRec(GetMousePosition(), menu->box2) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+	{
+		std::cout << "b" << std::endl;
+		menu->menu_state = SETTINGS;
+	}
+	else if (CheckCollisionPointRec(GetMousePosition(), menu->box3) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+	{
+		std::cout << "c" << std::endl;
+	}
+
+	return (0);
+}
+
+// ------------------------------------------------------------------------------
+// Rendering
+
+void drawMainMenu(MenuStruct *menu)
+{
+	std::cout << "Menu state: " << menu->menu_state << std::endl;
+	switch(menu->menu_state)
+	{
+		case MAIN:
+		{
+			ClearBackground(GREEN);
+			drawBoxWithText(menu->box1, 5, "PLAY GAME", MEDIUM_MENU_TEXT);
+			drawBoxWithText(menu->box2, 5, "SETTINGS", MEDIUM_MENU_TEXT);
+			drawBoxWithText(menu->box3, 5, "SETTINGS", MEDIUM_MENU_TEXT);
+
+			//static text
+			DrawText("GAME NAME", 20, 20, LARGE_MENU_TEXT, DARKGREEN);
+			DrawText("PRESS ESC to EXIT", 120, 220, SMALL_MENU_TEXT, DARKGREEN);
+		} break;
+		case SETTINGS:
+		{
+			ClearBackground(BLUE);
+			//static text
+			DrawText("SETTINGS", 20, 20, LARGE_MENU_TEXT, DARKBLUE);
+		} break;
+		default: break;
+	}
 }
 
 void initMenu(Menu *menu)
@@ -20,6 +58,7 @@ void initMenu(Menu *menu)
 	menu->box1 = {SCREENWIDTH / 2 + 100, SCREENHEIGHT / 4, 500, 100};
 	menu->box2 = {SCREENWIDTH / 2 + 100, SCREENHEIGHT / 4 + 150, 500, 100};
 	menu->box3 = {SCREENWIDTH / 2 + 100, SCREENHEIGHT / 4 + 300, 500, 100};
+	menu->menu_state = MAIN;
 }
 
 Vector2 getRectangleCenter(Rectangle rec)

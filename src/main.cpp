@@ -7,8 +7,6 @@ int main(void)
 	SetMouseCursor(MOUSE_CURSOR_ARROW);
 
 	GameScreen currentScreen = TITLE; //TODO: CHANGE THIS
-
-	// DECLARE VARIABLES HERE -------------------------------------------
 	Menu menu;
 	initMenu(&menu);
 	int framesCounter = 0;          // Useful to count frames
@@ -31,10 +29,10 @@ int main(void)
 					currentScreen = TITLE;
 				}
 			} break;
-			case TITLE:
+			case TITLE: // MAIN MENU
 			{
-				// TODO: Update TITLE screen variables here!
-				// Press enter to change to GAMEPLAY screen
+
+				buttonDetection(&menu, &currentScreen);
 				
 			} break;
 			case GAMEPLAY:
@@ -80,10 +78,9 @@ int main(void)
 				} break;
 				case TITLE:
 				{
-					// TODO: Draw TITLE screen here!
-					ClearBackground(GREEN);
-					drawMainMenu(menu);
-					
+
+					drawMainMenu(&menu);
+
 				} break;
 				case GAMEPLAY:
 				{
