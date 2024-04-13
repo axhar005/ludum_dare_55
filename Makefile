@@ -34,7 +34,7 @@ all: dependencies $(NAME)
 
 dependencies:
 	@echo "Checking and installing the necessary dependencies..."
-	@$(INSTALL_CMD)
+	# @$(INSTALL_CMD)
 
 $(NAME): $(RAYLIB_OBJ) $(OBJ)
 	$(CXX) $(CFLAGS) $(OBJ) $(RAYLIB_OBJ) -o $(NAME) $(LDFLAGS)
