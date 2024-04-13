@@ -8,6 +8,7 @@
 
 #include "imageFormat.hpp"
 #include "importTexture.hpp"
+#include "teststruct.hpp"
 #include <iostream>
 #include <string>
 #include <stdexcept>

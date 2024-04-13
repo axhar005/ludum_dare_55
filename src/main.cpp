@@ -17,6 +17,7 @@ int main(void)
 	InitMapLayer(layers);
 	Texture2D cat = importImageToTexture2D("antoine/cat.png");
 	t_ObjFormat	obj = MakeObj(cat);
+	testStruct ice(cat);
 	AddImageFormatToLayer(layers, 0, obj);
 	//
 	while (!WindowShouldClose())    // Detect window close button or ESC key
