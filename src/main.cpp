@@ -60,13 +60,13 @@ int main(void)
 			case TITLE: // MAIN MENU
 			{
 
-				buttonDetection(&menu, &currentScreen);
+				logicUI(&menu, &currentScreen);
 				
 			} break;
 			case GAMEPLAY:
 			{
 				// TODO: Update GAMEPLAY screen variables here!
-				buttonDetection(&menu, &currentScreen);
+				logicUI(&menu, &currentScreen);
 				if (IsKeyPressed(KEY_P) && menu.menu_state == GAME)
 				{
 					menu.menu_state = PAUSEM;
@@ -78,7 +78,7 @@ int main(void)
 			} break;
 			case PAUSE:
 			{
-
+				
 			} break;
 			case ENDING:
 			{
