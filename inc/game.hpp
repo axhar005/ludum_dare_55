@@ -17,7 +17,10 @@
 #include "importTexture.hpp"
 #include "MapOptions.hpp"
 #include "Mountain.hpp"
+#include "control.hpp"
 #include "Map.hpp"
+#include "Player.hpp"
+#include "Gameloop.hpp"
 
 //include new obj
 #include "teststruct.hpp"
@@ -37,7 +40,7 @@
 #define DARKGRAYTRANS  CLITERAL(Color){ 50, 50, 50, 100 }   // Light Gray with transparancy
 
 
-typedef enum GameScreen { LOGO = 0, TITLE, GAMEPLAY, PAUSE, ENDING } GameScreen;
+typedef enum GameScreen {TITLE = 0, GAMEPLAY, PAUSE, ENDING } GameScreen;
 typedef enum MenuType {MAIN = 0, SETTINGS, GAME, PAUSEM, UPGRADE, END} MenuType;
 
 typedef struct TextureBox
@@ -72,6 +75,9 @@ typedef struct MenuStruct
 	TextureBox moneybox;
 
 	//Pause Menu
+	Rectangle resumebox;
+	Rectangle gamesetting;
+	Rectangle tomenu_box;
 
 	//Death Screen
 
@@ -82,7 +88,7 @@ typedef struct MenuStruct
 vec_tex &gettexture(const std::string& Texture);
 
 //Main Menu and its utils
-void drawMainMenu(MenuStruct *menu);
+void drawUI(Menu *menu);
 Vector2 getTextCenter(std::string str, int font_size);
 void drawBoxWithText(Rectangle rec, float thick, std::string str, int font_size);
 void drawBoxWithText(Rectangle rec, float thick, std::string str, int font_size, 
@@ -92,10 +98,11 @@ void initMenu(Menu *menu, float *volume);
 void buttonDetection(Menu *menu, GameScreen *currentScreen);
 void drawSlider(Menu *menu);
 void sliderDetection(Menu *menu);
+bool checkBoxCollision(Rectangle &box);
 
 //Game menu
-void drawUI(Menu *menu);
 void drawGameMenu(Menu *menu);
+void drawPauseMenu(Menu *menu);
 void drawTextureBox(TextureBox &box);
 
 //Pause menu
