@@ -6,9 +6,7 @@
 	#include <raylib.h>
 # endif
 
-#include "control.hpp"
 //include
-#include "Player.hpp"
 #include <iostream>
 #include <string>
 #include <stdexcept>
@@ -19,7 +17,9 @@
 #include "importTexture.hpp"
 #include "MapOptions.hpp"
 #include "Mountain.hpp"
+#include "control.hpp"
 #include "Map.hpp"
+#include "Player.hpp"
 
 //include new obj
 #include "teststruct.hpp"

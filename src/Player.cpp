@@ -12,11 +12,11 @@ Player::~Player(void) {
 
 void Player::step(void) {
 	if (IsKeyDown(keybord->forward))
-		vec2.y -= speed;
+		_pos.y -= speed;
 	if (IsKeyDown(keybord->backward))
-		vec2.y += speed;
+		_pos.y += speed;
 	if (IsKeyDown(keybord->left))
-		vec2.x -= speed;
+		_pos.x -= speed;
 	if (IsKeyDown(keybord->right))
-		vec2.x += speed;
+		_pos.x += speed;
 }
