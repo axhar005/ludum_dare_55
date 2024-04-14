@@ -13,8 +13,6 @@ vec_tex &getTexture(const std::string& Texture_){
 
 		std::map<std::string, std::vector<std::string> > Textures = {
 			{"chat", {"antoine/cat.png", "antoine/cat2.png"}},
-			{"soulsGui", {"Image/SoulMoney.png"}},
-			{"glace", {"Image/IceSpike.png"}},
 		};
 
 		for (auto& pair : Textures) {
@@ -37,7 +35,7 @@ int main(void)
 {
 	InitWindow(SCREENWIDTH, SCREENHEIGHT, "CATACOMB CONQUEST");
 	SetMouseCursor(MOUSE_CURSOR_ARROW);
-	// gettexture("chat");
+	getTexture("chat");
 
 	GameScreen currentScreen = TITLE; //TODO: CHANGE THIS
 	Menu menu;
@@ -100,7 +98,6 @@ int main(void)
 			ClearBackground(RAYWHITE);
 			//BeginMode2D(camera);
 			DrawGrid(20, 10.0f); // Dessine une grille pour le référencement visuel
-			render(layers);
 			//EndMode2D();
 			switch(currentScreen)
 			{
