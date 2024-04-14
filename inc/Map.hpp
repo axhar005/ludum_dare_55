@@ -9,6 +9,7 @@ private:
 	char **_map;
 	MapOptions const _mapOptions;
 
+
 public:
 	// Constructors / Destructor
 	Map(MapOptions const &mapOptions);
@@ -20,4 +21,5 @@ public:
 	void mountainGenerator();
 	void copyMountainOnMap(size_t &x, size_t &y, Mountain mountain);
 	void protectCenter();
+	char **getMap() const;
 };
