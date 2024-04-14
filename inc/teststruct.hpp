@@ -3,5 +3,5 @@
 struct testStruct : public ObjFormat{
     testStruct(Texture2D _tex);
     ~testStruct();
-    void step();
+    void step() const override;
 };

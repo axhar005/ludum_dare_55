@@ -17,8 +17,8 @@ int main(void)
 	Texture2D cat = importImageToTexture2D("antoine/cat.png");
 	ObjFormat	obj(cat);
 	ObjFormat*	obj1 = new testStruct(cat);
-	AddImageFormatToLayer(layers, 0, obj);
-	AddImageFormatToLayer(layers, 0, *obj1);
+	// AddImageFormatToLayer(layers, 0, obj);
+	AddImageFormatToLayer(layers, 0, obj1);
 	//
 	while (!WindowShouldClose())    // Detect window close button or ESC key
 	{

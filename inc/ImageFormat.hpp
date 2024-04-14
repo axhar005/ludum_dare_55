@@ -18,7 +18,7 @@ struct ObjFormat
 						ObjFormat(void);
 						ObjFormat(Texture2D _tex);
 		virtual 		~ObjFormat(void);
-		virtual	void	step(void);
+		virtual	void	step(void) const;
 		Vector2			vec2;
 		Texture2D		tex;
 		void			kill(void);
@@ -29,7 +29,7 @@ struct ObjFormat
 	//
 };
 
-typedef map<int , vector<ObjFormat> > Layer;
+typedef map<int , vector<ObjFormat*> > Layer;
 
 
 ObjFormat				MakeObj(Texture2D img);
@@ -41,7 +41,7 @@ void					editTextureLayerFt(vector<ObjFormat>& list, int(*ft)(ObjFormat&));
 
 
 void					InitMapLayer(Layer &map);
-void					AddImageFormatToLayer(Layer& input, int y, ObjFormat& img);
+void					AddImageFormatToLayer(Layer& input, int y, ObjFormat* img);
 void					cleanLayer(Layer& layer);
 //*			//							//
 

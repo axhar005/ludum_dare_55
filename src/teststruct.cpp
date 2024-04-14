@@ -8,6 +8,6 @@ testStruct::~testStruct() {
     // Cleanup code here
 }
 
-void testStruct::step(){
+void testStruct::step() const{
     std::cout << "allo\n";
 }

@@ -20,11 +20,13 @@ void	ObjFormat::kill(void) {
 	_rm = true;
 }
 
-void	ObjFormat::step(void) {
+void	ObjFormat::step(void) const{
 	//add stuff here
 	//*	this->vec2.x += 5;
 	//*	if (this->vec2.x >= 300)
 	//*		this->kill();
+    std::cout << "test\n";
+
 }
 
 void	InitMapLayer(Layer &map) {
@@ -86,7 +88,7 @@ vector<ObjFormat>&	editTextureLayer(Layer& layer, int cal) {
 void	cleanLayer(Layer& layer) {
 	for (size_t i = 0; i < layer.size(); i++) {
 		for (size_t j = 0; j < layer[i].size(); j++) {
-			UnloadTexture(layer[i][j].tex);
+			UnloadTexture(layer[i][j]->tex);
 		}
 	}
 }
