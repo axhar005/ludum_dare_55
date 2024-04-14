@@ -19,9 +19,9 @@ int main(void)
 	InitMapLayer(layers);
 	// Texture2D cat = importImageToTexture2D("antoine/cat.png");
 	//ObjFormat*	obj = new ObjFormat(cat);
-	ObjFormat*	obj1 = new testStruct();
+	//ObjFormat*	obj1 = new testStruct();
 	//AddImageFormatToLayer(layers, 0, obj);
-	AddImageFormatToLayer(layers, 0, obj1);
+	//AddImageFormatToLayer(layers, 0, obj1);
 	//
 	MasterVolume = 42;
 	SetMasterVolume(MasterVolume);
