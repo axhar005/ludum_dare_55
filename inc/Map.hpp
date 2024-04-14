@@ -1,8 +1,5 @@
 #pragma once
-#include "MapOptions.hpp"
-#include "Mountain.hpp"
-#include <cstddef>
-#include <vector>
+#include "game.hpp"
 
 
 class Map

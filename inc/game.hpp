@@ -12,9 +12,12 @@
 #include <stdexcept>
 #include <vector>
 #include <cstdlib>
+#include <cstddef>
 #include "ImageFormat.hpp"
 #include "importTexture.hpp"
-
+#include "MapOptions.hpp"
+#include "Mountain.hpp"
+#include "Map.hpp"
 
 //include new obj
 #include "teststruct.hpp"

@@ -23,6 +23,8 @@ int main(void)
 	//
 	MasterVolume = 42;
 	SetMasterVolume(MasterVolume);
+	MapOptions options(80, 80, 15, 20);
+	Map map(options);
 
 	while (!WindowShouldClose())    // Detect window close button or ESC key
 	{
