@@ -85,7 +85,7 @@ typedef struct MenuStruct
 
 
 //Texture
-vec_tex &gettexture(const std::string& Texture);
+vec_tex &getTexture(const std::string& Texture);
 
 //Main Menu and its utils
 void drawUI(Menu *menu);

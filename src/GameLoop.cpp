@@ -31,9 +31,8 @@ void GameLoop(Layer &layers, rendermode mode) {
 		break;
 	}
 	case RUN:
-		//camera.target = player->_pos;
+		// camera.target = player->_pos;
 		//
-		std::cout << "run\n";
 		BeginMode2D(camera);
 		render(layers);
 		EndMode2D();

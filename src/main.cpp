@@ -4,7 +4,7 @@ Keys	keys;
 
 float MasterVolume;
 
-vec_tex &gettexture(const std::string& Texture_){
+vec_tex &getTexture(const std::string& Texture_){
 
 	static std::map<std::string, vector<Texture2D> > T;
 	static bool init;
@@ -14,6 +14,7 @@ vec_tex &gettexture(const std::string& Texture_){
 		std::map<std::string, std::vector<std::string> > Textures = {
 			{"chat", {"antoine/cat.png", "antoine/cat2.png"}},
 			{"soulsGui", {"Image/SoulMoney.png"}},
+			{"glace", {"Image/IceSpike.png"}}
 		};
 
 		for (auto& pair : Textures) {
@@ -36,7 +37,7 @@ int main(void)
 {
 	InitWindow(SCREENWIDTH, SCREENHEIGHT, "CATACOMB CONQUEST");
 	SetMouseCursor(MOUSE_CURSOR_ARROW);
-	gettexture("chat");
+	// gettexture("chat");
 
 	GameScreen currentScreen = TITLE; //TODO: CHANGE THIS
 	Menu menu;
@@ -45,8 +46,8 @@ int main(void)
 	SetTargetFPS(60);               // Set desired framerate (frames-per-second)
 	Layer	layers;                 //game obj live here
 	InitMapLayer(layers);
-	//ObjFormat*	obj = new testStruct();
-	//AddImageFormatToLayer(layers, 0, obj);
+	// ObjFormat*	obj = new testStruct();
+	// AddImageFormatToLayer(layers, 0, obj);
 
 	MasterVolume = 42;
 	SetMasterVolume(MasterVolume);
