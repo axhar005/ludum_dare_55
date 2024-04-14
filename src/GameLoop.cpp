@@ -22,7 +22,7 @@ void GameLoop(Layer &layers, rendermode mode) {
 		camera.zoom = 3.0f;
 		for (size_t i = 0; i < 1; i++) {
 			Player	*base = new Player();
-			base->_texture = &getTexture("player")[0];
+			base->_texture = &getTexture("player_down")[0];
 			base->keybord = &k;
 			base->_pos.x = SCREENWIDTH/2.0f;
 			base->_pos.y = SCREENHEIGHT/2.0f;
