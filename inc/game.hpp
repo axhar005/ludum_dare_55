@@ -1,9 +1,32 @@
 #pragma once
 
-#include "../lib/raylib/src/raylib.h"
+# if (__APPLE__ || __MACH__)
+	#include "../lib/raylib/src/raylib.h"
+# else
+	#include <raylib.h>
+# endif
+
+//include
 #include <iostream>
 #include <string>
+#include <stdexcept>
+#include <vector>
 #include <cstdlib>
+#include <cstddef>
+#include "ImageFormat.hpp"
+#include "importTexture.hpp"
+#include "MapOptions.hpp"
+#include "Mountain.hpp"
+#include "control.hpp"
+#include "Map.hpp"
+#include "Player.hpp"
+
+//include new obj
+#include "teststruct.hpp"
+
+
+
+
 
 #define SCREENWIDTH 1366
 #define SCREENHEIGHT 768

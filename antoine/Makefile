@@ -20,18 +20,16 @@ endif
 
 
 # Compiler and flags
-CC				=	c++
-CFLAGS			=	-Wall -Werror -Wextra -g -std=c++11
+CC				=	gcc
+CFLAGS			=	-Wall
 #-fsanitize=address
 RM				=	rm -f
 
 # Sources are all .c files
-SRCS	=	ImageFormat.cpp\
-			importTexture.cpp\
-			test.cpp\
+SRCS	=			test.c\
 
 
-OBJS	=	$(SRCS:.cpp=.o)
+OBJS	=	$(SRCS:.c=.o)
 
 all: $(NAME)
 	@printf $(L)$(CYN) \n\n			correction is made by $(USER)\n\n  $(RESET)\n$(L)

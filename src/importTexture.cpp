@@ -1,4 +1,5 @@
-#include "../inc/importTexture.hpp"
+#include "../inc/game.hpp"
+#include "unistd.h"
 
 /// @brief take file name
 /// @param name path
@@ -7,6 +8,8 @@ Texture2D	importImageToTexture2D(const char *name) {
 	Image	tmp;
 	bzero(&tmp, sizeof(tmp));
 	tmp = LoadImage(name);
+	std::cout << name << std::endl;
+	std::cout << getcwd(0, 0) << std::endl;
 	if (!tmp.data)
 		throw std::runtime_error("can't impore image");
 	Texture2D result = LoadTextureFromImage(tmp);

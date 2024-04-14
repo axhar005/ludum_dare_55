@@ -1,10 +1,11 @@
 #include "../inc/game.hpp"
 
+Keys	keys;
+
 float MasterVolume;
 
 int main(void)
 {
-
 	InitWindow(SCREENWIDTH, SCREENHEIGHT, "Game");
 	SetMouseCursor(MOUSE_CURSOR_ARROW);
 
@@ -13,9 +14,19 @@ int main(void)
 	initMenu(&menu, &MasterVolume);
 	int framesCounter = 0;          // Useful to count frames
 	SetTargetFPS(60);               // Set desired framerate (frames-per-second)
-
+	//
+	Layer	layers;                 //game obj live here
+	InitMapLayer(layers);
+	// Texture2D cat = importImageToTexture2D("antoine/cat.png");
+	//ObjFormat*	obj = new ObjFormat(cat);
+	ObjFormat*	obj1 = new testStruct();
+	//AddImageFormatToLayer(layers, 0, obj);
+	AddImageFormatToLayer(layers, 0, obj1);
+	//
 	MasterVolume = 42;
 	SetMasterVolume(MasterVolume);
+	MapOptions options(80, 80, 15, 20);
+	Map map(options);
 
 	while (!WindowShouldClose())    // Detect window close button or ESC key
 	{
@@ -70,10 +81,14 @@ int main(void)
 		}
 
 		// Draw
+		//----------------------------------------------------------------------------------
+
 		BeginDrawing();
-
 			ClearBackground(RAYWHITE);
-
+			//BeginMode2D(camera);
+			DrawGrid(20, 10.0f); // Dessine une grille pour le référencement visuel
+			render(layers);
+			//EndMode2D();
 			switch(currentScreen)
 			{
 				case LOGO:

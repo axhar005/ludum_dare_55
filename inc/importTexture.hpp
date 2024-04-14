@@ -1,12 +1,8 @@
 #pragma once
 
-#include <raylib.h>
-#include <stdexcept>
-#include <string.h>
-#include <vector>
-#include <iostream>
+#include "../inc/game.hpp"
 
 using std::vector;
 
 Texture2D			importImageToTexture2D(const char *name);
-vector<Texture2D>	ImportFileTexture(const char* const filesName[]);
+vec_tex         	ImportFileTexture(const char* const filesName[]);
