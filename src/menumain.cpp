@@ -122,7 +122,6 @@ void drawUI(MenuStruct *menu)
 		} break;
 		case GAME:
 		{
-			DrawRectangle(0, 0, SCREENWIDTH, SCREENHEIGHT, WHITE);
 			drawGameMenu(menu);
 		} break ;
 		case PAUSEM:

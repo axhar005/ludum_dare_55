@@ -9,7 +9,7 @@ typedef enum renderMode {
 	RESTART
 } rendermode;
 
-void GameLoop(Layer &layers, rendermode mode);
+void	GameLoop(Layer &layers, rendermode mode);
 
 /*
 #include "raylib.h"

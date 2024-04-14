@@ -37,8 +37,6 @@ struct ObjFormat
 typedef map<int , vector<ObjFormat*> > Layer;
 
 
-ObjFormat				MakeObj(Texture2D img);
-
 //*			//							//
 vector<ObjFormat*>&		editTextureLayer(Layer& layer, int cal);
 ObjFormat*				editTexture(Layer& layers, int cal, size_t pose);

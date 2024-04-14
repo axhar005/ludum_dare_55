@@ -19,12 +19,8 @@ void GameLoop(Layer &layers, rendermode mode) {
 		camera.offset = { SCREENWIDTH/2.0f, SCREENHEIGHT/2.0f };
 		camera.rotation = 0.0f;
 		camera.zoom = 1.0f;
-		Texture2D cat = importImageToTexture2D("antoine/cat.png");
-		Player*	playerTmp = new Player();
-		playerTmp->_texture = &cat;
-		playerTmp->keybord = &k;
-		AddImageFormatToLayer(layers, 0, playerTmp);
-		std::cout << "ici2\n";
+		
+		//AddImageFormatToLayer()
 		/*
 		add code here
 		*/
@@ -33,7 +29,6 @@ void GameLoop(Layer &layers, rendermode mode) {
 	case RUN:
 		//camera.target = player->_pos;
 		//
-		std::cout << "run\n";
 		BeginMode2D(camera);
 		render(layers);
 		EndMode2D();
