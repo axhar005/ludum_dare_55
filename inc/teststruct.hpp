@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ImageFormat.hpp"
 #include "game.hpp"
 
 struct testStruct : public ObjFormat{
@@ -8,4 +9,6 @@ struct testStruct : public ObjFormat{
 	void step() override;
 
 	Texture2D cat;
+	Texture2D cat2;
+	vec_tex vec;
 };

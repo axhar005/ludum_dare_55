@@ -12,17 +12,20 @@ using std::vector;
 
 #define LAYER_NUMBER 6
 
+typedef vector<Texture2D> vec_tex;
+
 struct ObjFormat
 {
 	public:
-						ObjFormat(void);
-						ObjFormat(Texture2D* _tex);
-		virtual 		~ObjFormat(void);
-		virtual	void	step(void);
-		Vector2			vec2;
-		Texture2D		*tex;
-		void			kill(void);
-		bool			_rm;
+							ObjFormat(void);
+							ObjFormat(Texture2D* _tex);
+		virtual 			~ObjFormat(void);
+		virtual	void		step(void);
+		virtual Texture2D 	*animation(vec_tex &vec, double frameTime, bool reset = false);
+		Vector2				vec2;
+		Texture2D			*tex;
+		void				kill(void);
+		bool				_rm;
 	private:
 	//
 	// if you need to add data to the obj add here
@@ -30,7 +33,6 @@ struct ObjFormat
 };
 
 typedef map<int , vector<ObjFormat*> > Layer;
-typedef vector<Texture2D> vec_tex;
 
 
 ObjFormat				MakeObj(Texture2D img);

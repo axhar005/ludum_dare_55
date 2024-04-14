@@ -28,6 +28,19 @@ void	ObjFormat::step(void) {
 	//*		this->kill();
 }
 
+Texture2D *ObjFormat::animation(vec_tex &vec, double frameTime, bool reset){
+	static float timer = 0.0;
+	static vec_tex::iterator it = vec.begin();
+
+	timer += GetFrameTime();
+	if (timer >= frameTime) {
+		timer = 0;
+		it++;
+		if (it == vec.end()) it = vec.begin();
+	}
+	return &(*it);
+}
+
 void	InitMapLayer(Layer &map) {
 	if (map.empty()) {
 		for (int i = 0; i < LAYER_NUMBER; i++) {
