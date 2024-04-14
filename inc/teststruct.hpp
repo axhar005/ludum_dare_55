@@ -1,8 +1,14 @@
+#pragma once
+
+#include "ImageFormat.hpp"
 #include "game.hpp"
 
 struct testStruct : public ObjFormat{
-    testStruct();
-    testStruct(Texture2D* _tex);
-    ~testStruct();
-    void step() override;
+	testStruct();
+	~testStruct();
+	void step() override;
+
+	Texture2D cat;
+	Texture2D cat2;
+	vec_tex vec;
 };

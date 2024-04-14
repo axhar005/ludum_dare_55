@@ -2,19 +2,21 @@
 
 
 testStruct::testStruct(){
-    
-}
+	cat = importImageToTexture2D("antoine/cat.png");
+	cat2 = importImageToTexture2D("antoine/cat2.png");
 
-testStruct::testStruct(Texture2D* _tex): ObjFormat(_tex){
-    
+	vec.push_back(cat);
+	vec.push_back(cat2);
 }
 
 testStruct::~testStruct() {
-    // Cleanup code here
+	// Cleanup code here
 }
 
 void testStruct::step() {
-    vec2.x += 2;
-	if (this->vec2.x >= 300)
-		this->kill();
+
+	_texture = animation(vec, 1);
+	//texture handle
+
+	//logical handle
 }
