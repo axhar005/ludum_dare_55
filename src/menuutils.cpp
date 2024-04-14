@@ -14,7 +14,7 @@ void initMenu(Menu *menu, float *volume)
 	menu->sliderpos = {(float)((menu->sliderbox.x + menu->sliderbox.width) / 100 * 42), menu->sliderbox.y + 5};
 	menu->returnbox = menu->quitbox;
 	menu->spell1.box = {SCREENWIDTH / 2 - 225, (float)(SCREENHEIGHT / 100 * 93), 100, 100};
-	menu->spell2.box = {SCREENWIDTH / 2 - 100, (float)(SCREENHEIGHT / 100 * 93), 100, 100};
+	menu->spell2.box = {SCREENWIDTH / 2 - 125, (float)(SCREENHEIGHT / 100 * 93), 100, 100};
 	menu->spell3.box = {SCREENWIDTH / 2 + 25, (float)(SCREENHEIGHT / 100 * 93), 100, 100};
 	menu->spell4.box = {SCREENWIDTH / 2 + 150, (float)(SCREENHEIGHT / 100 * 93), 100, 100};
 	menu->moneybox.box = {13, 13, 100, 100};

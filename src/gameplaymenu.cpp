@@ -10,7 +10,7 @@ void drawUI(Menu *menu)
 		} break;
 		case PAUSEM:
 		{
-			
+
 		} break;
 		case END:
 		{
@@ -27,6 +27,7 @@ void drawGameMenu(Menu *menu)
 	drawTextureBox(menu->spell3);
 	drawTextureBox(menu->spell4);
 	drawTextureBox(menu->moneybox);
+	DrawLine(SCREENWIDTH / 2, 0, SCREENWIDTH /2, SCREENHEIGHT, BLACK);
 }
 
 void drawTextureBox(TextureBox &box)
