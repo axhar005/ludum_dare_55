@@ -13,6 +13,8 @@ vec_tex &getTexture(const std::string& Texture_){
 
 		std::map<std::string, std::vector<std::string> > Textures = {
 			{"chat", {"antoine/cat.png", "antoine/cat2.png"}},
+			{"floor", {"Image/Tile1.png", "Image/Tile2.png"}},
+			{"player", {"Image/Character/Character.png"}},
 		};
 
 		for (auto& pair : Textures) {
@@ -110,7 +112,7 @@ int main(void)
 				case GAMEPLAY:
 				{
 					// TODO: Draw GAMEPLAY screen here!
-					ClearBackground(WHITE);
+					ClearBackground(BLACK);
 					GameLoop(layers, RUN);
 					drawUI(&menu);
 					//gameplay

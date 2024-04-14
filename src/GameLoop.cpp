@@ -3,7 +3,7 @@
 void GameLoop(Layer &layers, rendermode mode) {
 	static Camera2D	camera = {0};
 	static struct Keys k;
-
+	const int textureSize = 32;
 	switch (mode) {
 	case RESTART: {
 		for (size_t i = 0; i < layers.size(); i++) {
@@ -15,24 +15,28 @@ void GameLoop(Layer &layers, rendermode mode) {
 		//use to free the old objs
 	}
 	case START: {
+		
 		k.setKeys(true);
 		camera.offset = { SCREENWIDTH/2.0f, SCREENHEIGHT/2.0f };
 		camera.rotation = 0.0f;
-		camera.zoom = 1.0f;
+		camera.zoom = 3.0f;
 		for (size_t i = 0; i < 1; i++) {
 			Player	*base = new Player();
-			base->_texture = &getTexture("chat")[0];
+			base->_texture = &getTexture("player")[0];
 			base->keybord = &k;
 			base->_pos.x = SCREENWIDTH/2.0f;
 			base->_pos.y = SCREENHEIGHT/2.0f;
 			AddImageFormatToLayer(layers, 1, base);
 		}
 		for (size_t i = 0; i < 40; i++) {
-			ObjFormat* base = new ObjFormat();
-			base->_texture = &getTexture("chat")[0];
-			base->_pos.x = i * 200;
-			base->_pos.y = 0;
-			AddImageFormatToLayer(layers, 0, base);
+			for (size_t j = 0; j < 40; j++) {
+				ObjFormat* base = new ObjFormat();
+				SetRandomSeed(i + j);
+				base->_texture = &getTexture("floor")[GetRandomValue(0,1)];
+				base->_pos.x = i * textureSize;
+				base->_pos.y = j * textureSize;
+				AddImageFormatToLayer(layers, 0, base);
+			}
 		}
 		//AddImageFormatToLayer()
 		/*
