@@ -1,14 +1,15 @@
 #include "../inc/game.hpp"
 
+float MasterVolume;
+
 int main(void)
 {
 	InitWindow(SCREENWIDTH, SCREENHEIGHT, "Game");
 	SetMouseCursor(MOUSE_CURSOR_ARROW);
 
 	GameScreen currentScreen = TITLE; //TODO: CHANGE THIS
-
-	// DECLARE VARIABLES HERE
 	Menu menu;
+	initMenu(&menu, &MasterVolume);
 	int framesCounter = 0;          // Useful to count frames
 	SetTargetFPS(60);               // Set desired framerate (frames-per-second)
 	//
@@ -20,6 +21,9 @@ int main(void)
 	//AddImageFormatToLayer(layers, 0, obj);
 	AddImageFormatToLayer(layers, 0, obj1);
 	//
+	MasterVolume = 42;
+	SetMasterVolume(MasterVolume);
+
 	while (!WindowShouldClose())    // Detect window close button or ESC key
 	{
 		// Update
@@ -37,21 +41,19 @@ int main(void)
 					currentScreen = TITLE;
 				}
 			} break;
-			case TITLE:
+			case TITLE: // MAIN MENU
 			{
-				// TODO: Update TITLE screen variables here!
 
-				// Press enter to change to GAMEPLAY screen
+				buttonDetection(&menu, &currentScreen);
 				
 			} break;
 			case GAMEPLAY:
 			{
 				// TODO: Update GAMEPLAY screen variables here!
-				
-				// Press enter to change to ENDING screen
-				if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
+
+				if (IsKeyPressed(KEY_P))
 				{
-					currentScreen = ENDING;
+					std::cout << "PAUSE" << std::endl;
 				}
 			} break;
 			case PAUSE:
@@ -70,10 +72,8 @@ int main(void)
 			} break;
 			default: break;
 		}
-		//----------------------------------------------------------------------------------
 
 		// Draw
-		//----------------------------------------------------------------------------------
 		BeginDrawing();
 
 			ClearBackground(RAYWHITE);
@@ -89,19 +89,17 @@ int main(void)
 				} break;
 				case TITLE:
 				{
-					// TODO: Draw TITLE screen here!
-					ClearBackground(GREEN);
-					drawMainMenu(menu);
-					drawMainMenuText(menu);
-					
+
+					drawMainMenu(&menu);
+
 				} break;
 				case GAMEPLAY:
 				{
 					// TODO: Draw GAMEPLAY screen here!
-					ClearBackground(ORANGE);
-					DrawText("GAMEPLAY SCREEN", 20, 20, 40, MAROON);
-					DrawText("PRESS ENTER or TAP to JUMP to ENDING SCREEN", 130, 220, 20, MAROON);
-
+					ClearBackground(WHITE);
+					drawUI(&menu);
+					//gameplay
+					//menus
 				} break;
 				case PAUSE:
 				{
@@ -119,16 +117,13 @@ int main(void)
 			}
 
 		EndDrawing();
-		//----------------------------------------------------------------------------------
 	}
 
 	// De-Initialization
-	//--------------------------------------------------------------------------------------
 
 	// TODO: Unload all loaded data (textures, fonts, audio) here!
-	//cleanLayer(layers);
-	CloseWindow();        // Close window and OpenGL context
-	//--------------------------------------------------------------------------------------
+
+	CloseWindow();
 
 	return 0;
 }

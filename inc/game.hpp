@@ -13,7 +13,7 @@
 #include <string>
 #include <stdexcept>
 #include <vector>
-
+#include <cstdlib>
 
 #define SCREENWIDTH 1366
 #define SCREENHEIGHT 768
@@ -21,24 +21,46 @@
 #define MEDIUM_MENU_TEXT 50
 #define LARGE_MENU_TEXT 100
 
+//CUSTOM COLORS
+#define LIGHTGRAYTRANS  CLITERAL(Color){ 200, 200, 200, 100 }   // Light Gray with transparancy
+
+
 typedef enum GameScreen { LOGO = 0, TITLE, GAMEPLAY, PAUSE, ENDING } GameScreen;
+typedef enum MenuType {MAIN = 0, SETTINGS, GAME, PAUSEM, UPGRADE, END} MenuType;
 
 typedef struct MenuStruct
 {
-	Rectangle box1;
-	Rectangle box2;
-	Rectangle box3;
-	Vector2 box1center;
-	Vector2 box2center;
-	Vector2 box3center;
+	MenuType menu_state;
+	float *mastervolume;
 
-	Rectangle text1;
-	Rectangle text2;
-	Rectangle text3;
-	Vector2 text1center;
-	Vector2 text2center;
-	Vector2 text3center;
+	// Main Menu Boxes
+	Rectangle playbox;
+	Rectangle settingsbox;
+	Rectangle quitbox;
+
+	//Settings Boxes
+	Rectangle returnbox;
+
+	//Slider Info
+	Rectangle sliderbox;
+	Vector2 sliderpos;
+	bool moveSlider;
 } Menu;
 
-void drawMainMenu(MenuStruct menu);
-void drawMainMenuText(MenuStruct menu);
+//Main Menu and its utils
+void drawMainMenu(MenuStruct *menu);
+Vector2 getTextCenter(std::string str, int font_size);
+void drawBoxWithText(Rectangle rec, float thick, std::string str, int font_size);
+void drawBoxWithText(Rectangle rec, float thick, std::string str, int font_size, 
+Color boxcolor, Color boxhighlight, Color textcolor, Color texthighlight);
+void drawTextOnPoint(Vector2 pos, std::string str, int font_size, Color tcolor);
+void initMenu(Menu *menu, float *volume);
+void buttonDetection(Menu *menu, GameScreen *currentScreen);
+void drawSlider(Menu *menu);
+void sliderDetection(Menu *menu);
+
+//Game menu
+void drawUI(Menu *menu);
+void drawGameMenu(Menu *menu);
+
+//Pause menu
