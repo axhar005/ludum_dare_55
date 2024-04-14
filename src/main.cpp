@@ -1,6 +1,7 @@
 #include "../inc/game.hpp"
 
 float MasterVolume;
+map<std::string, Texture2D> allTexture;
 
 int main(void)
 {
@@ -13,18 +14,16 @@ int main(void)
 	int framesCounter = 0;          // Useful to count frames
 	SetTargetFPS(60);               // Set desired framerate (frames-per-second)
 	//
+
 	Layer	layers;                 //game obj live here
 	InitMapLayer(layers);
-	// Texture2D cat = importImageToTexture2D("antoine/cat.png");
-	//ObjFormat*	obj = new ObjFormat(cat);
-	ObjFormat*	obj1 = new testStruct();
-	//AddImageFormatToLayer(layers, 0, obj);
-	AddImageFormatToLayer(layers, 0, obj1);
+	ObjFormat*	obj = new testStruct();
+	AddImageFormatToLayer(layers, 0, obj);
+
 	//
 	MasterVolume = 42;
 	SetMasterVolume(MasterVolume);
-	MapOptions options(80, 80, 15, 20);
-	Map map(options);
+	Map map(MapOptions(80, 80, 15, 20));
 
 	while (!WindowShouldClose())    // Detect window close button or ESC key
 	{
