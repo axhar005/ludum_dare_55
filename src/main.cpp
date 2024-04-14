@@ -6,7 +6,7 @@ float MasterVolume;
 
 int main(void)
 {
-	InitWindow(SCREENWIDTH, SCREENHEIGHT, "Game");
+	InitWindow(SCREENWIDTH, SCREENHEIGHT, "CATACOMB CONQUEST");
 	SetMouseCursor(MOUSE_CURSOR_ARROW);
 
 	GameScreen currentScreen = TITLE; //TODO: CHANGE THIS
@@ -31,18 +31,6 @@ int main(void)
 		// Update
 		switch(currentScreen)
 		{
-			case LOGO:
-			{
-				// TODO: Update LOGO screen variables here!
-
-				framesCounter++;    // Count frames
-
-				// Wait for 2 seconds (120 frames) before jumping to TITLE screen
-				if (framesCounter > 120)
-				{
-					currentScreen = TITLE;
-				}
-			} break;
 			case TITLE: // MAIN MENU
 			{
 
@@ -52,6 +40,7 @@ int main(void)
 			case GAMEPLAY:
 			{
 				// TODO: Update GAMEPLAY screen variables here!
+				buttonDetection(&menu, &currentScreen);
 				if (IsKeyPressed(KEY_P) && menu.menu_state == GAME)
 				{
 					menu.menu_state = PAUSEM;
@@ -89,17 +78,10 @@ int main(void)
 			//EndMode2D();
 			switch(currentScreen)
 			{
-				case LOGO:
-				{
-					// TODO: Draw LOGO screen here!
-					DrawText("LOGO SCREEN", 20, 20, 40, LIGHTGRAY);
-					DrawText("WAIT for 2 SECONDS...", 290, 220, 20, GRAY);
-
-				} break;
 				case TITLE:
 				{
 
-					drawMainMenu(&menu);
+					drawUI(&menu);
 
 				} break;
 				case GAMEPLAY:

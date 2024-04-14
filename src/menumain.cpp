@@ -8,31 +8,59 @@ void buttonDetection(Menu *menu, GameScreen *currentScreen)
 	{
 		case MAIN:
 		{
-			if (CheckCollisionPointRec(GetMousePosition(), menu->playbox) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+			if (checkBoxCollision(menu->playbox))
 			{
 				*currentScreen = GAMEPLAY;
 				menu->menu_state = GAME;
 			}
-			else if (CheckCollisionPointRec(GetMousePosition(), menu->settingsbox) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+			else if (checkBoxCollision(menu->settingsbox))
 			{
 				menu->menu_state = SETTINGS;
 			}
-			else if (CheckCollisionPointRec(GetMousePosition(), menu->quitbox) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+			else if (checkBoxCollision(menu->quitbox))
 			{
 				//TODO: find out how to leave game
 			}
 		} break;
 		case SETTINGS:
 		{
-			if (CheckCollisionPointRec(GetMousePosition(), menu->returnbox) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+			if (checkBoxCollision(menu->returnbox))
 			{
-				menu->menu_state = MAIN;
+				if (*currentScreen == TITLE)
+					menu->menu_state = MAIN;
+				else if (*currentScreen == GAMEPLAY)
+					menu->menu_state = PAUSEM;
 			}
 			sliderDetection(menu);
 		} break;
+		case GAME:
+			break;
+		case PAUSEM:
+		{
+			if (checkBoxCollision(menu->resumebox))
+			{
+				menu->menu_state = GAME;
+			}
+			else if (checkBoxCollision(menu->gamesetting))
+			{
+				menu->menu_state = SETTINGS;
+			}
+			else if (checkBoxCollision(menu->tomenu_box))
+			{
+				*currentScreen = TITLE;
+				menu->menu_state = MAIN;
+			}
+		}
 		default: break;
 	}
 	
+}
+
+bool checkBoxCollision(Rectangle &box)
+{
+	if (CheckCollisionPointRec(GetMousePosition(), box) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+		return true;
+	return false;
 }
 
 void sliderDetection(Menu *menu)
@@ -65,14 +93,14 @@ void sliderDetection(Menu *menu)
 // ------------------------------------------------------------------------------
 // Rendering
 
-void drawMainMenu(MenuStruct *menu)
+void drawUI(MenuStruct *menu)
 {
 	std::string volumestring = "VOLUME: " + std::to_string((int)*menu->mastervolume);
 	switch(menu->menu_state)
 	{
 		case MAIN:
 		{
-			ClearBackground(GREEN);
+			DrawRectangle(0, 0, SCREENWIDTH, SCREENHEIGHT, GREEN);
 			drawBoxWithText(menu->playbox, 5, "PLAY GAME", MEDIUM_MENU_TEXT);
 			drawBoxWithText(menu->settingsbox, 5, "SETTINGS", MEDIUM_MENU_TEXT);
 			drawBoxWithText(menu->quitbox, 5, "LEAVE GAME", MEDIUM_MENU_TEXT);
@@ -83,7 +111,7 @@ void drawMainMenu(MenuStruct *menu)
 		} break;
 		case SETTINGS:
 		{
-			ClearBackground(BLUE);
+			DrawRectangle(0, 0, SCREENWIDTH, SCREENHEIGHT, BLUE);
 			drawSlider(menu);
 			drawBoxWithText(menu->returnbox, 5, "RETURN", MEDIUM_MENU_TEXT, DARKBLUE, ORANGE, DARKBLUE, ORANGE);
 
@@ -92,6 +120,15 @@ void drawMainMenu(MenuStruct *menu)
 			Vector2 volumetext = {SCREENWIDTH / 2, menu->sliderbox.y + 60};
 			drawTextOnPoint(volumetext, volumestring, MEDIUM_MENU_TEXT, DARKBLUE);
 		} break;
+		case GAME:
+		{
+			DrawRectangle(0, 0, SCREENWIDTH, SCREENHEIGHT, WHITE);
+			drawGameMenu(menu);
+		} break ;
+		case PAUSEM:
+		{
+			drawPauseMenu(menu);
+		}
 		default: break;
 	}
 }
