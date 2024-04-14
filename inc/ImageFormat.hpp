@@ -30,6 +30,7 @@ struct ObjFormat
 };
 
 typedef map<int , vector<ObjFormat*> > Layer;
+typedef vector<Texture2D> vec_tex;
 
 
 ObjFormat				MakeObj(Texture2D img);

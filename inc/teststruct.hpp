@@ -1,8 +1,11 @@
+#pragma once
+
 #include "game.hpp"
 
 struct testStruct : public ObjFormat{
-    testStruct();
-    testStruct(Texture2D* _tex);
-    ~testStruct();
-    void step() override;
+	testStruct();
+	~testStruct();
+	void step() override;
+
+	Texture2D cat;
 };

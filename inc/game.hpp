@@ -6,13 +6,20 @@
 	#include <raylib.h>
 # endif
 
-#include "ImageFormat.hpp"
-#include "importTexture.hpp"
-#include "teststruct.hpp"
+//include
 #include <iostream>
 #include <string>
 #include <stdexcept>
 #include <vector>
+#include "ImageFormat.hpp"
+#include "importTexture.hpp"
+
+
+//include new obj
+#include "teststruct.hpp"
+
+
+
 
 
 #define SCREENWIDTH 1366

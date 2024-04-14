@@ -55,4 +55,3 @@ void drawMainMenu(MenuStruct menu)
 	DrawRectangleLines(SCREENWIDTH / 2 + 100, SCREENHEIGHT / 4 + 150, 500, 100, box2color);
 	DrawRectangleLines(SCREENWIDTH / 2 + 100, SCREENHEIGHT / 4 + 300, 500, 100, box3color);
 }
-

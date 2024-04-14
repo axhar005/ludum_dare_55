@@ -14,12 +14,8 @@ int main(void)
 	//
 	Layer	layers;                 //game obj live here
 	InitMapLayer(layers);
-	// Texture2D cat = importImageToTexture2D("antoine/cat.png");
-	//ObjFormat*	obj = new ObjFormat(cat);
-	ObjFormat*	obj1 = new testStruct();
-	//AddImageFormatToLayer(layers, 0, obj);
-	AddImageFormatToLayer(layers, 0, obj1);
-	//
+	ObjFormat*	obj = new testStruct();
+	AddImageFormatToLayer(layers, 0, obj);
 	while (!WindowShouldClose())    // Detect window close button or ESC key
 	{
 		// Update
