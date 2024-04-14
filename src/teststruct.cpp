@@ -14,8 +14,8 @@ testStruct::~testStruct() {
 }
 
 void testStruct::step() {
-
-	_texture = animation(vec, 1);
+	// _texture = &getTexture("glace")[0];
+	// _texture = animation(getTexture("chat"), 0.5);
 	//texture handle
 
 	//logical handle
