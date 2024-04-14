@@ -6,7 +6,9 @@
 	#include <raylib.h>
 # endif
 
+#include "control.hpp"
 //include
+#include "Player.hpp"
 #include <iostream>
 #include <string>
 #include <stdexcept>
