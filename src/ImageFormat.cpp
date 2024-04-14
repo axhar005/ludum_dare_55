@@ -39,6 +39,7 @@ void	render(Layer& layer) {
 				continue ;
 			}
 			DrawTexture(tmp.img, tmp.vec2.x, tmp.vec2.y, WHITE);
+			tmp.step();
 		}
 	}
 }

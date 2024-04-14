@@ -19,6 +19,7 @@ typedef struct s_ObjFormat
 	Texture2D	img;
 	void	kill(void);
 	bool	rm;
+	virtual void step(void);
 	//
 	// if you need to add data to the obj add here
 	//
@@ -37,3 +38,4 @@ void		AddImageFormatToLayer(Layer& input, int y, t_ObjFormat& img);
 //*			//							//
 
 void		render(Layer& layer);
+
