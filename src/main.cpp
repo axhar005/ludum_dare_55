@@ -14,7 +14,7 @@ vec_tex &getTexture(const std::string& Texture_){
 		std::map<std::string, std::vector<std::string> > Textures = {
 			{"chat", {"antoine/cat.png", "antoine/cat2.png"}},
 			{"soulsGui", {"Image/SoulMoney.png"}},
-			{"glace", {"Image/IceSpike.png"}}
+			{"glace", {"Image/IceSpike.png"}},
 		};
 
 		for (auto& pair : Textures) {
