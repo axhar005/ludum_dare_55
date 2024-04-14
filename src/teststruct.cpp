@@ -1,7 +1,11 @@
 #include "../inc/game.hpp"
 
-void testStruct::test(std::string str){
+testStruct::testStruct(Texture2D _tex): ObjFormat(_tex){
     
+}
+
+testStruct::~testStruct() {
+    // Cleanup code here
 }
 
 void testStruct::step(){

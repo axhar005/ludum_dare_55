@@ -6,7 +6,7 @@
 	#include <raylib.h>
 # endif
 
-#include "imageFormat.hpp"
+#include "ImageFormat.hpp"
 #include "importTexture.hpp"
 #include "teststruct.hpp"
 #include <iostream>

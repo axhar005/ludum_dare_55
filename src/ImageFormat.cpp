@@ -6,6 +6,12 @@ ObjFormat::ObjFormat(void) {
 	bzero(&vec2, sizeof(vec2));
 }
 
+ObjFormat::ObjFormat(Texture2D _tex): tex(_tex) {
+	_rm = false;
+	bzero(&vec2, sizeof(vec2));
+}
+
+
 ObjFormat::~ObjFormat(void) {
 	
 }
@@ -31,7 +37,7 @@ void	InitMapLayer(Layer &map) {
 
 ObjFormat	MakeObj(Texture2D tex) {
 	ObjFormat result;
-	bzero(&result, sizeof(result));
+	// bzero(&result, sizeof(result));
 	result.tex = tex;
 	return (result);
 }

@@ -1,5 +1,7 @@
 #include "game.hpp"
-struct testStruct : t_ObjFormat{
-    testStruct(Texture2D textname);
-    void test(std::string str);
+
+struct testStruct : public ObjFormat{
+    testStruct(Texture2D _tex);
+    ~testStruct();
+    void step();
 };

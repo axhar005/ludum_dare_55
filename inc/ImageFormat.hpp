@@ -16,6 +16,7 @@ struct ObjFormat
 {
 	public:
 						ObjFormat(void);
+						ObjFormat(Texture2D _tex);
 		virtual 		~ObjFormat(void);
 		virtual	void	step(void);
 		Vector2			vec2;
