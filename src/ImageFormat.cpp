@@ -3,16 +3,9 @@
 
 ObjFormat::ObjFormat(void) {
 	_rm = false;
-	tex = nullptr;
-	bzero(&vec2, sizeof(vec2));
+	_texture = nullptr;
+	bzero(&_pos, sizeof(_pos));
 }
-
-ObjFormat::ObjFormat(Texture2D* _tex): tex(_tex) {
-	_rm = false;
-	bzero(&vec2, sizeof(vec2));
-}
-
-
 ObjFormat::~ObjFormat(void) {
 	
 }
@@ -67,8 +60,8 @@ void	render(Layer& layer) {
 				j--;
 				continue ;
 			}
-			if (tmp->tex)
-				DrawTexture(*tmp->tex, tmp->vec2.x, tmp->vec2.y, WHITE);
+			if (tmp->_texture)
+				DrawTexture(*tmp->_texture, tmp->_pos.x, tmp->_pos.y, WHITE);
 			tmp->step();
 		}
 	}
@@ -96,7 +89,7 @@ vector<ObjFormat*>&	editTextureLayer(Layer& layer, int cal) {
 void	cleanLayer(Layer& layer) {
 	for (size_t i = 0; i < layer.size(); i++) {
 		for (size_t j = 0; j < layer[i].size(); j++) {
-			UnloadTexture(layer[i][j]->tex);
+			UnloadTexture(layer[i][j]->_texture);
 		}
 	}
 }

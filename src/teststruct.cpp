@@ -15,7 +15,7 @@ testStruct::~testStruct() {
 
 void testStruct::step() {
 
-	tex = animation(vec, 1);
+	_texture = animation(vec, 1);
 	//texture handle
 
 	//logical handle

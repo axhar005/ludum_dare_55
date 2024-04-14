@@ -17,14 +17,16 @@ typedef vector<Texture2D> vec_tex;
 struct ObjFormat
 {
 	public:
-							ObjFormat(void);
-							ObjFormat(Texture2D* _tex);
+	// constructor / deconstructor
+		ObjFormat(void);
 		virtual 			~ObjFormat(void);
 		virtual	void		step(void);
-		virtual Texture2D 	*animation(vec_tex &vec, double frameTime, bool reset = false);
-		Vector2				vec2;
-		Texture2D			*tex;
 		void				kill(void);
+		virtual Texture2D 	*animation(vec_tex &vec, double frameTime, bool reset = false);
+
+	// variables
+		Vector2				_pos;
+		Texture2D			*_texture;
 		bool				_rm;
 	private:
 	//
