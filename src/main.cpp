@@ -14,11 +14,11 @@ int main(void)
 	//
 	Layer	layers;                 //game obj live here
 	InitMapLayer(layers);
-	Texture2D cat = importImageToTexture2D("antoine/cat.png");
-	ObjFormat	obj(cat);
-	ObjFormat*	obj1 = new testStruct(cat);
-	// AddImageFormatToLayer(layers, 0, obj);
-	AddImageFormatToLayer(layers, 0, obj1);
+	//Texture2D cat = importImageToTexture2D("antoine/cat.png");
+	//ObjFormat*	obj = new ObjFormat(cat);
+	//ObjFormat*	obj1 = new testStruct(cat);
+	//AddImageFormatToLayer(layers, 0, obj);
+	//AddImageFormatToLayer(layers, 0, obj1);
 	//
 	while (!WindowShouldClose())    // Detect window close button or ESC key
 	{
@@ -126,7 +126,7 @@ int main(void)
 	//--------------------------------------------------------------------------------------
 
 	// TODO: Unload all loaded data (textures, fonts, audio) here!
-	cleanLayer(layers);
+	//cleanLayer(layers);
 	CloseWindow();        // Close window and OpenGL context
 	//--------------------------------------------------------------------------------------
 

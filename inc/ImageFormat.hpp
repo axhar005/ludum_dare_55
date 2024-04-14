@@ -16,11 +16,11 @@ struct ObjFormat
 {
 	public:
 						ObjFormat(void);
-						ObjFormat(Texture2D _tex);
+						ObjFormat(Texture2D* _tex);
 		virtual 		~ObjFormat(void);
-		virtual	void	step(void) const;
+		virtual	void	step(void);
 		Vector2			vec2;
-		Texture2D		tex;
+		Texture2D		*tex;
 		void			kill(void);
 		bool			_rm;
 	private:
@@ -35,14 +35,14 @@ typedef map<int , vector<ObjFormat*> > Layer;
 ObjFormat				MakeObj(Texture2D img);
 
 //*			//							//
-vector<ObjFormat>&		editTextureLayer(Layer& layer, int cal);
+vector<ObjFormat*>&		editTextureLayer(Layer& layer, int cal);
 ObjFormat*				editTexture(Layer& layers, int cal, size_t pose);
 void					editTextureLayerFt(vector<ObjFormat>& list, int(*ft)(ObjFormat&));
 
 
 void					InitMapLayer(Layer &map);
 void					AddImageFormatToLayer(Layer& input, int y, ObjFormat* img);
-void					cleanLayer(Layer& layer);
+//void					cleanLayer(Layer& layer);
 //*			//							//
 
 void					render(Layer& layer);
