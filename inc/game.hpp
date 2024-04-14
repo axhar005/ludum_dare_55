@@ -72,6 +72,7 @@ void sliderDetection(Menu *menu);
 //Game menu
 void drawUI(Menu *menu);
 void drawGameMenu(Menu *menu);
+void drawPauseMenu(Menu *menu);
 void drawTextureBox(TextureBox &box);
 
 //Pause menu

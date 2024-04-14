@@ -43,10 +43,13 @@ int main(void)
 			case GAMEPLAY:
 			{
 				// TODO: Update GAMEPLAY screen variables here!
-
-				if (IsKeyPressed(KEY_P))
+				if (IsKeyPressed(KEY_P) && menu.menu_state == GAME)
 				{
-					std::cout << "PAUSE" << std::endl;
+					menu.menu_state = PAUSEM;
+				}
+				else if (IsKeyPressed(KEY_P) && menu.menu_state == PAUSEM)
+				{
+					menu.menu_state = GAME;
 				}
 			} break;
 			case PAUSE:
