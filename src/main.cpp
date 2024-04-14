@@ -21,12 +21,17 @@ int main(void)
 	player->keybord = &keys;
 	Texture2D cat = importImageToTexture2D("antoine/cat.png");
 	player->tex = &cat;
-	//ObjFormat*	obj = new ObjFormat(cat);
-	//AddImageFormatToLayer(layers, 0, obj);
 	AddImageFormatToLayer(layers, 0, player);
+	//
+    Camera2D camera = { 0 };
+    camera.target = (Vector2) { 0.0f, 0.0f };          // Point que la caméra doit suivre
+    camera.offset = (Vector2) { SCREENWIDTH/2.0f, SCREENHEIGHT/2.0f };  // Décalage pour centrer la caméra sur l'écran
+    camera.rotation = 0.0f;                  // Pas de rotation nécessaire en 2D général
+    camera.zoom = 1.0f;                      // Niveau de zoom initial
 	//
 	while (!WindowShouldClose())    // Detect window close button or ESC key
 	{
+		camera.target = player->vec2;
 		// Update
 		switch(currentScreen)
 		{
@@ -79,10 +84,16 @@ int main(void)
 
 		// Draw
 		//----------------------------------------------------------------------------------
-		BeginDrawing();
+		camera.target = editTexture(layers, 0,0)->vec2;
+		std::cout << "x = " << camera.target.x << " y = " << camera.target.y << "\n";
 
+		BeginDrawing();
 			ClearBackground(RAYWHITE);
+			BeginMode2D(camera);
+			DrawGrid(20, 10.0f); // Dessine une grille pour le référencement visuel
+			DrawTextureV(cat, (Vector2){10, 30}, RED);
 			render(layers);
+			EndMode2D();
 			switch(currentScreen)
 			{
 				case LOGO:
@@ -103,7 +114,7 @@ int main(void)
 				case GAMEPLAY:
 				{
 					// TODO: Draw GAMEPLAY screen here!
-					ClearBackground(ORANGE);
+					ClearBackground(WHITE);
 					DrawText("GAMEPLAY SCREEN", 20, 20, 40, MAROON);
 					DrawText("PRESS ENTER or TAP to JUMP to ENDING SCREEN", 130, 220, 20, MAROON);
 

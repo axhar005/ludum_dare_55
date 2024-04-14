@@ -2,7 +2,7 @@
 
 Player::Player(void) {
 	hp = 0;
-	speed = 2;
+	speed = 10;
 	lookside = 0;
 }
 

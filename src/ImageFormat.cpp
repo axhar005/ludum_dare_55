@@ -54,9 +54,10 @@ void	render(Layer& layer) {
 				j--;
 				continue ;
 			}
-			if (tmp->tex)
-				DrawTexture(*tmp->tex, tmp->vec2.x, tmp->vec2.y, WHITE);
-			tmp->step();
+			if (tmp->tex) {
+				DrawTextureV(*tmp->tex, tmp->vec2, WHITE);
+				tmp->step();
+			}
 		}
 	}
 }
@@ -64,9 +65,9 @@ void	render(Layer& layer) {
 ObjFormat*	editTexture(Layer& layers, int cal, size_t pose) {
 	if (cal < 0 || cal > LAYER_NUMBER)
 		return NULL;
-	if (pose > layers[cal].size())
+	if (pose >= layers[cal].size())
 		return NULL;
-	return (layers[cal][pose]);
+	return ((layers[cal][pose]));
 }
 
 /// @brief throw std::runtime_error
