@@ -79,5 +79,5 @@ void Map::protectCenter() {
 			_map[centerY + y][centerX + x] = '0';
 		}
 	}
-	// _map[_mapOptions.getHeight() / 2][_mapOptions.getWidth() / 2] = 'X';
+	_map[_mapOptions.getHeight() / 2][_mapOptions.getWidth() / 2] = 'X';
 }

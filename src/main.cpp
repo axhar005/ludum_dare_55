@@ -26,106 +26,106 @@ int main(void)
 	MapOptions options(80, 80, 15, 20);
 	Map map(options);
 
-	while (!WindowShouldClose())    // Detect window close button or ESC key
-	{
-		// Update
-		switch(currentScreen)
-		{
-			case LOGO:
-			{
-				// TODO: Update LOGO screen variables here!
+	// while (!WindowShouldClose())    // Detect window close button or ESC key
+	// {
+	// 	// Update
+	// 	switch(currentScreen)
+	// 	{
+	// 		case LOGO:
+	// 		{
+	// 			// TODO: Update LOGO screen variables here!
 
-				framesCounter++;    // Count frames
+	// 			framesCounter++;    // Count frames
 
-				// Wait for 2 seconds (120 frames) before jumping to TITLE screen
-				if (framesCounter > 120)
-				{
-					currentScreen = TITLE;
-				}
-			} break;
-			case TITLE: // MAIN MENU
-			{
+	// 			// Wait for 2 seconds (120 frames) before jumping to TITLE screen
+	// 			if (framesCounter > 120)
+	// 			{
+	// 				currentScreen = TITLE;
+	// 			}
+	// 		} break;
+	// 		case TITLE: // MAIN MENU
+	// 		{
 
-				buttonDetection(&menu, &currentScreen);
+	// 			buttonDetection(&menu, &currentScreen);
 				
-			} break;
-			case GAMEPLAY:
-			{
-				// TODO: Update GAMEPLAY screen variables here!
+	// 		} break;
+	// 		case GAMEPLAY:
+	// 		{
+	// 			// TODO: Update GAMEPLAY screen variables here!
 
-				if (IsKeyPressed(KEY_P))
-				{
-					std::cout << "PAUSE" << std::endl;
-				}
-			} break;
-			case PAUSE:
-			{
+	// 			if (IsKeyPressed(KEY_P))
+	// 			{
+	// 				std::cout << "PAUSE" << std::endl;
+	// 			}
+	// 		} break;
+	// 		case PAUSE:
+	// 		{
 
-			} break;
-			case ENDING:
-			{
-				// TODO: Update ENDING screen variables here!
+	// 		} break;
+	// 		case ENDING:
+	// 		{
+	// 			// TODO: Update ENDING screen variables here!
 
-				// Press enter to return to TITLE screen
-				if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
-				{
-					currentScreen = TITLE;
-				}
-			} break;
-			default: break;
-		}
+	// 			// Press enter to return to TITLE screen
+	// 			if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
+	// 			{
+	// 				currentScreen = TITLE;
+	// 			}
+	// 		} break;
+	// 		default: break;
+	// 	}
 
-		// Draw
-		BeginDrawing();
+	// 	// Draw
+	// 	BeginDrawing();
 
-			ClearBackground(RAYWHITE);
-			render(layers);
-			switch(currentScreen)
-			{
-				case LOGO:
-				{
-					// TODO: Draw LOGO screen here!
-					DrawText("LOGO SCREEN", 20, 20, 40, LIGHTGRAY);
-					DrawText("WAIT for 2 SECONDS...", 290, 220, 20, GRAY);
+	// 		ClearBackground(RAYWHITE);
+	// 		render(layers);
+	// 		switch(currentScreen)
+	// 		{
+	// 			case LOGO:
+	// 			{
+	// 				// TODO: Draw LOGO screen here!
+	// 				DrawText("LOGO SCREEN", 20, 20, 40, LIGHTGRAY);
+	// 				DrawText("WAIT for 2 SECONDS...", 290, 220, 20, GRAY);
 
-				} break;
-				case TITLE:
-				{
+	// 			} break;
+	// 			case TITLE:
+	// 			{
 
-					drawMainMenu(&menu);
+	// 				drawMainMenu(&menu);
 
-				} break;
-				case GAMEPLAY:
-				{
-					// TODO: Draw GAMEPLAY screen here!
-					ClearBackground(WHITE);
-					drawUI(&menu);
-					//gameplay
-					//menus
-				} break;
-				case PAUSE:
-				{
+	// 			} break;
+	// 			case GAMEPLAY:
+	// 			{
+	// 				// TODO: Draw GAMEPLAY screen here!
+	// 				ClearBackground(WHITE);
+	// 				drawUI(&menu);
+	// 				//gameplay
+	// 				//menus
+	// 			} break;
+	// 			case PAUSE:
+	// 			{
 					
-				} break;
-				case ENDING:
-				{
-					// TODO: Draw ENDING screen here!
-					ClearBackground(BLUE);
-					DrawText("ENDING SCREEN", 20, 20, 40, DARKBLUE);
-					DrawText("PRESS ENTER or TAP to RETURN to TITLE SCREEN", 120, 220, 20, DARKBLUE);
+	// 			} break;
+	// 			case ENDING:
+	// 			{
+	// 				// TODO: Draw ENDING screen here!
+	// 				ClearBackground(BLUE);
+	// 				DrawText("ENDING SCREEN", 20, 20, 40, DARKBLUE);
+	// 				DrawText("PRESS ENTER or TAP to RETURN to TITLE SCREEN", 120, 220, 20, DARKBLUE);
 
-				} break;
-				default: break;
-			}
+	// 			} break;
+	// 			default: break;
+	// 		}
 
-		EndDrawing();
-	}
+	// 	EndDrawing();
+	// }
 
-	// De-Initialization
+	// // De-Initialization
 
-	// TODO: Unload all loaded data (textures, fonts, audio) here!
+	// // TODO: Unload all loaded data (textures, fonts, audio) here!
 
-	CloseWindow();
+	// CloseWindow();
 
 	return 0;
 }

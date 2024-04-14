@@ -62,7 +62,7 @@ void Mountain::generateMountain() {
 		int result = 0;
 		unsigned int x = _size / 2;
 		unsigned int y = _size / 2;
-		bool outOfBounce;
+		bool outOfBounce = false;
 		for (size_t i = 0; i < _size * 2 && !outOfBounce; i++) {
 			if (x > 0 || x < _size - 1 || y > 0 || y < _size - 1) {
 				while (_mountain[y][x] == '1') {
