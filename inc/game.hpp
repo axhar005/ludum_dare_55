@@ -20,6 +20,7 @@
 #include "control.hpp"
 #include "Map.hpp"
 #include "Player.hpp"
+#include "Gameloop.hpp"
 
 //include new obj
 #include "teststruct.hpp"

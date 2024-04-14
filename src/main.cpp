@@ -17,8 +17,6 @@ int main(void)
 	//
 	Layer	layers;                 //game obj live here
 	InitMapLayer(layers);
-	// Texture2D cat = importImageToTexture2D("antoine/cat.png");
-	//ObjFormat*	obj = new ObjFormat(cat);
 	//ObjFormat*	obj1 = new testStruct();
 	//AddImageFormatToLayer(layers, 0, obj);
 	//AddImageFormatToLayer(layers, 0, obj1);
@@ -27,7 +25,7 @@ int main(void)
 	SetMasterVolume(MasterVolume);
 	MapOptions options(80, 80, 15, 20);
 	Map map(options);
-
+	GameLoop(layers, START);
 	while (!WindowShouldClose())    // Detect window close button or ESC key
 	{
 		// Update
@@ -108,6 +106,7 @@ int main(void)
 				{
 					// TODO: Draw GAMEPLAY screen here!
 					ClearBackground(WHITE);
+					GameLoop(layers, RUN);
 					drawUI(&menu);
 					//gameplay
 					//menus
