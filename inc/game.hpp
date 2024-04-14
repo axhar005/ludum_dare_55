@@ -10,6 +10,7 @@
 #include "ImageFormat.hpp"
 #include "importTexture.hpp"
 #include "teststruct.hpp"
+#include "Player.hpp"
 #include <iostream>
 #include <string>
 #include <stdexcept>

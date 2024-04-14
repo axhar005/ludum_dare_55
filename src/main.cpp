@@ -17,11 +17,13 @@ int main(void)
 	Layer	layers;                 //game obj live here
 	InitMapLayer(layers);
 	keys.setKeys(true);
+	Player*		player = new Player();
+	player->keybord = &keys;
 	Texture2D cat = importImageToTexture2D("antoine/cat.png");
+	player->tex = &cat;
 	//ObjFormat*	obj = new ObjFormat(cat);
-	ObjFormat*	obj1 = new testStruct();
 	//AddImageFormatToLayer(layers, 0, obj);
-	AddImageFormatToLayer(layers, 0, obj1);
+	AddImageFormatToLayer(layers, 0, player);
 	//
 	while (!WindowShouldClose())    // Detect window close button or ESC key
 	{
