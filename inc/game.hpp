@@ -78,6 +78,9 @@ typedef struct MenuStruct
 } Menu;
 
 
+//Texture
+vec_tex &gettexture(const std::string& Texture);
+
 //Main Menu and its utils
 void drawMainMenu(MenuStruct *menu);
 Vector2 getTextCenter(std::string str, int font_size);
