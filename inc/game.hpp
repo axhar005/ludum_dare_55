@@ -41,7 +41,5 @@ typedef struct MenuStruct
 	Vector2 text3center;
 } Menu;
 
-Keys	keys;
-
 void drawMainMenu(MenuStruct menu);
 void drawMainMenuText(MenuStruct menu);

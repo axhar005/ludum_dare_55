@@ -1,4 +1,4 @@
-#include "control.hpp"
+#include "../inc/game.hpp"
 
 void	Keys::setKeys(bool type) {
 	if (type) {

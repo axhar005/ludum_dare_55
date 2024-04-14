@@ -1,5 +1,7 @@
 #include "../inc/game.hpp"
 
+Keys	keys;
+
 int main(void)
 {
 	InitWindow(SCREENWIDTH, SCREENHEIGHT, "Game");
@@ -15,8 +17,7 @@ int main(void)
 	Layer	layers;                 //game obj live here
 	InitMapLayer(layers);
 	keys.setKeys(true);
-	//Texture2D cat = importImageToTexture2D("antoine/cat.png");
-	// Texture2D cat = importImageToTexture2D("antoine/cat.png");
+	Texture2D cat = importImageToTexture2D("antoine/cat.png");
 	//ObjFormat*	obj = new ObjFormat(cat);
 	ObjFormat*	obj1 = new testStruct();
 	//AddImageFormatToLayer(layers, 0, obj);
