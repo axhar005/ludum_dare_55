@@ -2,7 +2,6 @@
 
 int main(void)
 {
-
 	InitWindow(SCREENWIDTH, SCREENHEIGHT, "Game");
 	SetMouseCursor(MOUSE_CURSOR_ARROW);
 
@@ -16,10 +15,7 @@ int main(void)
 	Layer	layers;                 //game obj live here
 	InitMapLayer(layers);
 	Texture2D cat = importImageToTexture2D("antoine/cat.png");
-	t_ObjFormat	obj = MakeObj(cat);
-	t_ObjFormat *obj1 = new ice(cat);
-	t_ObjFormat *obj2 = new fire(cat);
-	AddImageFormatToLayer(layers, 0, obj);
+	ObjFormat	obj = MakeObj(cat);
 	AddImageFormatToLayer(layers, 0, obj);
 	//
 	while (!WindowShouldClose())    // Detect window close button or ESC key
@@ -80,9 +76,6 @@ int main(void)
 
 			ClearBackground(RAYWHITE);
 			render(layers);
-			layers[0][0].vec2.x++;
-			if (layers[0][0].vec2.x == 300)
-				layers[0][0].kill();
 			switch(currentScreen)
 			{
 				case LOGO:
@@ -131,7 +124,7 @@ int main(void)
 	//--------------------------------------------------------------------------------------
 
 	// TODO: Unload all loaded data (textures, fonts, audio) here!
-
+	cleanLayer(layers);
 	CloseWindow();        // Close window and OpenGL context
 	//--------------------------------------------------------------------------------------
 
