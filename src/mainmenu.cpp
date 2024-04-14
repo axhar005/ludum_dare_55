@@ -38,6 +38,7 @@ void buttonDetection(Menu *menu, GameScreen *currentScreen)
 void sliderDetection(Menu *menu)
 {
 	Vector2 mouse = GetMousePosition();
+	float volume = (float)((menu->sliderpos.x - menu->sliderbox.x) / 1000 * 100);
 
 	if (CheckCollisionPointCircle(mouse, menu->sliderpos, 25) && IsMouseButtonDown(MOUSE_BUTTON_LEFT))
 	{
@@ -46,11 +47,13 @@ void sliderDetection(Menu *menu)
 
 	if (menu->moveSlider)
 	{
-		if (mouse.x > menu->sliderbox.x && mouse.x < menu->sliderbox.x + menu->sliderbox.width)
+		if (mouse.x > menu->sliderbox.x && mouse.x <= menu->sliderbox.x + menu->sliderbox.width)
 		{
 			menu->sliderpos.x = mouse.x;
-			*menu->mastervolume = (int)((menu->sliderpos.x - menu->sliderbox.x) / 1000 * 100);
-			std::cout << "VOLUME: " << *menu->mastervolume << std::endl;
+			if (volume > 99.5f)
+				*menu->mastervolume = 100;
+			else
+				*menu->mastervolume = (int)volume;
 		}
 		if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
 		{
@@ -75,7 +78,7 @@ void drawMainMenu(MenuStruct *menu)
 			drawBoxWithText(menu->quitbox, 5, "LEAVE GAME", MEDIUM_MENU_TEXT);
 
 			//static text
-			DrawText("GAME NAME", 20, 20, LARGE_MENU_TEXT, DARKGREEN);
+			DrawText("CATACOMB CONQUEST", 20, 20, LARGE_MENU_TEXT, DARKGREEN);
 			DrawText("PRESS ESC to EXIT", 120, 220, SMALL_MENU_TEXT, DARKGREEN);
 		} break;
 		case SETTINGS:
@@ -102,20 +105,7 @@ void drawSlider(Menu *menu)
 	DrawRing(menu->sliderpos, 20, 25, 0, 360, 100, BLACK);
 }
 
-void initMenu(Menu *menu, float *volume)
-{
-	bzero(menu, sizeof(*menu));
 
-	menu->mastervolume = volume;
-
-	menu->menu_state = MAIN;
-	menu->playbox = {SCREENWIDTH / 2 + 100, SCREENHEIGHT / 4, 500, 100};
-	menu->settingsbox = {SCREENWIDTH / 2 + 100, SCREENHEIGHT / 4 + 150, 500, 100};
-	menu->quitbox = {SCREENWIDTH / 2 + 100, SCREENHEIGHT / 4 + 300, 500, 100};
-	menu->sliderbox = {SCREENWIDTH / 2 - 500, SCREENHEIGHT / 4, 1000, 10};
-	menu->sliderpos = {(float)((menu->sliderbox.x + menu->sliderbox.width) / 100 * 42), menu->sliderbox.y};
-	menu->returnbox = menu->quitbox;
-}
 
 Vector2 getRectangleCenter(Rectangle rec)
 {

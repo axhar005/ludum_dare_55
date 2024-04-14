@@ -13,10 +13,17 @@
 
 //CUSTOM COLORS
 #define LIGHTGRAYTRANS  CLITERAL(Color){ 200, 200, 200, 100 }   // Light Gray with transparancy
+#define DARKGRAYTRANS  CLITERAL(Color){ 50, 50, 50, 100 }   // Light Gray with transparancy
 
 
 typedef enum GameScreen { LOGO = 0, TITLE, GAMEPLAY, PAUSE, ENDING } GameScreen;
 typedef enum MenuType {MAIN = 0, SETTINGS, GAME, PAUSEM, UPGRADE, END} MenuType;
+
+typedef struct TextureBox
+{
+	Rectangle box;
+	Texture2D tex;
+}	TextureBox;
 
 typedef struct MenuStruct
 {
@@ -35,7 +42,20 @@ typedef struct MenuStruct
 	Rectangle sliderbox;
 	Vector2 sliderpos;
 	bool moveSlider;
+
+	//Gameplay Boxes
+	TextureBox spell1;
+	TextureBox spell2;
+	TextureBox spell3;
+	TextureBox spell4;
+	TextureBox moneybox;
+
+	//Pause Menu
+
+	//Death Screen
+
 } Menu;
+
 
 //Main Menu and its utils
 void drawMainMenu(MenuStruct *menu);
@@ -52,5 +72,6 @@ void sliderDetection(Menu *menu);
 //Game menu
 void drawUI(Menu *menu);
 void drawGameMenu(Menu *menu);
+void drawTextureBox(TextureBox &box);
 
 //Pause menu
