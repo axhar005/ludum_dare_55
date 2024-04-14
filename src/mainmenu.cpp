@@ -2,24 +2,61 @@
 
 //Logic
 
-int buttonDetection(Menu *menu, GameScreen *currentScreen)
+void buttonDetection(Menu *menu, GameScreen *currentScreen)
 {
-	if (CheckCollisionPointRec(GetMousePosition(), menu->box1) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+	switch(menu->menu_state)
 	{
-		std::cout << "a" << std::endl;
-		*currentScreen = GAMEPLAY;
+		case MAIN:
+		{
+			if (CheckCollisionPointRec(GetMousePosition(), menu->playbox) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+			{
+				*currentScreen = GAMEPLAY;
+				menu->menu_state = GAME;
+			}
+			else if (CheckCollisionPointRec(GetMousePosition(), menu->settingsbox) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+			{
+				menu->menu_state = SETTINGS;
+			}
+			else if (CheckCollisionPointRec(GetMousePosition(), menu->quitbox) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+			{
+				//TODO: find out how to leave game
+			}
+		} break;
+		case SETTINGS:
+		{
+			if (CheckCollisionPointRec(GetMousePosition(), menu->returnbox) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+			{
+				menu->menu_state = MAIN;
+			}
+			sliderDetection(menu);
+		} break;
+		default: break;
 	}
-	else if (CheckCollisionPointRec(GetMousePosition(), menu->box2) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+	
+}
+
+void sliderDetection(Menu *menu)
+{
+	Vector2 mouse = GetMousePosition();
+
+	if (CheckCollisionPointCircle(mouse, menu->sliderpos, 25) && IsMouseButtonDown(MOUSE_BUTTON_LEFT))
 	{
-		std::cout << "b" << std::endl;
-		menu->menu_state = SETTINGS;
-	}
-	else if (CheckCollisionPointRec(GetMousePosition(), menu->box3) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-	{
-		std::cout << "c" << std::endl;
+		menu->moveSlider = true;
 	}
 
-	return (0);
+	if (menu->moveSlider)
+	{
+		if (mouse.x > menu->sliderbox.x && mouse.x < menu->sliderbox.x + menu->sliderbox.width)
+		{
+			menu->sliderpos.x = mouse.x;
+			*menu->mastervolume = (int)((menu->sliderpos.x - menu->sliderbox.x) / 1000 * 100);
+			std::cout << "VOLUME: " << *menu->mastervolume << std::endl;
+		}
+		if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+		{
+			menu->moveSlider = false;
+		}
+	}
 }
 
 // ------------------------------------------------------------------------------
@@ -27,15 +64,15 @@ int buttonDetection(Menu *menu, GameScreen *currentScreen)
 
 void drawMainMenu(MenuStruct *menu)
 {
-	std::cout << "Menu state: " << menu->menu_state << std::endl;
+	std::string volumestring = "VOLUME: " + std::to_string((int)*menu->mastervolume);
 	switch(menu->menu_state)
 	{
 		case MAIN:
 		{
 			ClearBackground(GREEN);
-			drawBoxWithText(menu->box1, 5, "PLAY GAME", MEDIUM_MENU_TEXT);
-			drawBoxWithText(menu->box2, 5, "SETTINGS", MEDIUM_MENU_TEXT);
-			drawBoxWithText(menu->box3, 5, "SETTINGS", MEDIUM_MENU_TEXT);
+			drawBoxWithText(menu->playbox, 5, "PLAY GAME", MEDIUM_MENU_TEXT);
+			drawBoxWithText(menu->settingsbox, 5, "SETTINGS", MEDIUM_MENU_TEXT);
+			drawBoxWithText(menu->quitbox, 5, "LEAVE GAME", MEDIUM_MENU_TEXT);
 
 			//static text
 			DrawText("GAME NAME", 20, 20, LARGE_MENU_TEXT, DARKGREEN);
@@ -44,21 +81,40 @@ void drawMainMenu(MenuStruct *menu)
 		case SETTINGS:
 		{
 			ClearBackground(BLUE);
+			drawSlider(menu);
+			drawBoxWithText(menu->returnbox, 5, "RETURN", MEDIUM_MENU_TEXT, DARKBLUE, ORANGE, DARKBLUE, ORANGE);
+
 			//static text
 			DrawText("SETTINGS", 20, 20, LARGE_MENU_TEXT, DARKBLUE);
+			Vector2 volumetext = {SCREENWIDTH / 2, menu->sliderbox.y + 60};
+			drawTextOnPoint(volumetext, volumestring, MEDIUM_MENU_TEXT, DARKBLUE);
 		} break;
 		default: break;
 	}
 }
 
-void initMenu(Menu *menu)
+void drawSlider(Menu *menu)
+{
+	DrawRectangleRounded(menu->sliderbox, 5, 0, DARKBLUE);
+
+	DrawCircleV(menu->sliderpos, 20, WHITE);
+	DrawCircleLinesV(menu->sliderpos, 20, BLACK);
+	DrawRing(menu->sliderpos, 20, 25, 0, 360, 100, BLACK);
+}
+
+void initMenu(Menu *menu, float *volume)
 {
 	bzero(menu, sizeof(*menu));
 
-	menu->box1 = {SCREENWIDTH / 2 + 100, SCREENHEIGHT / 4, 500, 100};
-	menu->box2 = {SCREENWIDTH / 2 + 100, SCREENHEIGHT / 4 + 150, 500, 100};
-	menu->box3 = {SCREENWIDTH / 2 + 100, SCREENHEIGHT / 4 + 300, 500, 100};
+	menu->mastervolume = volume;
+
 	menu->menu_state = MAIN;
+	menu->playbox = {SCREENWIDTH / 2 + 100, SCREENHEIGHT / 4, 500, 100};
+	menu->settingsbox = {SCREENWIDTH / 2 + 100, SCREENHEIGHT / 4 + 150, 500, 100};
+	menu->quitbox = {SCREENWIDTH / 2 + 100, SCREENHEIGHT / 4 + 300, 500, 100};
+	menu->sliderbox = {SCREENWIDTH / 2 - 500, SCREENHEIGHT / 4, 1000, 10};
+	menu->sliderpos = {(float)((menu->sliderbox.x + menu->sliderbox.width) / 100 * 42), menu->sliderbox.y};
+	menu->returnbox = menu->quitbox;
 }
 
 Vector2 getRectangleCenter(Rectangle rec)
@@ -73,13 +129,13 @@ Vector2 getTextCenter(std::string str, int font_size)
 	return (vec);
 }
 
-void drawBoxWithText(Rectangle rec, float thick, std::string str, int font_size)
+void drawBoxWithText(Rectangle rec, float thick, std::string str, int font_size) // for main menu
 {
 	Color boxcolor;
 	if (CheckCollisionPointRec(GetMousePosition(), rec))
 		boxcolor = ORANGE;
 	else
-		boxcolor = BLACK;
+		boxcolor = DARKGREEN;
 
 	Color textcolor;
 	if (CheckCollisionPointRec(GetMousePosition(), rec))
@@ -92,4 +148,32 @@ void drawBoxWithText(Rectangle rec, float thick, std::string str, int font_size)
 	Vector2 boxcenter = getRectangleCenter(rec);
 	Vector2 textcenter = getTextCenter(str.c_str(), font_size);
 	DrawText(str.c_str(), boxcenter.x - textcenter.x, boxcenter.y - textcenter.y, font_size, textcolor);
+}
+
+void drawBoxWithText(Rectangle rec, float thick, std::string str, int font_size, 
+Color boxcolor, Color boxhighlight, Color textcolor, Color texthighlight)
+{
+	Color bcolor;
+	if (CheckCollisionPointRec(GetMousePosition(), rec))
+		bcolor = boxhighlight;
+	else
+		bcolor = boxcolor;
+
+	Color tcolor;
+	if (CheckCollisionPointRec(GetMousePosition(), rec))
+		tcolor = texthighlight;
+	else
+		tcolor = textcolor;
+
+	DrawRectangleLinesEx(rec, thick, bcolor);
+
+	Vector2 boxcenter = getRectangleCenter(rec);
+	Vector2 textcenter = getTextCenter(str.c_str(), font_size);
+	DrawText(str.c_str(), boxcenter.x - textcenter.x, boxcenter.y - textcenter.y, font_size, tcolor);
+}
+
+void drawTextOnPoint(Vector2 pos, std::string str, int font_size, Color tcolor)
+{
+	Vector2 textcenter = getTextCenter(str.c_str(), font_size);
+	DrawText(str.c_str(), pos.x - textcenter.x, pos.y - textcenter.y, font_size, tcolor);
 }

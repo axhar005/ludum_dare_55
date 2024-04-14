@@ -1,5 +1,7 @@
 #include "../inc/game.hpp"
 
+float MasterVolume;
+
 int main(void)
 {
 
@@ -8,9 +10,12 @@ int main(void)
 
 	GameScreen currentScreen = TITLE; //TODO: CHANGE THIS
 	Menu menu;
-	initMenu(&menu);
+	initMenu(&menu, &MasterVolume);
 	int framesCounter = 0;          // Useful to count frames
 	SetTargetFPS(60);               // Set desired framerate (frames-per-second)
+
+	MasterVolume = 42;
+	SetMasterVolume(MasterVolume);
 
 	while (!WindowShouldClose())    // Detect window close button or ESC key
 	{
@@ -39,10 +44,9 @@ int main(void)
 			{
 				// TODO: Update GAMEPLAY screen variables here!
 
-				// Press enter to change to ENDING screen
-				if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
+				if (IsKeyPressed(KEY_P))
 				{
-					currentScreen = ENDING;
+					std::cout << "PAUSE" << std::endl;
 				}
 			} break;
 			case PAUSE:
@@ -85,10 +89,10 @@ int main(void)
 				case GAMEPLAY:
 				{
 					// TODO: Draw GAMEPLAY screen here!
-					ClearBackground(ORANGE);
-					DrawText("GAMEPLAY SCREEN", 20, 20, 40, MAROON);
-					DrawText("PRESS ENTER or TAP to JUMP to ENDING SCREEN", 130, 220, 20, MAROON);
-
+					ClearBackground(WHITE);
+					drawUI(&menu);
+					//gameplay
+					//menus
 				} break;
 				case PAUSE:
 				{
@@ -112,7 +116,7 @@ int main(void)
 
 	// TODO: Unload all loaded data (textures, fonts, audio) here!
 
-	CloseWindow();        // Close window and OpenGL context
+	CloseWindow();
 
 	return 0;
 }
