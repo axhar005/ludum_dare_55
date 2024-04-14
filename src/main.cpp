@@ -4,40 +4,11 @@ Keys	keys;
 
 float MasterVolume;
 
-vec_tex &getTexture(const std::string& Texture_){
-
-	static std::map<std::string, vector<Texture2D> > T;
-	static bool init;
-
-	if (!init){
-
-		std::map<std::string, std::vector<std::string> > Textures = {
-			{"chat", {"antoine/cat.png", "antoine/cat2.png"}},
-			{"soulsGui", {"Image/SoulMoney.png"}},
-			{"glace", {"Image/IceSpike.png"}},
-		};
-
-		for (auto& pair : Textures) {
-			std::string name = pair.first;
-			for (auto& file : pair.second) {
-				T[name].push_back(importImageToTexture2D(file.c_str()));
-			}
-		}
-		init = true;
-	}
-	auto it = T.find(Texture_);
-	if (it == T.end()){
-		std::cout << "could not load texture: " << Texture_ << std::endl;
-			throw std::runtime_error("could not load texture"); 
-	}
-	return it->second;
-}
-
 int main(void)
 {
 	InitWindow(SCREENWIDTH, SCREENHEIGHT, "CATACOMB CONQUEST");
 	SetMouseCursor(MOUSE_CURSOR_ARROW);
-	// gettexture("chat");
+	getTexture("");
 
 	GameScreen currentScreen = TITLE; //TODO: CHANGE THIS
 	Menu menu;
@@ -46,8 +17,8 @@ int main(void)
 	SetTargetFPS(60);               // Set desired framerate (frames-per-second)
 	Layer	layers;                 //game obj live here
 	InitMapLayer(layers);
-	// ObjFormat*	obj = new testStruct();
-	// AddImageFormatToLayer(layers, 0, obj);
+	ObjFormat*	obj = new testStruct();
+	AddImageFormatToLayer(layers, 0, obj);
 
 	MasterVolume = 42;
 	SetMasterVolume(MasterVolume);
