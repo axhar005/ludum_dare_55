@@ -14,6 +14,7 @@ int main(void)
 	//
 	Layer	layers;                 //game obj live here
 	InitMapLayer(layers);
+	keys.setKeys(true);
 	//Texture2D cat = importImageToTexture2D("antoine/cat.png");
 	//ObjFormat*	obj = new ObjFormat(cat);
 	//ObjFormat*	obj1 = new testStruct(cat);

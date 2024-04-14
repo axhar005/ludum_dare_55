@@ -6,6 +6,7 @@
 	#include <raylib.h>
 # endif
 
+#include "control.hpp"
 #include "ImageFormat.hpp"
 #include "importTexture.hpp"
 #include "teststruct.hpp"
@@ -39,6 +40,8 @@ typedef struct MenuStruct
 	Vector2 text2center;
 	Vector2 text3center;
 } Menu;
+
+Keys	keys;
 
 void drawMainMenu(MenuStruct menu);
 void drawMainMenuText(MenuStruct menu);
