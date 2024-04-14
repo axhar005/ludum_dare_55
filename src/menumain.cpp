@@ -2,7 +2,7 @@
 
 //Logic
 
-void buttonDetection(Menu *menu, GameScreen *currentScreen)
+void logicUI(Menu *menu, GameScreen *currentScreen)
 {
 	switch(menu->menu_state)
 	{
@@ -34,9 +34,21 @@ void buttonDetection(Menu *menu, GameScreen *currentScreen)
 			sliderDetection(menu);
 		} break;
 		case GAME:
+		{
+			HideCursor();
+			if (GetMousePosition().x < 0)
+				SetMousePosition(0, GetMousePosition().y);
+			else if (GetMousePosition().x > SCREENWIDTH)
+				SetMousePosition(SCREENWIDTH, GetMousePosition().y);
+			if (GetMousePosition().y < 0)
+				SetMousePosition(GetMousePosition().x, 0);
+			else if (GetMousePosition().y > SCREENHEIGHT)
+				SetMousePosition(GetMousePosition().x, SCREENHEIGHT);
+		}
 			break;
 		case PAUSEM:
 		{
+			ShowCursor();
 			if (checkBoxCollision(menu->resumebox))
 			{
 				menu->menu_state = GAME;
@@ -95,7 +107,6 @@ void sliderDetection(Menu *menu)
 
 void drawUI(MenuStruct *menu)
 {
-	std::string volumestring = "VOLUME: " + std::to_string((int)*menu->mastervolume);
 	switch(menu->menu_state)
 	{
 		case MAIN:
@@ -118,11 +129,12 @@ void drawUI(MenuStruct *menu)
 			//static text
 			DrawText("SETTINGS", 20, 20, LARGE_MENU_TEXT, DARKBLUE);
 			Vector2 volumetext = {SCREENWIDTH / 2, menu->sliderbox.y + 60};
+			std::string volumestring = "VOLUME: " + std::to_string((int)*menu->mastervolume);
 			drawTextOnPoint(volumetext, volumestring, MEDIUM_MENU_TEXT, DARKBLUE);
 		} break;
 		case GAME:
 		{
-			DrawRectangle(0, 0, SCREENWIDTH, SCREENHEIGHT, WHITE);
+			DrawRing(GetMousePosition(), 20, 25, 0, 360, 100, WHITETRANS);
 			drawGameMenu(menu);
 		} break ;
 		case PAUSEM:

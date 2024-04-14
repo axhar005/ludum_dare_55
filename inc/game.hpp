@@ -34,10 +34,12 @@
 #define SMALL_MENU_TEXT 20
 #define MEDIUM_MENU_TEXT 50
 #define LARGE_MENU_TEXT 100
+#define TEXTURE_SIZE 32
 
 //CUSTOM COLORS
 #define LIGHTGRAYTRANS  CLITERAL(Color){ 200, 200, 200, 100 }   // Light Gray with transparancy
 #define DARKGRAYTRANS  CLITERAL(Color){ 50, 50, 50, 100 }   // Light Gray with transparancy
+#define WHITETRANS  CLITERAL(Color){ 0, 0, 0, 50 }   // Light Gray with transparancy
 
 
 typedef enum GameScreen {TITLE = 0, GAMEPLAY, PAUSE, ENDING } GameScreen;
@@ -95,7 +97,7 @@ void drawBoxWithText(Rectangle rec, float thick, std::string str, int font_size,
 Color boxcolor, Color boxhighlight, Color textcolor, Color texthighlight);
 void drawTextOnPoint(Vector2 pos, std::string str, int font_size, Color tcolor);
 void initMenu(Menu *menu, float *volume);
-void buttonDetection(Menu *menu, GameScreen *currentScreen);
+void logicUI(Menu *menu, GameScreen *currentScreen);
 void drawSlider(Menu *menu);
 void sliderDetection(Menu *menu);
 bool checkBoxCollision(Rectangle &box);
