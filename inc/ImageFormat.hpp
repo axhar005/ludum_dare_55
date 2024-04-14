@@ -11,28 +11,36 @@ using std::vector;
 
 #define LAYER_NUMBER 6
 
-typedef struct s_ObjFormat
+struct ObjFormat
 {
-
-	Vector2		vec2;
-	Texture2D	img;
-	void	kill(void);
-	bool	rm;
+	public:
+						ObjFormat(void);
+		virtual 		~ObjFormat(void);
+		virtual	void	step(void);
+		Vector2			vec2;
+		Texture2D		tex;
+		void			kill(void);
+		bool			_rm;
+	private:
 	//
 	// if you need to add data to the obj add here
 	//
-}	t_ObjFormat;
+};
 
-typedef map<int , vector<t_ObjFormat> > Layer;
+typedef map<int , vector<ObjFormat> > Layer;
 
 
-t_ObjFormat	MakeObj(Texture2D img);
-
-//*			//							//
-
-void		InitMapLayer(Layer &map);
-void		AddImageFormatToLayer(Layer& input, int y, t_ObjFormat& img);
+ObjFormat				MakeObj(Texture2D img);
 
 //*			//							//
+vector<ObjFormat>&		editTextureLayer(Layer& layer, int cal);
+ObjFormat*				editTexture(Layer& layers, int cal, size_t pose);
+void					editTextureLayerFt(vector<ObjFormat>& list, int(*ft)(ObjFormat&));
 
-void		render(Layer& layer);
+
+void					InitMapLayer(Layer &map);
+void					AddImageFormatToLayer(Layer& input, int y, ObjFormat& img);
+void					cleanLayer(Layer& layer);
+//*			//							//
+
+void					render(Layer& layer);
