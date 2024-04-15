@@ -30,7 +30,7 @@ struct ObjFormat
 	// variables
 		Vector2							_pos;
 		float							_dir;
-		Rectangle			_hitbox;
+		Rectangle						_hitbox;
 		Texture2D						*_texture;
 		bool							_rm;
 		map<int , vector<ObjFormat*> >	*_ptr;

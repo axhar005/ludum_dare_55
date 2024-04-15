@@ -66,6 +66,8 @@ void	render(Layer& layer) {
 			continue ;
 		for (size_t j = 0; j < layer[i].size(); j++) {
 			ObjFormat* tmp = layer[i][j];
+			if (!tmp)
+				continue ;
 			if (layer[i][j]->_rm) {
 				vector<ObjFormat*>::iterator it = layer[i].begin() + j;
 				delete tmp;
@@ -74,7 +76,7 @@ void	render(Layer& layer) {
 				continue ;
 			}
 			Player *p = getPLayer();
-			if (tmp->_texture){
+			if (tmp->_texture && p){
 				if (tmp->_pos.x >= p->_pos.x - (VIEW_DISTANCE*TEXTURE_SIZE) && tmp->_pos.x <= p->_pos.x + (VIEW_DISTANCE*TEXTURE_SIZE) && tmp->_pos.y >= p->_pos.y - (VIEW_DISTANCE*TEXTURE_SIZE) && tmp->_pos.y <= p->_pos.y + (VIEW_DISTANCE*TEXTURE_SIZE))	
 					DrawTexture(*tmp->_texture, tmp->_pos.x, tmp->_pos.y, WHITE);
 			}
