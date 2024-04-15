@@ -25,17 +25,18 @@ void Player::step(void)
 
 	//hitbox logic
 	vector<ObjFormat*> vec = returnVecLayer(*_ptr, WALL);
-	// for (int i = 0; i < vec.size(); i++)
-	// {
-	// 	if (vec[i] == nullptr)
-	// 		continue ;
-	// 	if (CheckCollisionRecs(this->_hitbox, vec[i]->_hitbox))
-	// 	{
-	// 		moveplayer = false;
-	// 	}
-	// }
+	for (int i = 0; i < vec.size(); i++)
+	{
+		// std::cout << "PLAYER: " << _hitbox.x << ", " << _hitbox.y << std::endl;
+		// std::cout << "WALL: " << vec[i]->_hitbox.x << ", " << vec[i]->_hitbox.y << std::endl;
+		if (vec[i] == nullptr)
+			continue ;
+		if (CheckCollisionRecs(this->_hitbox, vec[i]->_hitbox))
+		{
+			moveplayer = false;
+		}
+	}
 
-	//movement
 	if (moveplayer)
 	{
 		if (IsKeyDown(keybord->forward))
@@ -59,4 +60,6 @@ void Player::step(void)
 			_pos.x += speed;
 		}
 	}
+	//movement
+
 }

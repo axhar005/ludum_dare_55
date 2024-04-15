@@ -21,7 +21,7 @@ void GameLoop(Layer &layers, rendermode mode)
 			camera.offset = { SCREENWIDTH/2.0f, SCREENHEIGHT/2.0f };
 			camera.rotation = 0.0f;
 			camera.zoom = 3.0f;
-			Player	*base = new Player();
+			Player	*base = new Player(&layers);
 			base->_texture = &getTexture("player_down")[0];
 			base->keybord = &k;
 			base->_pos.x = SCREENWIDTH/2.0f;
@@ -35,19 +35,20 @@ void GameLoop(Layer &layers, rendermode mode)
 			for (size_t i = 0; i < MAP_SIZE; i++) {
 				for (size_t j = 0; j < MAP_SIZE; j++) {
 					ObjFormat* base = new ObjFormat();
+					base->_pos.x = i * textureSize;
+					base->_pos.y = j * textureSize;
 					if (map.getMap()[i][j] == '0')
 					{
 						base->_texture = &getTexture("floor")[GetRandomValue(2,3)];
 						AddImageFormatToLayer(layers, FLOOR, base);
-
 					}
 					else if (map.getMap()[i][j] == '1')
 					{
 						base->_texture = &getTexture("wall")[GetRandomValue(1,2)];
 						AddImageFormatToLayer(layers, WALL, base);
+						base->_hitbox.x = base->_pos.x;
+						base->_hitbox.y = base->_pos.y;
 					}
-					base->_pos.x = i * textureSize;
-					base->_pos.y = j * textureSize;
 				}
 			}
 			//AddImageFormatToLayer()
@@ -59,12 +60,9 @@ void GameLoop(Layer &layers, rendermode mode)
 		case RUN: {
 			ObjFormat*	tmp = editObj(layers, PLAYER, 0);
 			camera.target = (Vector2){tmp->_pos.x + (TEXTURE_SIZE / 2), tmp->_pos.y + (TEXTURE_SIZE / 2)};
-			std::cout << getPLayer()->_pos.x << "\n";
 			//
 			BeginMode2D(camera);
 			render(layers);
-			// hitbox checks?
-			
 			EndMode2D();
 			DrawFPS(20, 20);
 			//ui render
