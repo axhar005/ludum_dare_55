@@ -4,6 +4,16 @@ Keys	keys;
 
 float MasterVolume;
 
+Player *getPLayer(Player *player){
+	static Player *T = nullptr;
+	static bool init;
+	if (!init){
+		T = player;
+		init = true;
+	}
+	return T;
+}
+
 int main(void)
 {
 	InitWindow(SCREENWIDTH, SCREENHEIGHT, "CATACOMB CONQUEST");
