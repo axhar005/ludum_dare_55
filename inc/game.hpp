@@ -13,6 +13,7 @@
 #include <vector>
 #include <cstdlib>
 #include <cstddef>
+#include <cmath>
 #include "ImageFormat.hpp"
 #include "importTexture.hpp"
 #include "MapOptions.hpp"
@@ -95,6 +96,11 @@ typedef struct MenuStruct
 //Texture
 vec_tex &getTexture(const std::string& Texture);
 Player *getPLayer(Player *player = nullptr);
+
+//Math position
+float point_distance(Vector2 v1, Vector2 v2);
+float point_direction(Vector2 point1, Vector2 point2);
+void move_in_direction(Vector2& pos, float speed, float direction);
 
 //Main Menu and its utils
 void drawUI(Menu *menu);

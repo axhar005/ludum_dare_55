@@ -1,24 +1,24 @@
 #include "../inc/game.hpp"
 
-Player::Player(void) {
+Enemy::Enemy(void) {
 	hp = 0;
 	speed = 2;
 	lookside = 0;
 	_ptr = NULL;
 }
 
-Player::Player(Layer* layer) {
+Enemy::Enemy(Layer* layer) {
 	hp = 0;
 	speed = 2;
 	lookside = 0;
 	_ptr = layer;
 }
 
-Player::~Player(void) {
+Enemy::~Enemy(void) {
 	
 }
 
-void Player::step(void)
+void Enemy::step(void)
 {
 	this->_hitbox = {_pos.x, _pos.y + TEXTURE_SIZE / 2, TEXTURE_SIZE, TEXTURE_SIZE / 2};
 	Vector2 newPos = _pos;
