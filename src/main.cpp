@@ -11,6 +11,16 @@ Player *getPLayer(Player *player){
 	return T;
 }
 
+void	freeTexture2DMapOli(std::map<std::string, vector<Texture2D> >& map) {
+	for (std::map<std::string, vector<Texture2D> >::iterator it = map.begin(); it != map.end(); it++) {
+		vector<Texture2D>tmp = it->second;
+		for (size_t j = 0; j < tmp.size(); j++) {
+			UnloadTexture(tmp[j]);
+		}
+	}
+}
+
+
 int main(void)
 {
 	InitWindow(SCREENWIDTH, SCREENHEIGHT, "CATACOMB CONQUEST");
@@ -114,7 +124,6 @@ int main(void)
 	// TODO: Unload all loaded data (textures, fonts, audio) here!
 	CloseWindow();
 	GameLoop(layers, ENDGAME);
-
 
 	return 0;
 }

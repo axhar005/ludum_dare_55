@@ -65,6 +65,12 @@ void Map::mountainGenerator() {
 		}
 		Mountain mountain(_mapOptions.getSizeOfMountain());
 		copyMountainOnMap(x, y, mountain);
+		char **tmp = mountain.getMountain();
+		for (size_t i = 0; tmp[i]; i++) {
+			free(tmp[i]);
+		}
+		free(tmp);
+		tmp = NULL;
 	}
 }
 
