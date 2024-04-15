@@ -20,30 +20,30 @@ Player::~Player(void) {
 
 void Player::step(void)
 {
-	this->_hitbox = {_pos.x, _pos.y + TEXTURE_SIZE / 2, TEXTURE_SIZE, TEXTURE_SIZE / 2};
+	this->_hitbox = {_pos.x + 4, _pos.y + TEXTURE_SIZE / 2, TEXTURE_SIZE - 8, TEXTURE_SIZE / 2};
 	Vector2 newPos = _pos;
 
-	// //movement
-	// if (IsKeyDown(keybord->forward))
-	// {
-	// 	_texture = &getTexture("player_up")[0];
-	// 	newPos.y -= speed;
-	// }
-	// if (IsKeyDown(keybord->backward))
-	// {
-	// 	_texture = &getTexture("player_down")[0];
-	// 	newPos.y += speed;
-	// }
-	// if (IsKeyDown(keybord->left))
-	// {
-	// 	_texture = &getTexture("player_left")[0];
-	// 	newPos.x -= speed;
-	// }
-	// if (IsKeyDown(keybord->right))
-	// {
-	// 	_texture = &getTexture("player_right")[0];
-	// 	newPos.x += speed;
-	// }
+	//movement
+	if (IsKeyDown(keybord->forward))
+	{
+		_texture = &getTexture("player_up")[0];
+		newPos.y -= speed;
+	}
+	if (IsKeyDown(keybord->backward))
+	{
+		_texture = &getTexture("player_down")[0];
+		newPos.y += speed;
+	}
+	if (IsKeyDown(keybord->left))
+	{
+		_texture = &getTexture("player_left")[0];
+		newPos.x -= speed;
+	}
+	if (IsKeyDown(keybord->right))
+	{
+		_texture = &getTexture("player_right")[0];
+		newPos.x += speed;
+	}
 
 	//hitbox logic
 
@@ -51,14 +51,12 @@ void Player::step(void)
 	bool collision = false;
 	Rectangle boxCollision;
 	Rectangle newHitbox = _hitbox;
-	newHitbox.x = newPos.x;
+	newHitbox.x = newPos.x + 4;
 	newHitbox.y = newPos.y + TEXTURE_SIZE / 2;
 
 	vector<ObjFormat*> vec = returnVecLayer(*_ptr, WALL);
 	for (int i = 0; i < vec.size(); i++)
 	{
-		std::cout << "PLAYERPOS: " << newHitbox.x << ", " << newHitbox.y << std::endl;
-		std::cout << "WALLPOS: " << vec[i]->_hitbox.x << ", " << vec[i]->_hitbox.y << std::endl;
 		if (vec[i] == nullptr)
 			continue ;
 		collision = CheckCollisionRecs(newHitbox, vec[i]->_hitbox);

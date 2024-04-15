@@ -21,19 +21,28 @@ void GameLoop(Layer &layers, rendermode mode)
 			k.setKeys(true);
 			camera.offset = { SCREENWIDTH/2.0f, SCREENHEIGHT/2.0f };
 			camera.rotation = 0.0f;
-			camera.zoom = 3.0f;
+			camera.zoom = 2.0f;
 			Player	*base = new Player(&layers);
-			ObjFormat	*test = new ObjFormat(&layers);
-			test->_texture = &getTexture("player_down")[0];
-			Spawner	*sp = new Spawner(&layers, ((ObjFormat *)test));
-			sp->_pos = (Vector2){30, 30};
-			sp->_speed = 2;
 			base->_texture = &getTexture("player_down")[0];
 			base->keybord = &k;
 			base->_pos.x = SCREENWIDTH/2.0f;
 			base->_pos.y = SCREENHEIGHT/2.0f;
+			//
+			Enemy *enemy = new Enemy(&layers);
+			enemy->_texture = &getTexture("enemy_down")[0];
+			Spawner *espwn = new Spawner(&layers, enemy);
+			espwn->_pos = (Vector2){5 * TEXTURE_SIZE, 5 * TEXTURE_SIZE};
+			espwn->_speed = 2;
+			AddImageFormatToLayer(layers, ENEMY, espwn);
+
+			// ObjFormat *test = new ObjFormat(&layers);
+			// test->_texture = &getTexture("player_down")[0];
+			// Spawner	*sp = new Spawner(&layers, ((ObjFormat *)test));
+			// sp->_pos = (Vector2){30, 30};
+			// sp->_speed = 2;
+			// AddImageFormatToLayer(layers, ENEMY, sp);
+			//
 			getPLayer(base);
-			AddImageFormatToLayer(layers, 1, sp);
 			auto now = std::chrono::high_resolution_clock::now();
 			auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(now);
 			auto value = now_ms.time_since_epoch();

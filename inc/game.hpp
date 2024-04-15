@@ -19,9 +19,9 @@
 #include "Mountain.hpp"
 #include "control.hpp"
 #include "Map.hpp"
-#include "Spawner.hpp"
 #include "Player.hpp"
 #include "Enemy.hpp"
+#include "Spawner.hpp"
 #include "Gameloop.hpp"
 #include <chrono>
 
