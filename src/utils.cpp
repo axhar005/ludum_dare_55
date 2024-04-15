@@ -14,7 +14,7 @@ float point_direction(Vector2 point1, Vector2 point2) {
 	float angleRadians = std::atan2(dy, dx);
 	
 	float angleDegrees = angleRadians * (180.0f / M_PI);
-	
+	angleDegrees -= 90.0f;
 	if (angleDegrees < 0) {
 		angleDegrees += 360.0f;
 	}
@@ -23,7 +23,27 @@ float point_direction(Vector2 point1, Vector2 point2) {
 }
 
 void move_in_direction(Vector2& pos, float speed, float direction) {
-	float angleRadians = direction * (M_PI / 180.0f);
-	pos.x += speed * cos(angleRadians);
-	pos.y += speed * sin(angleRadians);
+	float angleRadians = (direction - 90) * (M_PI / 180.0f);
+	pos.x -= speed * cos(angleRadians);
+	pos.y -= speed * sin(angleRadians);
 }
+
+// float point_direction(Vector2 point1, Vector2 point2) {
+// 	float dx = point2.x - point1.x;
+// 	float dy = point2.y - point1.y;
+	
+// 	float angleRadians = std::atan2(dy, dx);
+	
+// 	float angleDegrees = angleRadians * (180.0f / M_PI);
+// 	angleDegrees -= 90.0f;
+// 	if (angleDegrees < 0) {
+// 		angleDegrees += 360.0f;
+// 	}
+
+// 	return angleDegrees;
+// }
+// void move_in_direction(Vector2& pos, float speed, float direction) {
+// 	float angleRadians = direction * (M_PI / 180.0f);
+// 	pos.x += speed * cos(angleRadians);
+// 	pos.y += speed * sin(angleRadians);
+// }

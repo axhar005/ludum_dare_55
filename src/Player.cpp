@@ -20,7 +20,7 @@ Player::~Player(void) {
 
 void Player::step(void)
 {
-	this->_hitbox = {_pos.x, _pos.y + TEXTURE_SIZE / 2, TEXTURE_SIZE, TEXTURE_SIZE / 2};
+	this->_hitbox = {_pos.x + 4, _pos.y + TEXTURE_SIZE / 2, TEXTURE_SIZE - 8, TEXTURE_SIZE / 2};
 	Vector2 newPos = _pos;
 
 	//movement
@@ -53,7 +53,7 @@ void Player::step(void)
 	bool moveplayer = true;
 	bool collision = false;
 	Rectangle newHitbox = _hitbox;
-	newHitbox.x = newPos.x;
+	newHitbox.x = newPos.x + 4;
 	newHitbox.y = newPos.y + TEXTURE_SIZE / 2;
 
 	vector<ObjFormat*> vec = returnVecLayer(*_ptr, WALL);

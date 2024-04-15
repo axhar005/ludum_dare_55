@@ -19,6 +19,14 @@ vec_tex &getTexture(const std::string& Texture_, bool _free){
 			{"player_up", {"Image/Player/MoveUp/PlayerUp0.png", "Image/Player/MoveUp/PlayerUp1.png"}},
 			{"player_left", {"Image/Player/MoveLeft/PlayerLeft0.png", "Image/Player/MoveLeft/PlayerLeft1.png"}},
 			{"player_right", {"Image/Player/MoveRight/PlayerRight0.png", "Image/Player/MoveRight/PlayerRight1.png"}},
+
+			//Enemy
+			//{"enemy_standby", {"Image/Player/Standby/PlayerStandby0.png", "Image/Player/Standby/PlayerStandby1.png", "Image/Player/Standby/PlayerStandby2.png", "Image/Player/Standby/PlayerStandby3.png"}},
+			{"enemy_down", {"Image/Skeleton/Skeleton.png"}},
+			{"enemy_up", {"Image/Skeleton/SkeletonBack.png"}},
+			{"enemy_left", {"Image/Skeleton/SkeletonLeft.png"}},
+			{"enemy_right", {"Image/Skeleton/SkeletonRight.png"}},
+
 			//game icons
 			{"SoulMoneyUI", {"Image/SoulMoney.png"}},
 			{"FireBallUI", {"Image/Spell/GUI/FireBallGUI.png"}},
