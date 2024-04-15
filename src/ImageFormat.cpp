@@ -4,8 +4,16 @@
 ObjFormat::ObjFormat(void) {
 	_rm = false;
 	_texture = nullptr;
+	_ptr = nullptr;
 	bzero(&_pos, sizeof(_pos));
 }
+
+ObjFormat::ObjFormat(Layer* ptr) {
+	_rm = false;
+	_texture = nullptr;
+	_ptr = ptr;
+};
+
 ObjFormat::~ObjFormat(void) {
 	
 }
@@ -66,6 +74,20 @@ void	render(Layer& layer) {
 		}
 	}
 }
+
+void    ObjFormat::spawn(int layer, ObjFormat* obj) {
+	if (_ptr) {
+		AddImageFormatToLayer(*_ptr, layer, obj);
+	}
+}
+
+void    ObjFormat::spawn(int layer, ObjFormat* obj, Vector2 pos) {
+	if (_ptr) {
+		obj->_pos = pos;
+		AddImageFormatToLayer(*_ptr, layer, obj);
+	}
+}
+
 
 ObjFormat*	editTexture(Layer& layers, int cal, size_t pose) {
 	if (cal < 0 || cal > LAYER_NUMBER)

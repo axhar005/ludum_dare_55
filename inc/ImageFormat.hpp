@@ -19,15 +19,20 @@ struct ObjFormat
 	public:
 	// constructor / deconstructor
 		ObjFormat(void);
+		ObjFormat(map<int , vector<ObjFormat*> > *ptr);
+		void    spawn(int layer, ObjFormat* obj);
+		void    spawn(int layer, ObjFormat* obj, Vector2 pos);
 		virtual 			~ObjFormat(void);
 		virtual	void		step(void);
 		void				kill(void);
 		virtual Texture2D 	*animation(vec_tex &vec, double frameTime, bool reset = false);
 
 	// variables
-		Vector2				_pos;
-		Texture2D			*_texture;
-		bool				_rm;
+		Vector2							_pos;
+		float							_dir;
+		Texture2D						*_texture;
+		bool							_rm;
+		map<int , vector<ObjFormat*> >	*_ptr;
 	private:
 	//
 	// if you need to add data to the obj add here
