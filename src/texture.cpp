@@ -1,6 +1,6 @@
 #include "../inc/game.hpp"
 
-vec_tex &getTexture(const std::string& Texture_){
+vec_tex &getTexture(const std::string& Texture_, bool _free){
 
 	static std::map<std::string, vector<Texture2D> > T;
 	static bool init;
@@ -40,5 +40,7 @@ vec_tex &getTexture(const std::string& Texture_){
 		std::cout << "could not load texture: " << Texture_ << std::endl;
 			throw std::runtime_error("could not load texture"); 
 	}
+	if (_free)
+		freeTexture2DMapOli(T);
 	return it->second;
 }

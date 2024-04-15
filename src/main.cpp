@@ -121,6 +121,7 @@ int main(void)
 	// TODO: Unload all loaded data (textures, fonts, audio) here!
 	CloseWindow();
 	GameLoop(layers, ENDGAME);
+	getTexture("", true);
 
 	return 0;
 }

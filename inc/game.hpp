@@ -27,7 +27,7 @@
 #include <chrono>
 
 //include new obj
-#include "teststruct.hpp"
+
 
 
 
@@ -94,7 +94,8 @@ typedef struct MenuStruct
 
 
 //Texture
-vec_tex &getTexture(const std::string& Texture);
+vec_tex &getTexture(const std::string& Texture, bool _free = false);
+void	freeTexture2DMapOli(std::map<std::string, vector<Texture2D> >& map);
 Player *getPLayer(Player *player = nullptr);
 
 //Math position
