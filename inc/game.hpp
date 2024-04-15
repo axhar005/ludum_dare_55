@@ -21,6 +21,7 @@
 #include "Map.hpp"
 #include "Spawner.hpp"
 #include "Player.hpp"
+#include "Enemy.hpp"
 #include "Gameloop.hpp"
 #include <chrono>
 

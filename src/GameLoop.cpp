@@ -39,6 +39,7 @@ void GameLoop(Layer &layers, rendermode mode)
 					ObjFormat* base = new ObjFormat();
 					base->_pos.x = i * textureSize;
 					base->_pos.y = j * textureSize;
+					base->_hitbox = {base->_pos.x, base->_pos.y, TEXTURE_SIZE, TEXTURE_SIZE};
 					if (map.getMap()[i][j] == '0')
 					{
 						base->_texture = &getTexture("floor")[GetRandomValue(2,3)];
@@ -47,9 +48,7 @@ void GameLoop(Layer &layers, rendermode mode)
 					else if (map.getMap()[i][j] == '1')
 					{
 						base->_texture = &getTexture("wall")[GetRandomValue(1,2)];
-					base->_pos.x = i * textureSize;
-					base->_pos.y = j * textureSize;
-					AddImageFormatToLayer(layers, 0, base);
+						AddImageFormatToLayer(layers, WALL, base);
 					}
 				}
 			}

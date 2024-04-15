@@ -1,49 +1,49 @@
 #include "../inc/game.hpp"
 
-Enemy::Enemy(void) {
+Player::Player(void) {
 	hp = 0;
 	speed = 2;
 	lookside = 0;
 	_ptr = NULL;
 }
 
-Enemy::Enemy(Layer* layer) {
+Player::Player(Layer* layer) {
 	hp = 0;
 	speed = 2;
 	lookside = 0;
 	_ptr = layer;
 }
 
-Enemy::~Enemy(void) {
+Player::~Player(void) {
 	
 }
 
-void Enemy::step(void)
+void Player::step(void)
 {
 	this->_hitbox = {_pos.x, _pos.y + TEXTURE_SIZE / 2, TEXTURE_SIZE, TEXTURE_SIZE / 2};
 	Vector2 newPos = _pos;
 
-	// //movement
-	// if (IsKeyDown(keybord->forward))
-	// {
-	// 	_texture = &getTexture("player_up")[0];
-	// 	newPos.y -= speed;
-	// }
-	// if (IsKeyDown(keybord->backward))
-	// {
-	// 	_texture = &getTexture("player_down")[0];
-	// 	newPos.y += speed;
-	// }
-	// if (IsKeyDown(keybord->left))
-	// {
-	// 	_texture = &getTexture("player_left")[0];
-	// 	newPos.x -= speed;
-	// }
-	// if (IsKeyDown(keybord->right))
-	// {
-	// 	_texture = &getTexture("player_right")[0];
-	// 	newPos.x += speed;
-	// }
+	//movement
+	if (IsKeyDown(keybord->forward))
+	{
+		_texture = &getTexture("player_up")[0];
+		newPos.y -= speed;
+	}
+	if (IsKeyDown(keybord->backward))
+	{
+		_texture = &getTexture("player_down")[0];
+		newPos.y += speed;
+	}
+	if (IsKeyDown(keybord->left))
+	{
+		_texture = &getTexture("player_left")[0];
+		newPos.x -= speed;
+	}
+	if (IsKeyDown(keybord->right))
+	{
+		_texture = &getTexture("player_right")[0];
+		newPos.x += speed;
+	}
 
 	//hitbox logic
 
