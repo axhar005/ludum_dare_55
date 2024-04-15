@@ -25,7 +25,7 @@ struct ObjFormat
 		virtual 			~ObjFormat(void);
 		virtual	void		step(void);
 		void				kill(void);
-		virtual Texture2D 	*animation(vec_tex &vec, double frameTime, bool reset = false);
+		virtual Texture2D 	*animation(vec_tex &vec, double frameTime, int reset);
 
 	// variables
 		Vector2							_pos;
