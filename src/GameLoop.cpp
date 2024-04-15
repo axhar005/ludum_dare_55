@@ -24,7 +24,7 @@ void GameLoop(Layer &layers, rendermode mode)
 			camera.rotation = 0.0f;
 			camera.zoom = 3.0f;
 			//player
-			Player	*playertmp = new Player();
+			Player	*playertmp = new Player(&layers);
 			playertmp->_texture = &getTexture("player_down")[0];
 			playertmp->keybord = &k;
 			playertmp->_pos.x = SCREENWIDTH/2.0f;
@@ -32,14 +32,17 @@ void GameLoop(Layer &layers, rendermode mode)
 			getPLayer(playertmp);
 			AddImageFormatToLayer(layers, PLAYER, playertmp);
 			//map
-			for (size_t i = 0; i < 400; i++) {
-				for (size_t j = 0; j < 400; j++) {
+			for (size_t i = 0; i < 25; i++) {
+				for (size_t j = 0; j < 25; j++) {
 					ObjFormat* base = new ObjFormat();
 					SetRandomSeed(i + j);
 					base->_texture = &getTexture("floor")[GetRandomValue(0,1)];
 					base->_pos.x = i * textureSize;
 					base->_pos.y = j * textureSize;
-					AddImageFormatToLayer(layers, FLOOR, base);
+					if (j < 5)
+						AddImageFormatToLayer(layers, WALL, base);
+					else
+						AddImageFormatToLayer(layers, FLOOR, base);
 				}
 			}
 			break;
@@ -55,7 +58,6 @@ void GameLoop(Layer &layers, rendermode mode)
 		//
 		BeginMode2D(camera);
 		render(layers);
-		// hitbox checks?
 		
 		EndMode2D();
 		DrawFPS(20, 20);

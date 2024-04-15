@@ -28,7 +28,6 @@ int main(void)
 	Layer	layers;                 //game obj live here
 	InitMapLayer(layers);
 	ObjFormat*	obj = new testStruct();
-	AddImageFormatToLayer(layers, 0, obj);
 
 	Map map(MapOptions(80, 80, 15, 20));
 
