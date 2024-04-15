@@ -9,6 +9,7 @@ vec_tex &getTexture(const std::string& Texture_, bool _free){
 
 		std::map<std::string, std::vector<std::string> > Textures = {
 			{"chat", {"antoine/cat.png"}},
+			{"fireball", {"Image/Spell/FireBall.png"}},
 			{"floor", {"Image/Floor/Tile1.png", "Image/Floor/Tile2.png", "Image/Floor/CompoTile1.png", "Image/Floor/CompoTile2.png"}},
 			{"wall", {"Image/Wall/Wall.png", "Image/Wall/SkullWall.png", "Image/Wall/SkullWall_1.png"}},
 			

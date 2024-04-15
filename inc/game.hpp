@@ -24,6 +24,7 @@
 #include "Player.hpp"
 #include "Enemy.hpp"
 #include "Gameloop.hpp"
+#include "FireBall.hpp"
 #include <chrono>
 
 //include new obj

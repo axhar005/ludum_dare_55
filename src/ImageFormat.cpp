@@ -89,7 +89,7 @@ void	render(Layer& layer) {
 	}
 }
 
-void    ObjFormat::spawn(int layer, ObjFormat* obj) {
+void 	ObjFormat::spawn(int layer, ObjFormat* obj) {
 	if (_ptr && obj) {
 		obj->_dir = 0;
 		obj->_ptr = _ptr;

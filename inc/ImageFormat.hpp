@@ -20,8 +20,8 @@ struct ObjFormat
 	// constructor / deconstructor
 		ObjFormat(void);
 		ObjFormat(map<int , vector<ObjFormat*> > *ptr);
-		void    spawn(int layer, ObjFormat* obj);
-		void    spawn(int layer, ObjFormat* obj, Vector2 pos);
+		void	spawn(int layer, ObjFormat* obj);
+		void	spawn(int layer, ObjFormat* obj, Vector2 pos);
 		virtual 			~ObjFormat(void);
 		virtual	void		step(void);
 		void				kill(void);
