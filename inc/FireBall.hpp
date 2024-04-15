@@ -6,4 +6,5 @@ struct FireBall : public ObjFormat {
 	FireBall(Layer* layer);
 	~FireBall(void);
 	void step(void) override;
+	float _speed;
 };

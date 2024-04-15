@@ -28,8 +28,7 @@ void Enemy::step(void)
 	vector<ObjFormat*> pvec = returnVecLayer(*_ptr, PLAYER);
 	_dir = point_direction(_pos, pvec[0]->_pos);
 	move_in_direction(newPos, speed, _dir);
-
-	std::cout << _dir << std::endl;
+	
 	if (_dir >= 315 || _dir < 45)
 	{
 		_texture = &getTexture("enemy_down")[0];

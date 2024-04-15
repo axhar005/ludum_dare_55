@@ -42,6 +42,7 @@
 #define TEXTURE_SIZE 32
 #define VIEW_DISTANCE 9
 #define MAP_SIZE 80
+#define FPS 60
 
 //CUSTOM COLORS
 #define LIGHTGRAYTRANS  CLITERAL(Color){ 200, 200, 200, 100 }   // Light Gray with transparancy
