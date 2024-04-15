@@ -75,7 +75,7 @@ void	render(Layer& layer) {
 			}
 			Player *p = getPLayer();
 			if (tmp->_texture){
-				if (tmp->_pos.x >= p->_pos.x - (9*32) && tmp->_pos.x <= p->_pos.x + (9*32) && tmp->_pos.y >= p->_pos.y - (9*32) && tmp->_pos.y <= p->_pos.y + (9*32))	
+				if (tmp->_pos.x >= p->_pos.x - (VIEW_DISTANCE*TEXTURE_SIZE) && tmp->_pos.x <= p->_pos.x + (VIEW_DISTANCE*TEXTURE_SIZE) && tmp->_pos.y >= p->_pos.y - (VIEW_DISTANCE*TEXTURE_SIZE) && tmp->_pos.y <= p->_pos.y + (VIEW_DISTANCE*TEXTURE_SIZE))	
 					DrawTexture(*tmp->_texture, tmp->_pos.x, tmp->_pos.y, WHITE);
 			}
 			tmp->step();

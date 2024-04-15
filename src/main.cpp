@@ -27,10 +27,6 @@ int main(void)
 	SetTargetFPS(60);               // Set desired framerate (frames-per-second)
 	Layer	layers;                 //game obj live here
 	InitMapLayer(layers);
-	ObjFormat*	obj = new testStruct();
-
-	Map map(MapOptions(80, 80, 15, 20));
-
 	MasterVolume = 42;
 	SetMasterVolume(MasterVolume);
 	GameLoop(layers, START);
@@ -93,7 +89,11 @@ int main(void)
 				case GAMEPLAY:
 				{
 					ClearBackground(BLACK);
-					GameLoop(layers, RUN);
+					if (IsKeyPressed(KEY_R) && menu.menu_state == GAME){
+						GameLoop(layers, RESTART);
+					}
+					else	
+						GameLoop(layers, RUN);
 					drawUI(&menu);
 				} break;
 				case PAUSE:

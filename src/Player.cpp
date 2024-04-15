@@ -25,17 +25,15 @@ void Player::step(void)
 
 	//hitbox logic
 	vector<ObjFormat*> vec = returnVecLayer(*_ptr, WALL);
-	for (int i = 0; i < vec.size(); i++)
-	{
-		if (vec[i] == nullptr)
-			continue ;
-		//vec[i]->_hitbox
-		//this->_hitbox
-		if (CheckCollisionRecs(this->_hitbox, vec[i]->_hitbox))
-		{
-			moveplayer = false;
-		}
-	}
+	// for (int i = 0; i < vec.size(); i++)
+	// {
+	// 	if (vec[i] == nullptr)
+	// 		continue ;
+	// 	if (CheckCollisionRecs(this->_hitbox, vec[i]->_hitbox))
+	// 	{
+	// 		moveplayer = false;
+	// 	}
+	// }
 
 	//movement
 	if (moveplayer)

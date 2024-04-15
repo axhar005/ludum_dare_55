@@ -9,8 +9,8 @@ vec_tex &getTexture(const std::string& Texture_){
 
 		std::map<std::string, std::vector<std::string> > Textures = {
 			{"chat", {"antoine/cat.png"}},
-			{"floor", {"Image/Floor/Tile1.png", "Image/Floor/Tile1.png"}},
-			{"wall", {"Image/Wall/Wall.png"}},
+			{"floor", {"Image/Floor/Tile1.png", "Image/Floor/Tile2.png", "Image/Floor/CompoTile1.png", "Image/Floor/CompoTile2.png"}},
+			{"wall", {"Image/Wall/Wall.png", "Image/Wall/SkullWall.png", "Image/Wall/SkullWall_1.png"}},
 			
 			//player
 			{"player_down", {"Image/Character/CharacterDown.png"}},
