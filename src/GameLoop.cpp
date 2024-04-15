@@ -20,16 +20,15 @@ void GameLoop(Layer &layers, rendermode mode) {
 		camera.offset = { SCREENWIDTH/2.0f, SCREENHEIGHT/2.0f };
 		camera.rotation = 0.0f;
 		camera.zoom = 3.0f;
-		for (size_t i = 0; i < 1; i++) {
-			Player	*base = new Player();
-			base->_texture = &getTexture("player_down")[0];
-			base->keybord = &k;
-			base->_pos.x = SCREENWIDTH/2.0f;
-			base->_pos.y = SCREENHEIGHT/2.0f;
-			AddImageFormatToLayer(layers, 1, base);
-		}
-		for (size_t i = 0; i < 40; i++) {
-			for (size_t j = 0; j < 40; j++) {
+		Player	*base = new Player();
+		base->_texture = &getTexture("player_down")[0];
+		base->keybord = &k;
+		base->_pos.x = SCREENWIDTH/2.0f;
+		base->_pos.y = SCREENHEIGHT/2.0f;
+		getPLayer(base);
+		AddImageFormatToLayer(layers, 1, base);
+		for (size_t i = 0; i < 400; i++) {
+			for (size_t j = 0; j < 400; j++) {
 				ObjFormat* base = new ObjFormat();
 				SetRandomSeed(i + j);
 				base->_texture = &getTexture("floor")[GetRandomValue(0,1)];
@@ -55,6 +54,7 @@ void GameLoop(Layer &layers, rendermode mode) {
 		// hitbox checks?
 		
 		EndMode2D();
+		DrawFPS(20, 20);
 		//ui render
 		break;
 	}

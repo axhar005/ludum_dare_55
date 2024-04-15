@@ -1,4 +1,5 @@
 #include "../inc/ImageFormat.hpp"
+#include "../inc/game.hpp"
 #include <iostream>
 
 ObjFormat::ObjFormat(void) {
@@ -62,8 +63,11 @@ void	render(Layer& layer) {
 				j--;
 				continue ;
 			}
-			if (tmp->_texture)
-				DrawTexture(*tmp->_texture, tmp->_pos.x, tmp->_pos.y, WHITE);
+			Player *p = getPLayer();
+			if (tmp->_texture){
+				if (tmp->_pos.x >= p->_pos.x - (9*32) && tmp->_pos.x <= p->_pos.x + (9*32) && tmp->_pos.y >= p->_pos.y - (9*32) && tmp->_pos.y <= p->_pos.y + (9*32))	
+					DrawTexture(*tmp->_texture, tmp->_pos.x, tmp->_pos.y, WHITE);
+			}
 			tmp->step();
 		}
 	}

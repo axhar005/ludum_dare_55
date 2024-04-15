@@ -4,6 +4,16 @@ Keys	keys;
 
 float MasterVolume;
 
+Player *getPLayer(Player *player){
+	static Player *T = nullptr;
+	static bool init;
+	if (!init){
+		T = player;
+		init = true;
+	}
+	return T;
+}
+
 int main(void)
 {
 	InitWindow(SCREENWIDTH, SCREENHEIGHT, "CATACOMB CONQUEST");
@@ -19,6 +29,8 @@ int main(void)
 	InitMapLayer(layers);
 	ObjFormat*	obj = new testStruct();
 	AddImageFormatToLayer(layers, 0, obj);
+
+	Map map(MapOptions(80, 80, 15, 20));
 
 	MasterVolume = 42;
 	SetMasterVolume(MasterVolume);
