@@ -4,8 +4,9 @@
 
 
 struct Player : public ObjFormat {
-	Player();
-	~Player();
+	Player(void);
+	Player(Layer* layer);
+	~Player(void);
 	// var
 	unsigned int		hp;
 	unsigned int		speed;

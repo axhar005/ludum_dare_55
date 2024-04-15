@@ -21,7 +21,7 @@ void GameLoop(Layer &layers, rendermode mode) {
 		camera.rotation = 0.0f;
 		camera.zoom = 3.0f;
 		for (size_t i = 0; i < 1; i++) {
-			Player	*base = new Player();
+			Player	*base = new Player(&layers);
 			base->_texture = &getTexture("player")[0];
 			base->keybord = &k;
 			base->_pos.x = SCREENWIDTH/2.0f;
@@ -30,7 +30,7 @@ void GameLoop(Layer &layers, rendermode mode) {
 		}
 		for (size_t i = 0; i < 40; i++) {
 			for (size_t j = 0; j < 40; j++) {
-				ObjFormat* base = new ObjFormat();
+				ObjFormat* base = new ObjFormat(&layers);
 				SetRandomSeed(i + j);
 				base->_texture = &getTexture("floor")[GetRandomValue(0,1)];
 				base->_pos.x = i * textureSize;
@@ -45,7 +45,7 @@ void GameLoop(Layer &layers, rendermode mode) {
 		break;
 	}
 	case RUN: {
-		ObjFormat*	tmp = editTexture(layers, 1, 0);
+		ObjFormat*	tmp = editObj(layers, 1, 0);
 		camera.target = tmp->_pos;
 		//
 		BeginMode2D(camera);

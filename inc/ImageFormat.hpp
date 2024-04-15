@@ -43,9 +43,9 @@ typedef map<int , vector<ObjFormat*> > Layer;
 
 
 //*			//							//
-vector<ObjFormat*>&		editTextureLayer(Layer& layer, int cal);
-ObjFormat*				editTexture(Layer& layers, int cal, size_t pose);
-void					editTextureLayerFt(vector<ObjFormat>& list, int(*ft)(ObjFormat&));
+vector<ObjFormat*>&		returnVecLayer(Layer& layer, int cal);
+ObjFormat*				editObj(Layer& layers, int cal, size_t pose);
+void					returnVecLayerFt(vector<ObjFormat>& list, int(*ft)(ObjFormat&));
 
 
 void					InitMapLayer(Layer &map);
