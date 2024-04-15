@@ -21,7 +21,7 @@ void GameLoop(Layer &layers, rendermode mode)
 			k.setKeys(true);
 			camera.offset = { SCREENWIDTH/2.0f, SCREENHEIGHT/2.0f };
 			camera.rotation = 0.0f;
-			camera.zoom = 2.0f;
+			camera.zoom = 3.0f;
 			Player	*base = new Player(&layers);
 			base->_texture = &getTexture("player_down")[0];
 			base->keybord = &k;
@@ -32,7 +32,8 @@ void GameLoop(Layer &layers, rendermode mode)
 			enemy->_texture = &getTexture("enemy_down")[0];
 			Spawner *espwn = new Spawner(&layers, enemy);
 			espwn->_pos = (Vector2){5 * TEXTURE_SIZE, 5 * TEXTURE_SIZE};
-			espwn->_speed = 0.5;
+			espwn->_speed = 4;
+			espwn->_layer = ENEMY;
 			AddImageFormatToLayer(layers, ENEMY, espwn);
 
 			// ObjFormat *test = new ObjFormat(&layers);
