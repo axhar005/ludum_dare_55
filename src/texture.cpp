@@ -25,6 +25,13 @@ vec_tex &getTexture(const std::string& Texture_){
 			{"player_attack_up", {"Image/Character/CharacterAttackUp.png"}},
 			{"player_attack_left", {"Image/Character/CharacterAttackLeft.png"}},
 			{"player_attack_right", {"Image/Character/CharacterAttackRight.png"}},
+
+			//game icons
+			{"SoulMoneyUI", {"Image/SoulMoney.png"}},
+			{"FireBallUI", {"Image/Spell/GUI/FireBallGUI.png"}},
+			{"IceSpikeUI", {"Image/Spell/GUI/IceSpikeGUI.png"}},
+			{"SlowZoneUI", {"Image/Spell/GUI/SlowZoneGUI.png"}},
+			{"WindSlashUI", {"Image/Spell/GUI/WindSlashGUI.png"}}
 		};
 
 		for (auto& pair : Textures) {

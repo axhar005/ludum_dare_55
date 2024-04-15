@@ -17,10 +17,15 @@ void initMenu(Menu *menu, float *volume)
 
 	//GAME UI
 	menu->spell1.box = {SCREENWIDTH / 2 - 245, (float)(SCREENHEIGHT / 100 * 93), 100, 100};
+	menu->spell1.tex = getTexture("FireBallUI")[0];
 	menu->spell2.box = {SCREENWIDTH / 2 - 115, (float)(SCREENHEIGHT / 100 * 93), 100, 100};
+	menu->spell2.tex = getTexture("IceSpikeUI")[0];
 	menu->spell3.box = {SCREENWIDTH / 2 + 15, (float)(SCREENHEIGHT / 100 * 93), 100, 100};
+	menu->spell3.tex = getTexture("SlowZoneUI")[0];
 	menu->spell4.box = {SCREENWIDTH / 2 + 145, (float)(SCREENHEIGHT / 100 * 93), 100, 100};
+	menu->spell4.tex = getTexture("WindSlashUI")[0];
 	menu->moneybox.box = {13, 13, 100, 100};
+	menu->moneybox.tex = getTexture("SoulMoneyUI")[0];
 
 	// PAUSE UI
 	menu->resumebox = {SCREENWIDTH / 2 - 250, SCREENHEIGHT / 4 + 50, 500, 100};

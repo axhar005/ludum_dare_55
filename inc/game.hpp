@@ -48,7 +48,7 @@
 
 typedef enum GameScreen {TITLE = 0, GAMEPLAY, PAUSE, ENDING } GameScreen;
 typedef enum MenuType {MAIN = 0, SETTINGS, GAME, PAUSEM, UPGRADE, END} MenuType;
-typedef enum LayerH {FLOOR = 0, WALL, ENEMY, SPELL, PLAYER} LayerH;
+typedef enum LayerH {FLOOR = 0, WALL, ENEMY, SPELL, PLAYER, MENUSPRITE} LayerH;
 
 typedef struct TextureBox
 {
