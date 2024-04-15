@@ -6,11 +6,8 @@ float MasterVolume;
 
 Player *getPLayer(Player *player){
 	static Player *T = nullptr;
-	static bool init;
-	if (!init){
+	if (player)
 		T = player;
-		init = true;
-	}
 	return T;
 }
 
@@ -90,7 +87,7 @@ int main(void)
 				{
 					ClearBackground(BLACK);
 					if (IsKeyPressed(KEY_R) && menu.menu_state == GAME){
-						GameLoop(layers, RESTART);
+						GameLoop(layers, START);
 					}
 					else	
 						GameLoop(layers, RUN);

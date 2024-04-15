@@ -14,7 +14,7 @@ Map::Map(MapOptions const &mapOptions) : _mapOptions(mapOptions) {
 	baseMapGenerator();
 	mountainGenerator();
 	protectCenter();
-	//printMap();
+	// //printMap();
 }
 
 Map::~Map() {

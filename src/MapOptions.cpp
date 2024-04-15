@@ -7,7 +7,6 @@ MapOptions::MapOptions() : _width(0), _height(0) {
 }
 
 MapOptions::MapOptions(size_t const &width, size_t const &height, size_t const &mountainSize, unsigned int const &mountainNb) :  _width(width), _height(height), _numberOfMountains(mountainNb), _sizeOfMountain(mountainSize) {
-	std::cout << "Initializing an empty  MapOptions class!" << std::endl;
 }
 
 MapOptions::~MapOptions() {

@@ -6,7 +6,7 @@ void GameLoop(Layer &layers, rendermode mode)
 	static struct Keys k;
 	const int textureSize = 32;
 	switch (mode) {
-		case RESTART:
+		case START: {
 			for (size_t i = 0; i < layers.size(); i++) {
 				for (size_t j = 0; j < layers[i].size(); j++) {
 					if (layers[i][j]) {
@@ -19,7 +19,6 @@ void GameLoop(Layer &layers, rendermode mode)
 			std::cout <<"1 \n";
 			InitMapLayer(layers);
 			//use to free the old objs
-		case START: {
 			k.setKeys(true);
 			camera.offset = { SCREENWIDTH/2.0f, SCREENHEIGHT/2.0f };
 			camera.rotation = 0.0f;
@@ -36,10 +35,13 @@ void GameLoop(Layer &layers, rendermode mode)
 			base->_pos.y = SCREENHEIGHT/2.0f;
 			getPLayer(base);
 			AddImageFormatToLayer(layers, 1, base);
-			AddImageFormatToLayer(layers, 1, sp);
-			std::srand(std::time(nullptr));
-			int seed = std::rand();
-			SetRandomSeed(seed);
+			auto now = std::chrono::high_resolution_clock::now();
+			auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(now);
+			auto value = now_ms.time_since_epoch();
+			long long duration = value.count();
+			std::srand(static_cast<unsigned int>(duration));
+			int randomNumber = std::rand();
+			SetRandomSeed(randomNumber);
 			Map map(MapOptions(MAP_SIZE, MAP_SIZE, 15, 20));
 			for (size_t i = 0; i < MAP_SIZE; i++) {
 				for (size_t j = 0; j < MAP_SIZE; j++) {
@@ -53,10 +55,6 @@ void GameLoop(Layer &layers, rendermode mode)
 					AddImageFormatToLayer(layers, 0, base);
 				}
 			}
-			//AddImageFormatToLayer()
-			/*
-			add code here
-			*/
 			break;
 		}
 		case RUN: {
