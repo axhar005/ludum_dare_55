@@ -50,7 +50,6 @@ void GameLoop(Layer &layers, rendermode mode) {
 
 		//
 		BeginMode2D(camera);
-		Player* ptmp = (Player*)tmp;
 		render(layers);
 		// hitbox checks?
 		

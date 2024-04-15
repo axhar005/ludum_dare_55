@@ -18,3 +18,5 @@ struct Player : public ObjFormat {
 	// ft
 	void step(void) override;
 };
+
+//

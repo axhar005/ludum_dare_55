@@ -36,7 +36,6 @@ int main(void)
 			} break;
 			case GAMEPLAY:
 			{
-				// TODO: Update GAMEPLAY screen variables here!
 				logicUI(&menu, &currentScreen);
 				if (IsKeyPressed(KEY_P) && menu.menu_state == GAME)
 				{
@@ -82,12 +81,9 @@ int main(void)
 				} break;
 				case GAMEPLAY:
 				{
-					// TODO: Draw GAMEPLAY screen here!
 					ClearBackground(BLACK);
 					GameLoop(layers, RUN);
 					drawUI(&menu);
-					//gameplay
-					//menus
 				} break;
 				case PAUSE:
 				{
