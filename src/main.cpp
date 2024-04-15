@@ -27,7 +27,6 @@ int main(void)
 	SetTargetFPS(60);               // Set desired framerate (frames-per-second)
 	Layer	layers;                 //game obj live here
 	InitMapLayer(layers);
-
 	MasterVolume = 42;
 	SetMasterVolume(MasterVolume);
 	GameLoop(layers, START);

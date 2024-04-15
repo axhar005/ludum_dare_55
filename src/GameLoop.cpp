@@ -9,10 +9,12 @@ void GameLoop(Layer &layers, rendermode mode)
 		case RESTART:
 			for (size_t i = 0; i < layers.size(); i++) {
 				for (size_t j = 0; j < layers[i].size(); j++) {
-					layers[i][j]->kill();
+					delete layers[i][j];
 				}
+				layers[i].clear();
 			}
-			render(layers);
+			layers.clear();
+			InitMapLayer(layers);
 			//use to free the old objs
 		case START: {
 			k.setKeys(true);
@@ -54,7 +56,6 @@ void GameLoop(Layer &layers, rendermode mode)
 			std::cout << getPLayer()->_pos.x << "\n";
 			//
 			BeginMode2D(camera);
-			Player* ptmp = (Player*)tmp;
 			render(layers);
 			// hitbox checks?
 			
