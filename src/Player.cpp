@@ -66,9 +66,36 @@ void Player::step(void)
 			break ;
 		}
 	}
-
+	int z = 0;
 	if (moveplayer)
 	{
-		_pos = newPos;
+		if (IsKeyDown(keybord->forward))
+		{
+			_texture = animation(getTexture("player_up"), 0.1, z);
+			_pos.y -= speed;
+			z = 1;
+		}
+		else if (IsKeyDown(keybord->backward))
+		{
+			_texture = animation(getTexture("player_down"), 0.1, z);
+			_pos.y += speed;
+			z = 2;
+		}
+		else if (IsKeyDown(keybord->left))
+		{
+			_texture = animation(getTexture("player_left"), 0.1, z);
+			_pos.x -= speed;
+			z = 3;
+		}
+		else if (IsKeyDown(keybord->right))
+		{
+			_texture = animation(getTexture("player_right"), 0.1, z);
+			_pos.x += speed;
+			z = 4;
+		}
+		else {
+			z = 5;
+			_texture = animation(getTexture("player_standby"), 0.5, z);
+		}
 	}
 }
