@@ -49,7 +49,6 @@ void Player::step(void)
 
 	bool moveplayer = true;
 	bool collision = false;
-	Rectangle boxCollision;
 	Rectangle newHitbox = _hitbox;
 	newHitbox.x = newPos.x;
 	newHitbox.y = newPos.y + TEXTURE_SIZE / 2;
@@ -57,8 +56,6 @@ void Player::step(void)
 	vector<ObjFormat*> vec = returnVecLayer(*_ptr, WALL);
 	for (int i = 0; i < vec.size(); i++)
 	{
-		std::cout << "PLAYERPOS: " << newHitbox.x << ", " << newHitbox.y << std::endl;
-		std::cout << "WALLPOS: " << vec[i]->_hitbox.x << ", " << vec[i]->_hitbox.y << std::endl;
 		if (vec[i] == nullptr)
 			continue ;
 		collision = CheckCollisionRecs(newHitbox, vec[i]->_hitbox);
