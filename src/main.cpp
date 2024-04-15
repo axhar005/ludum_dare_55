@@ -19,8 +19,6 @@ void	freeTexture2DMapOli(std::map<std::string, vector<Texture2D> >& map) {
 		}
 	}
 }
-
-
 int main(void)
 {
 	InitWindow(SCREENWIDTH, SCREENHEIGHT, "CATACOMB CONQUEST");

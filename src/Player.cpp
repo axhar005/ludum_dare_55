@@ -26,30 +26,32 @@ void Player::step(void)
 	//movement
 	if (IsKeyDown(keybord->forward))
 	{
-		_texture = &getTexture("player_up")[0];
+		_texture = animation(getTexture("player_up"), 0.1, 1);
 		newPos.y -= speed;
 	}
 	if (IsKeyDown(keybord->backward))
 	{
-		_texture = &getTexture("player_down")[0];
+		_texture = animation(getTexture("player_down"), 0.1, 2);
 		newPos.y += speed;
 	}
 	if (IsKeyDown(keybord->left))
 	{
-		_texture = &getTexture("player_left")[0];
+		_texture = animation(getTexture("player_left"), 0.1, 3);
 		newPos.x -= speed;
 	}
 	if (IsKeyDown(keybord->right))
 	{
-		_texture = &getTexture("player_right")[0];
+		_texture = animation(getTexture("player_right"), 0.1, 4);
 		newPos.x += speed;
+	}
+	if (newPos.x == _pos.x && newPos.y == _pos.y){
+		_texture = animation(getTexture("player_standby"), 0.5, 5);
 	}
 
 	//hitbox logic
 
 	bool moveplayer = true;
 	bool collision = false;
-	Rectangle boxCollision;
 	Rectangle newHitbox = _hitbox;
 	newHitbox.x = newPos.x + 4;
 	newHitbox.y = newPos.y + TEXTURE_SIZE / 2;
@@ -66,36 +68,8 @@ void Player::step(void)
 			break ;
 		}
 	}
-	int z = 0;
 	if (moveplayer)
 	{
-		if (IsKeyDown(keybord->forward))
-		{
-			_texture = animation(getTexture("player_up"), 0.1, z);
-			_pos.y -= speed;
-			z = 1;
-		}
-		else if (IsKeyDown(keybord->backward))
-		{
-			_texture = animation(getTexture("player_down"), 0.1, z);
-			_pos.y += speed;
-			z = 2;
-		}
-		else if (IsKeyDown(keybord->left))
-		{
-			_texture = animation(getTexture("player_left"), 0.1, z);
-			_pos.x -= speed;
-			z = 3;
-		}
-		else if (IsKeyDown(keybord->right))
-		{
-			_texture = animation(getTexture("player_right"), 0.1, z);
-			_pos.x += speed;
-			z = 4;
-		}
-		else {
-			z = 5;
-			_texture = animation(getTexture("player_standby"), 0.5, z);
-		}
+		_pos = newPos;
 	}
 }
