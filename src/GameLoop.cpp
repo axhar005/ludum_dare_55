@@ -28,11 +28,14 @@ void GameLoop(Layer &layers, rendermode mode)
 			base->_pos.y = SCREENHEIGHT/2.0f;
 			getPLayer(base);
 			AddImageFormatToLayer(layers, 1, base);
-			std::srand(std::time(nullptr));
-			int seed = std::rand();
-			SetRandomSeed(seed);
-			MapOptions options(MAP_SIZE, MAP_SIZE, 15, 20);
-			Map map(options);
+			auto now = std::chrono::high_resolution_clock::now();
+			auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(now);
+			auto value = now_ms.time_since_epoch();
+			long long duration = value.count();
+			std::srand(static_cast<unsigned int>(duration));
+			int randomNumber = std::rand();
+			SetRandomSeed(randomNumber);
+			Map map(MapOptions(MAP_SIZE, MAP_SIZE, 15, 20));
 			for (size_t i = 0; i < MAP_SIZE; i++) {
 				for (size_t j = 0; j < MAP_SIZE; j++) {
 					ObjFormat* base = new ObjFormat();
