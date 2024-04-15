@@ -13,25 +13,18 @@ vec_tex &getTexture(const std::string& Texture_){
 			{"wall", {"Image/Wall/Wall.png", "Image/Wall/SkullWall.png", "Image/Wall/SkullWall_1.png"}},
 			
 			//player
-			{"player_down", {"Image/Character/CharacterDown.png"}},
-			{"player_up", {"Image/Character/CharacterUp.png"}},
-			{"player_left", {"Image/Character/CharacterLeft.png"}},
-			{"player_right", {"Image/Character/CharacterRight.png"}},
-			{"player_dash_down", {"Image/Character/CharacterDashDown.png"}},
-			{"player_dash_up", {"Image/Character/CharacterDashUp.png"}},
-			{"player_dash_left", {"Image/Character/CharacterDashLeft.png"}},
-			{"player_dash_right", {"Image/Character/CharacterDashRight.png"}},
-			// {"player_attack_down", {"Image/Character/CharacterAttackDown.png"}},
-			{"player_attack_up", {"Image/Character/CharacterAttackUp.png"}},
-			{"player_attack_left", {"Image/Character/CharacterAttackLeft.png"}},
-			{"player_attack_right", {"Image/Character/CharacterAttackRight.png"}},
-
+			{"player_standby", {"Image/Player/Standby/PlayerStandby0.png", "Image/Player/Standby/PlayerStandby1.png", "Image/Player/Standby/PlayerStandby2.png", "Image/Player/Standby/PlayerStandby3.png"}},
+			{"player_down", {"Image/Player/PlayerDown.png"}},
+			{"player_up", {"Image/Player/PlayerUp.png"}},
+			{"player_left", {"Image/Player/MoveLeft/PlayerLeft0.png", "Image/Player/MoveLeft/PlayerLeft1.png"}},
+			{"player_right", {"Image/Player/MoveRight/PlayerRight0.png", "Image/Player/MoveRight/PlayerRight1.png"}},
 			//game icons
 			{"SoulMoneyUI", {"Image/SoulMoney.png"}},
 			{"FireBallUI", {"Image/Spell/GUI/FireBallGUI.png"}},
 			{"IceSpikeUI", {"Image/Spell/GUI/IceSpikeGUI.png"}},
 			{"SlowZoneUI", {"Image/Spell/GUI/SlowZoneGUI.png"}},
 			{"WindSlashUI", {"Image/Spell/GUI/WindSlashGUI.png"}}
+			
 		};
 
 		for (auto& pair : Textures) {
