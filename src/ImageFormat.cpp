@@ -62,6 +62,8 @@ void	AddImageFormatToLayer(Layer& input, int y, ObjFormat* img) {
 
 void	render(Layer& layer) {
 	for (int i = 0; i < LAYER_NUMBER; i++) {
+		if (layer[i].size() == 0)
+			continue ;
 		for (size_t j = 0; j < layer[i].size(); j++) {
 			ObjFormat* tmp = layer[i][j];
 			if (layer[i][j]->_rm) {

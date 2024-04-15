@@ -30,7 +30,7 @@ void GameLoop(Layer &layers, rendermode mode)
 			playertmp->_pos.x = SCREENWIDTH/2.0f;
 			playertmp->_pos.y = SCREENHEIGHT/2.0f;
 			getPLayer(playertmp);
-			AddImageFormatToLayer(layers, 1, playertmp);
+			AddImageFormatToLayer(layers, PLAYER, playertmp);
 			//map
 			for (size_t i = 0; i < 400; i++) {
 				for (size_t j = 0; j < 400; j++) {
@@ -39,7 +39,7 @@ void GameLoop(Layer &layers, rendermode mode)
 					base->_texture = &getTexture("floor")[GetRandomValue(0,1)];
 					base->_pos.x = i * textureSize;
 					base->_pos.y = j * textureSize;
-					AddImageFormatToLayer(layers, 0, base);
+					AddImageFormatToLayer(layers, FLOOR, base);
 				}
 			}
 			break;
@@ -50,7 +50,7 @@ void GameLoop(Layer &layers, rendermode mode)
 		}
 		case RUN:
 		{
-		ObjFormat*	tmp = editObj(layers, 1, 0);
+		ObjFormat*	tmp = editObj(layers, PLAYER, 0);
 		camera.target = (Vector2){tmp->_pos.x + (TEXTURE_SIZE / 2), tmp->_pos.y + (TEXTURE_SIZE / 2)};
 		//
 		BeginMode2D(camera);
