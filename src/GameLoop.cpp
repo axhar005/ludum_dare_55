@@ -6,17 +6,17 @@ void GameLoop(Layer &layers, rendermode mode)
 	static struct Keys k;
 	const int textureSize = 32;
 	switch (mode) {
-		case RESTART:
+		case START: {
 			for (size_t i = 0; i < layers.size(); i++) {
 				for (size_t j = 0; j < layers[i].size(); j++) {
 					delete layers[i][j];
+					layers[i][j] = nullptr;
 				}
 				layers[i].clear();
 			}
 			layers.clear();
 			InitMapLayer(layers);
 			//use to free the old objs
-		case START: {
 			k.setKeys(true);
 			camera.offset = { SCREENWIDTH/2.0f, SCREENHEIGHT/2.0f };
 			camera.rotation = 0.0f;
@@ -31,7 +31,8 @@ void GameLoop(Layer &layers, rendermode mode)
 			std::srand(std::time(nullptr));
 			int seed = std::rand();
 			SetRandomSeed(seed);
-			Map map(MapOptions(MAP_SIZE, MAP_SIZE, 15, 20));
+			MapOptions options(MAP_SIZE, MAP_SIZE, 15, 20);
+			Map map(options);
 			for (size_t i = 0; i < MAP_SIZE; i++) {
 				for (size_t j = 0; j < MAP_SIZE; j++) {
 					ObjFormat* base = new ObjFormat();
@@ -44,16 +45,11 @@ void GameLoop(Layer &layers, rendermode mode)
 					AddImageFormatToLayer(layers, 0, base);
 				}
 			}
-			//AddImageFormatToLayer()
-			/*
-			add code here
-			*/
 			break;
 		}
 		case RUN: {
 			ObjFormat*	tmp = editObj(layers, 1, 0);
 			camera.target = (Vector2){tmp->_pos.x + (TEXTURE_SIZE / 2), tmp->_pos.y + (TEXTURE_SIZE / 2)};
-			std::cout << getPLayer()->_pos.x << "\n";
 			//
 			BeginMode2D(camera);
 			render(layers);
