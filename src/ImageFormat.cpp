@@ -30,19 +30,23 @@ void	ObjFormat::step(void) {
 	//*		this->kill();
 }
 
-Texture2D *ObjFormat::animation(vec_tex &vec, double frameTime, bool reset){
+Texture2D *ObjFormat::animation(vec_tex &vec, double frameTime, int reset){
 	static float timer = 0.0;
-	static vec_tex::iterator it = vec.begin();
-	if (reset)
-		if (it == vec.end()) it = vec.begin();
+	static int i = 0;
+	static int r = 0;
+
+	if (r != reset) {
+		if (i >= vec.size()) i = 0;
+		r = reset;
+	}
 
 	timer += GetFrameTime();
 	if (timer >= frameTime) {
 		timer = 0;
-		it++;
-		if (it == vec.end()) it = vec.begin();
+		i++;
+		if (i >= vec.size()) i = 0;
 	}
-	return &(*it);
+	return &vec[i];
 }
 
 void	InitMapLayer(Layer &map) {
