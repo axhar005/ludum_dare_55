@@ -81,3 +81,7 @@ void Map::protectCenter() {
 	}
 	_map[_mapOptions.getHeight() / 2][_mapOptions.getWidth() / 2] = 'X';
 }
+
+char **Map::getMap() const{
+	return _map;
+}

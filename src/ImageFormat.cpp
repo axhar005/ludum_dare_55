@@ -24,6 +24,8 @@ void	ObjFormat::step(void) {
 Texture2D *ObjFormat::animation(vec_tex &vec, double frameTime, bool reset){
 	static float timer = 0.0;
 	static vec_tex::iterator it = vec.begin();
+	if (reset)
+		if (it == vec.end()) it = vec.begin();
 
 	timer += GetFrameTime();
 	if (timer >= frameTime) {
