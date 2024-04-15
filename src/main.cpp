@@ -89,7 +89,7 @@ int main(void)
 					if (IsKeyPressed(KEY_R) && menu.menu_state == GAME){
 						GameLoop(layers, START);
 					}
-					else	
+					else
 						GameLoop(layers, RUN);
 					drawUI(&menu);
 				} break;
@@ -110,12 +110,11 @@ int main(void)
 
 		EndDrawing();
 	}
-
 	// De-Initialization
-
 	// TODO: Unload all loaded data (textures, fonts, audio) here!
-
 	CloseWindow();
+	GameLoop(layers, ENDGAME);
+
 
 	return 0;
 }

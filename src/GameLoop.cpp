@@ -16,14 +16,13 @@ void GameLoop(Layer &layers, rendermode mode)
 				layers[i].clear();
 			}
 			layers.clear();
-			std::cout <<"1 \n";
 			InitMapLayer(layers);
 			//use to free the old objs
 			k.setKeys(true);
 			camera.offset = { SCREENWIDTH/2.0f, SCREENHEIGHT/2.0f };
 			camera.rotation = 0.0f;
 			camera.zoom = 3.0f;
-			Player	*base = new Player();
+			Player	*base = new Player(&layers);
 			ObjFormat	*test = new ObjFormat(&layers);
 			test->_texture = &getTexture("player_down")[0];
 			Spawner	*sp = new Spawner(&layers, ((ObjFormat *)test));
@@ -35,6 +34,7 @@ void GameLoop(Layer &layers, rendermode mode)
 			base->_pos.y = SCREENHEIGHT/2.0f;
 			getPLayer(base);
 			AddImageFormatToLayer(layers, 1, base);
+			AddImageFormatToLayer(layers, 1, sp);
 			auto now = std::chrono::high_resolution_clock::now();
 			auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(now);
 			auto value = now_ms.time_since_epoch();
@@ -68,6 +68,18 @@ void GameLoop(Layer &layers, rendermode mode)
 			//std::cout << returnVecLayer(layers, SPELL).size() << "\n";
 			DrawFPS(20, 20);
 			//ui render
+			break;
+		}
+		case ENDGAME: {
+			for (size_t i = 0; i < layers.size(); i++) {
+				for (size_t j = 0; j < layers[i].size(); j++) {
+					if (layers[i][j]) {
+						delete layers[i][j];
+					}
+				}
+				layers[i].clear();
+			}
+			layers.clear();
 			break;
 		}
 		default:

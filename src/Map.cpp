@@ -18,6 +18,10 @@ Map::Map(MapOptions const &mapOptions) : _mapOptions(mapOptions) {
 }
 
 Map::~Map() {
+	for (size_t i = 0; _map[i]; i++) {
+		free(_map[i]);
+	}
+	free(_map);
 }
 
 void Map::baseMapGenerator() {

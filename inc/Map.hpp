@@ -6,7 +6,7 @@ class Map
 {
 private:
 	Map();
-	char **_map;
+	char	**_map;
 	MapOptions const _mapOptions;
 
 
