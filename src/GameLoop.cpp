@@ -33,7 +33,6 @@ void GameLoop(Layer &layers, rendermode mode)
 			base->_pos.x = SCREENWIDTH/2.0f;
 			base->_pos.y = SCREENHEIGHT/2.0f;
 			getPLayer(base);
-			AddImageFormatToLayer(layers, 1, base);
 			AddImageFormatToLayer(layers, 1, sp);
 			auto now = std::chrono::high_resolution_clock::now();
 			auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(now);
@@ -41,29 +40,41 @@ void GameLoop(Layer &layers, rendermode mode)
 			long long duration = value.count();
 			std::srand(static_cast<unsigned int>(duration));
 			int randomNumber = std::rand();
+			AddImageFormatToLayer(layers, PLAYER, base);
+			std::srand(std::time(nullptr));
+			int seed = std::rand();
 			SetRandomSeed(randomNumber);
 			Map map(MapOptions(MAP_SIZE, MAP_SIZE, 15, 20));
 			for (size_t i = 0; i < MAP_SIZE; i++) {
 				for (size_t j = 0; j < MAP_SIZE; j++) {
 					ObjFormat* base = new ObjFormat();
-					if (map.getMap()[i][j] == '0')
-						base->_texture = &getTexture("floor")[GetRandomValue(2,3)];
-					else if (map.getMap()[i][j] == '1')
-						base->_texture = &getTexture("wall")[GetRandomValue(1,2)];
 					base->_pos.x = i * textureSize;
 					base->_pos.y = j * textureSize;
-					AddImageFormatToLayer(layers, 0, base);
+					base->_hitbox = {base->_pos.x, base->_pos.y, TEXTURE_SIZE, TEXTURE_SIZE};
+					if (map.getMap()[i][j] == '0')
+					{
+						base->_texture = &getTexture("floor")[GetRandomValue(2,3)];
+						AddImageFormatToLayer(layers, FLOOR, base);
+					}
+					else if (map.getMap()[i][j] == '1')
+					{
+						base->_texture = &getTexture("wall")[GetRandomValue(1,2)];
+						AddImageFormatToLayer(layers, WALL, base);
+					}
 				}
 			}
+			//AddImageFormatToLayer()
+			/*
+			add code here
+			*/
 			break;
 		}
 		case RUN: {
-			ObjFormat*	tmp = editObj(layers, 1, 0);
+			ObjFormat*	tmp = editObj(layers, PLAYER, 0);
 			camera.target = (Vector2){tmp->_pos.x + (TEXTURE_SIZE / 2), tmp->_pos.y + (TEXTURE_SIZE / 2)};
 			//
 			BeginMode2D(camera);
 			render(layers);
-			// hitbox checks?
 			EndMode2D();
 			//std::cout << returnVecLayer(layers, SPELL).size() << "\n";
 			DrawFPS(20, 20);

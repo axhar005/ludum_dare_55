@@ -3,10 +3,10 @@
 #include "game.hpp"
 
 
-struct Player : public ObjFormat {
-	Player(void);
-	Player(Layer* layer);
-	~Player(void);
+struct Enemy : public ObjFormat {
+	Enemy(void);
+	Enemy(Layer* layer);
+	~Enemy(void);
 	// var
 	unsigned int		hp;
 	unsigned int		speed;

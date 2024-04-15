@@ -134,8 +134,8 @@ void drawUI(MenuStruct *menu)
 		} break;
 		case GAME:
 		{
-			DrawRing(GetMousePosition(), 20, 25, 0, 360, 100, WHITETRANS);
 			drawGameMenu(menu);
+			DrawRing(GetMousePosition(), 20, 25, 0, 360, 100, WHITETRANS);
 		} break ;
 		case PAUSEM:
 		{

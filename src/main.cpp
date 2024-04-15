@@ -25,15 +25,14 @@ int main(void)
 {
 	InitWindow(SCREENWIDTH, SCREENHEIGHT, "CATACOMB CONQUEST");
 	SetMouseCursor(MOUSE_CURSOR_ARROW);
-	getTexture("");
 
 	GameScreen currentScreen = TITLE; //TODO: CHANGE THIS
+	Layer	layers;                 //game obj live here
+	InitMapLayer(layers);
 	Menu menu;
 	initMenu(&menu, &MasterVolume);
 	int framesCounter = 0;          // Useful to count frames
 	SetTargetFPS(60);               // Set desired framerate (frames-per-second)
-	Layer	layers;                 //game obj live here
-	InitMapLayer(layers);
 	MasterVolume = 42;
 	SetMasterVolume(MasterVolume);
 	GameLoop(layers, START);

@@ -30,6 +30,7 @@ void drawTextureBox(TextureBox &box)
 {
 	DrawRectangleRounded(box.box, 0.2, 0, LIGHTGRAYTRANS);
 	DrawRectangleRoundedLines(box.box, 0.2, 0, 5, DARKGRAYTRANS);
+	DrawTexture(box.tex, box.box.x, box.box.y, WHITE);
 	//add sprite with box.tex
 	
 }

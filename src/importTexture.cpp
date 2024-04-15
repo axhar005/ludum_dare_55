@@ -30,3 +30,20 @@ vector<Texture2D>	ImportFileTexture(std::string name, const char* const filesNam
 	}
 	return (result);
 }
+
+
+//  void ImageResize(Image *image, int newWidth, int newHeight); 
+Texture2D	importImageToTexture2D(const char *name, int newWidth, int newHeight) {
+	Image	tmp;
+	bzero(&tmp, sizeof(tmp));
+	tmp = LoadImage(name);
+	std::cout << name << std::endl;
+	std::cout << getcwd(0, 0) << std::endl;
+	if (!tmp.data)
+		throw std::runtime_error("can't impore image");
+
+	ImageResize(&tmp, newWidth, newHeight);
+	Texture2D result = LoadTextureFromImage(tmp);
+	UnloadImage(tmp);
+	return (result);
+}
