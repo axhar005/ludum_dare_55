@@ -11,7 +11,7 @@ Player::~Player(void) {
 }
 
 void Player::step(void) {
-	hitbox = {_pos.x, _pos.y, TEXTURE_SIZE, TEXTURE_SIZE};
+	this->_hitbox = {_pos.x, _pos.y, TEXTURE_SIZE, TEXTURE_SIZE};
 	if (IsKeyDown(keybord->forward))
 	{
 		_pos.y -= speed;

@@ -7,7 +7,6 @@ struct Player : public ObjFormat {
 	Player();
 	~Player();
 	// var
-	Rectangle hitbox;
 	unsigned int		hp;
 	unsigned int		speed;
 	short				lookside;

@@ -52,7 +52,8 @@ void GameLoop(Layer &layers, rendermode mode) {
 		BeginMode2D(camera);
 		Player* ptmp = (Player*)tmp;
 		render(layers);
-		DrawRectangleRec(ptmp->hitbox, WHITE);
+		// hitbox checks?
+		
 		EndMode2D();
 		//ui render
 		break;

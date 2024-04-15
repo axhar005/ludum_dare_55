@@ -26,6 +26,7 @@ struct ObjFormat
 
 	// variables
 		Vector2				_pos;
+		Rectangle			_hitbox;
 		Texture2D			*_texture;
 		bool				_rm;
 	private:
