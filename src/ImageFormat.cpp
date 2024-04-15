@@ -5,8 +5,16 @@
 ObjFormat::ObjFormat(void) {
 	_rm = false;
 	_texture = nullptr;
+	_ptr = nullptr;
 	bzero(&_pos, sizeof(_pos));
 }
+
+ObjFormat::ObjFormat(Layer* ptr) {
+	_rm = false;
+	_texture = nullptr;
+	_ptr = ptr;
+};
+
 ObjFormat::~ObjFormat(void) {
 	
 }
@@ -73,7 +81,28 @@ void	render(Layer& layer) {
 	}
 }
 
-ObjFormat*	editTexture(Layer& layers, int cal, size_t pose) {
+void    ObjFormat::spawn(int layer, ObjFormat* obj) {
+	if (_ptr && obj) {
+		obj->_dir = 0;
+		obj->_ptr = _ptr;
+		obj->_rm = false;
+		obj->_texture = NULL;
+		AddImageFormatToLayer(*_ptr, layer, obj);
+	}
+}
+
+void    ObjFormat::spawn(int layer, ObjFormat* obj, Vector2 pos) {
+	if (_ptr && obj) {
+		obj->_pos = pos;
+		obj->_dir = 0;
+		obj->_ptr = _ptr;
+		obj->_rm = false;
+		AddImageFormatToLayer(*_ptr, layer, obj);
+	}
+}
+
+
+ObjFormat*	editObj(Layer& layers, int cal, size_t pose) {
 	if (cal < 0 || cal > LAYER_NUMBER)
 		return NULL;
 	if (pose >= layers[cal].size())
@@ -85,7 +114,7 @@ ObjFormat*	editTexture(Layer& layers, int cal, size_t pose) {
 /// @param layer 
 /// @param cal 
 /// @return 
-vector<ObjFormat*>&	editTextureLayer(Layer& layer, int cal) {
+vector<ObjFormat*>&	returnVecLayer(Layer& layer, int cal) {
 	if (cal < 0 || cal > LAYER_NUMBER)
 		throw std::runtime_error("invalid index");
 	return (layer[cal]);
@@ -101,7 +130,7 @@ void	cleanLayer(Layer& layer) {
 }
 */
 
-void	editTextureLayerFt(vector<ObjFormat>& list, int(*ft)(ObjFormat&)) {
+void	returnVecLayerFt(vector<ObjFormat>& list, int(*ft)(ObjFormat&)) {
 	for (size_t i = 0; i < list.size() ; i++) {
 		if (ft(list[i]))
 			break ;

@@ -4,6 +4,14 @@ Player::Player(void) {
 	hp = 0;
 	speed = 2;
 	lookside = 0;
+	_ptr = NULL;
+}
+
+Player::Player(Layer* layer) {
+	hp = 0;
+	speed = 2;
+	lookside = 0;
+	_ptr = layer;
 }
 
 Player::~Player(void) {
