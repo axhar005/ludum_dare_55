@@ -46,10 +46,13 @@ void GameLoop(Layer &layers, rendermode mode) {
 	}
 	case RUN: {
 		ObjFormat*	tmp = editTexture(layers, 1, 0);
-		camera.target = tmp->_pos;
+		camera.target = (Vector2){tmp->_pos.x + (TEXTURE_SIZE / 2), tmp->_pos.y + (TEXTURE_SIZE / 2)};
+
 		//
 		BeginMode2D(camera);
+		Player* ptmp = (Player*)tmp;
 		render(layers);
+		DrawRectangleRec(ptmp->hitbox, WHITE);
 		EndMode2D();
 		//ui render
 		break;

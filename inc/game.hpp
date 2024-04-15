@@ -39,7 +39,7 @@
 //CUSTOM COLORS
 #define LIGHTGRAYTRANS  CLITERAL(Color){ 200, 200, 200, 100 }   // Light Gray with transparancy
 #define DARKGRAYTRANS  CLITERAL(Color){ 50, 50, 50, 100 }   // Light Gray with transparancy
-#define WHITETRANS  CLITERAL(Color){ 0, 0, 0, 50 }   // Light Gray with transparancy
+#define WHITETRANS  CLITERAL(Color){ 255, 255, 255, 200 }   // Light Gray with transparancy
 
 
 typedef enum GameScreen {TITLE = 0, GAMEPLAY, PAUSE, ENDING } GameScreen;

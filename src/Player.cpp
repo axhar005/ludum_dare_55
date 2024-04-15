@@ -4,7 +4,6 @@ Player::Player(void) {
 	hp = 0;
 	speed = 2;
 	lookside = 0;
-	hitbox = {_pos.x - TEXTURE_SIZE / 2, _pos.y - TEXTURE_SIZE / 2, TEXTURE_SIZE, TEXTURE_SIZE};
 }
 
 Player::~Player(void) {
@@ -12,8 +11,12 @@ Player::~Player(void) {
 }
 
 void Player::step(void) {
+	hitbox = {_pos.x, _pos.y, TEXTURE_SIZE, TEXTURE_SIZE};
 	if (IsKeyDown(keybord->forward))
+	{
 		_pos.y -= speed;
+
+	}
 	if (IsKeyDown(keybord->backward))
 		_pos.y += speed;
 	if (IsKeyDown(keybord->left))
