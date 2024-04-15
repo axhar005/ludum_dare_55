@@ -16,7 +16,6 @@ void GameLoop(Layer &layers, rendermode mode)
 				layers[i].clear();
 			}
 			layers.clear();
-			std::cout <<"1 \n";
 			InitMapLayer(layers);
 			//use to free the old objs
 			k.setKeys(true);
