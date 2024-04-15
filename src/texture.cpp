@@ -13,8 +13,8 @@ vec_tex &getTexture(const std::string& Texture_){
 			{"wall", {"Image/Wall/Wall.png"}},
 			
 			//player
-			{"player_down", {"Image/Character/Character.png"}},
-			{"player_up", {"Image/Character/CharacterBack.png"}},
+			{"player_down", {"Image/Character/CharacterDown.png"}},
+			{"player_up", {"Image/Character/CharacterUp.png"}},
 			{"player_left", {"Image/Character/CharacterLeft.png"}},
 			{"player_right", {"Image/Character/CharacterRight.png"}},
 			{"player_dash_down", {"Image/Character/CharacterDashDown.png"}},

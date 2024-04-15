@@ -3,7 +3,7 @@ NAME = ludum_dare_55
 
 #--- COMPILER AND FLAGS ---#
 CXX = g++
-CFLAGS = -Wall -std=c++11 -g
+CFLAGS = -Wall -std=c++11 -O2
 SRC_DIR = src
 RAYLIB_SRC = 
 RAYLIB_OBJ = 
