@@ -32,7 +32,7 @@ void GameLoop(Layer &layers, rendermode mode)
 			enemy->_texture = &getTexture("enemy_down")[0];
 			Spawner *espwn = new Spawner(&layers, enemy);
 			espwn->_pos = (Vector2){5 * TEXTURE_SIZE, 5 * TEXTURE_SIZE};
-			espwn->_speed = 2;
+			espwn->_speed = 0.5;
 			AddImageFormatToLayer(layers, ENEMY, espwn);
 
 			// ObjFormat *test = new ObjFormat(&layers);
