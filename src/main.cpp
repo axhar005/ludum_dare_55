@@ -30,8 +30,6 @@ int main(void)
 	ObjFormat*	obj = new testStruct();
 	AddImageFormatToLayer(layers, 0, obj);
 
-	Map map(MapOptions(80, 80, 15, 20));
-
 	MasterVolume = 42;
 	SetMasterVolume(MasterVolume);
 	GameLoop(layers, START);
@@ -96,7 +94,11 @@ int main(void)
 				{
 					// TODO: Draw GAMEPLAY screen here!
 					ClearBackground(BLACK);
-					GameLoop(layers, RUN);
+					if (IsKeyPressed(KEY_R) && menu.menu_state == GAME){
+						GameLoop(layers, RESTART);
+					}
+					else	
+						GameLoop(layers, RUN);
 					drawUI(&menu);
 					//gameplay
 					//menus

@@ -21,6 +21,7 @@
 #include "Map.hpp"
 #include "Player.hpp"
 #include "Gameloop.hpp"
+#include <chrono>
 
 //include new obj
 #include "teststruct.hpp"
@@ -35,6 +36,8 @@
 #define MEDIUM_MENU_TEXT 50
 #define LARGE_MENU_TEXT 100
 #define TEXTURE_SIZE 32
+#define VIEW_DISTANCE 9
+#define MAP_SIZE 80
 
 //CUSTOM COLORS
 #define LIGHTGRAYTRANS  CLITERAL(Color){ 200, 200, 200, 100 }   // Light Gray with transparancy
