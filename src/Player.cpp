@@ -85,7 +85,6 @@ void Player::step(void)
 	}
 
 	//hp
-	std::cout << hp << std::endl;
 	if (hp < 33 || hp > 33 * 25)
 	{
 		int* isDead = deadState(NULL);
