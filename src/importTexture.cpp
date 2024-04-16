@@ -40,7 +40,7 @@ Texture2D	importImageToTexture2D(const char *name, int newWidth, int newHeight) 
 	std::cout << name << std::endl;
 	std::cout << getcwd(0, 0) << std::endl;
 	if (!tmp.data)
-		throw std::runtime_error("can't impore image");
+		throw std::runtime_error("can't import image");
 
 	ImageResize(&tmp, newWidth, newHeight);
 	Texture2D result = LoadTextureFromImage(tmp);

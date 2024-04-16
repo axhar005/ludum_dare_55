@@ -47,6 +47,17 @@ void Player::step(void)
 	if (newPos.x == _pos.x && newPos.y == _pos.y){
 		_texture = animation(getTexture("player_standby"), 0.5, 5);
 	}
+	static int cooldown = 0;
+	if (cooldown <= 0 && IsMouseButtonDown(MOUSE_LEFT_BUTTON)){
+		Vector2 mouse = GetMousePosition();
+		FireBall *f = new FireBall();
+		f->_texture = &getTexture("fireball")[0];
+		spawn(SPELL, (ObjFormat *)f, {_pos.x+8, _pos.y+8});
+		f->_dir = point_direction({SCREENWIDTH/2, SCREENHEIGHT/2}, mouse);
+		cooldown = 15;
+	}
+	if (cooldown > 0)
+		cooldown--;
 
 	//hitbox logic
 
@@ -74,6 +85,7 @@ void Player::step(void)
 	}
 
 	//hp
+	std::cout << hp << std::endl;
 	if (hp < 33 || hp > 33 * 25)
 	{
 		int* isDead = deadState(NULL);

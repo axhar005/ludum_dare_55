@@ -24,10 +24,11 @@
 #include "Enemy.hpp"
 #include "Spawner.hpp"
 #include "Gameloop.hpp"
+#include "FireBall.hpp"
 #include <chrono>
 
 //include new obj
-#include "teststruct.hpp"
+
 
 
 
@@ -41,6 +42,7 @@
 #define TEXTURE_SIZE 32
 #define VIEW_DISTANCE 9
 #define MAP_SIZE 80
+#define FPS 60
 
 //CUSTOM COLORS
 #define LIGHTGRAYTRANS  CLITERAL(Color){ 200, 200, 200, 100 }   // Light Gray with transparancy
@@ -95,8 +97,9 @@ typedef struct MenuStruct
 
 
 //Texture
-vec_tex &getTexture(const std::string& Texture);
-Player *getPLayer(Player *player = nullptr);
+vec_tex &getTexture(const std::string& Texture, bool _free = false);
+void	freeTexture2DMapOli(std::map<std::string, vector<Texture2D> >& map);
+Player *getPlayer(Player *player = nullptr);
 
 //Math position
 float point_distance(Vector2 v1, Vector2 v2);

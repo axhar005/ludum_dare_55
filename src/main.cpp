@@ -4,7 +4,7 @@ Keys	keys;
 
 float MasterVolume;
 
-Player *getPLayer(Player *player){
+Player *getPlayer(Player *player){
 	static Player *T = nullptr;
 	if (player)
 		T = player;
@@ -133,6 +133,7 @@ int main(void)
 	// TODO: Unload all loaded data (textures, fonts, audio) here!
 	CloseWindow();
 	GameLoop(layers, ENDGAME);
+	getTexture("", true);
 
 	return 0;
 }

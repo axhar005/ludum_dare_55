@@ -26,9 +26,8 @@ void Enemy::step(void)
 
 
 	//movement
-	vector<ObjFormat*> pvec = returnVecLayer(*_ptr, PLAYER);
-	Player *player = (Player *)pvec[0];
-	_dir = point_direction(_pos, pvec[0]->_pos);
+	Player *player = getPlayer();
+	_dir = point_direction(_pos, player->_pos);
 	move_in_direction(newPos, speed, _dir);
 
 	if (_dir >= 315 || _dir < 45)
@@ -70,27 +69,12 @@ void Enemy::step(void)
 			break ;
 		}
 	}
-
-	// enemy collision
-	// vector<ObjFormat*> evec = returnVecLayer(*_ptr, ENEMY);
-	// for (int i = 0; i < evec.size(); i++)
-	// {
-	// 	if (evec[i] == this)
-	// 		continue ;
-	// 	collision = CheckCollisionRecs(newHitbox, evec[i]->_hitbox);
-	// 	if (collision)
-	// 	{
-	// 		move = false;
-	// 		break ;
-	// 	}
-	// }
-
+	
 	// hit player
 	collision = CheckCollisionRecs(newHitbox, player->_hitbox);
 	if (collision)
 	{
-		// if ((player->hp - damage) == 0 || (player->hp - damage) > 33 * 100)
-			player->hp -= damage;
+		player->hp -= damage;
 		kill();
 	}
 
