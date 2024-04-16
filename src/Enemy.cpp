@@ -4,6 +4,7 @@ Enemy::Enemy(void) {
 	hp = 0;
 	speed = 1;
 	lookside = 0;
+	damage = 1;
 	_ptr = NULL;
 }
 
@@ -20,16 +21,16 @@ Enemy::~Enemy(void) {
 
 void Enemy::step(void)
 {
-	this->_hitbox = {_pos.x, _pos.y + TEXTURE_SIZE / 2, TEXTURE_SIZE, TEXTURE_SIZE / 2};
+	this->_hitbox = {_pos.x + 16, _pos.y + TEXTURE_SIZE / 2, TEXTURE_SIZE / 2, TEXTURE_SIZE / 2};
 	Vector2 newPos = _pos;
 
 
 	//movement
 	vector<ObjFormat*> pvec = returnVecLayer(*_ptr, PLAYER);
+	Player *player = (Player *)pvec[0];
 	_dir = point_direction(_pos, pvec[0]->_pos);
 	move_in_direction(newPos, speed, _dir);
 
-	std::cout << _dir << std::endl;
 	if (_dir >= 315 || _dir < 45)
 	{
 		_texture = &getTexture("enemy_down")[0];
@@ -47,36 +48,15 @@ void Enemy::step(void)
 		_texture = &getTexture("enemy_right")[0];
 	}
 
-	// if (pvec[0]->_pos.y > _pos.y)
-	// {
-	// 	_texture = &getTexture("enemy_up")[0];
-	// 	newPos.y -= speed;
-	// }
-	// if (pvec[0]->_pos.y < _pos.y)
-	// {
-	// 	_texture = &getTexture("enemy_down")[0];
-	// 	newPos.y += speed;
-	// }
-	// if (pvec[0]->_pos.x > _pos.x)
-	// {
-	// 	_texture = &getTexture("enemy_left")[0];
-	// 	newPos.x -= speed;
-	// }
-	// if (pvec[0]->_pos.x < _pos.x)
-	// {
-	// 	_texture = &getTexture("enemy_right")[0];
-	// 	newPos.x += speed;
-	// }
-
-
 	//hitbox logic
 
 	bool move = true;
 	bool collision = false;
 	Rectangle newHitbox = _hitbox;
-	newHitbox.x = newPos.x;
+	newHitbox.x = newPos.x + 16;
 	newHitbox.y = newPos.y + TEXTURE_SIZE / 2;
 
+	//wall collision
 	vector<ObjFormat*> vec = returnVecLayer(*_ptr, WALL);
 	for (int i = 0; i < vec.size(); i++)
 	{
@@ -85,23 +65,33 @@ void Enemy::step(void)
 		collision = CheckCollisionRecs(newHitbox, vec[i]->_hitbox);
 		if (collision)
 		{
+			kill();
 			move = false;
 			break ;
 		}
 	}
 
-	// collision with other enemy
-	vector<ObjFormat*> evec = returnVecLayer(*_ptr, ENEMY);
-	for (int i = 0; i < evec.size(); i++)
+	// enemy collision
+	// vector<ObjFormat*> evec = returnVecLayer(*_ptr, ENEMY);
+	// for (int i = 0; i < evec.size(); i++)
+	// {
+	// 	if (evec[i] == this)
+	// 		continue ;
+	// 	collision = CheckCollisionRecs(newHitbox, evec[i]->_hitbox);
+	// 	if (collision)
+	// 	{
+	// 		move = false;
+	// 		break ;
+	// 	}
+	// }
+
+	// hit player
+	collision = CheckCollisionRecs(newHitbox, player->_hitbox);
+	if (collision)
 	{
-		if (evec[i] == this)
-			continue ;
-		collision = CheckCollisionRecs(newHitbox, evec[i]->_hitbox);
-		if (collision)
-		{
-			move = false;
-			break ;
-		}
+		// if ((player->hp - damage) == 0 || (player->hp - damage) > 33 * 100)
+			player->hp -= damage;
+		kill();
 	}
 
 	if (move)

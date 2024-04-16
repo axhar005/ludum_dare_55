@@ -19,22 +19,33 @@ void	freeTexture2DMapOli(std::map<std::string, vector<Texture2D> >& map) {
 		}
 	}
 }
+
+int* deadState(int *var)
+{
+	static int* _var = NULL;
+	if (var)
+		_var = var;
+	return _var;
+}
+
 int main(void)
 {
 	InitWindow(SCREENWIDTH, SCREENHEIGHT, "CATACOMB CONQUEST");
 	SetMouseCursor(MOUSE_CURSOR_ARROW);
 
-	GameScreen currentScreen = TITLE; //TODO: CHANGE THIS
-	Layer	layers;                 //game obj live here
+	GameScreen currentScreen = TITLE;
+	Layer	layers;
+	int		dead = 0;
+	deadState(&dead);
 	InitMapLayer(layers);
 	Menu menu;
 	initMenu(&menu, &MasterVolume);
-	int framesCounter = 0;          // Useful to count frames
-	SetTargetFPS(60);               // Set desired framerate (frames-per-second)
+	menu.dead = &dead;
+	SetTargetFPS(60);
 	MasterVolume = 42;
 	SetMasterVolume(MasterVolume);
 	GameLoop(layers, START);
-	while (!WindowShouldClose())    // Detect window close button or ESC key
+	while (!WindowShouldClose())
 	{
 		// Update
 		switch(currentScreen)
@@ -56,6 +67,7 @@ int main(void)
 				{
 					menu.menu_state = GAME;
 				}
+
 			} break;
 			case PAUSE:
 			{
@@ -93,7 +105,7 @@ int main(void)
 				case GAMEPLAY:
 				{
 					ClearBackground(BLACK);
-					if (IsKeyPressed(KEY_R) && menu.menu_state == GAME){
+					if ((IsKeyPressed(KEY_R) && menu.menu_state == GAME) || dead == 1){
 						GameLoop(layers, START);
 					}
 					else

@@ -21,5 +21,8 @@ void	Spawner::step(void) {
 		Enemy	*tmp = new Enemy();
 		*tmp = _toSpawn;
 		this->spawn(_layer, tmp, this->_pos);
+		this->_pos.x = (GetRandomValue(1, MAP_SIZE - 1) * TEXTURE_SIZE);
+
+		this->_pos.y = (GetRandomValue(1, MAP_SIZE - 1) * TEXTURE_SIZE);
 	}
 }

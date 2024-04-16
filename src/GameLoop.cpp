@@ -2,7 +2,7 @@
 
 void GameLoop(Layer &layers, rendermode mode) 
 {
-	static Camera2D	camera = {0};
+	static Camera2D	camera = {};
 	static struct Keys k;
 	const int textureSize = 32;
 	switch (mode) {
@@ -27,12 +27,15 @@ void GameLoop(Layer &layers, rendermode mode)
 			base->keybord = &k;
 			base->_pos.x = SCREENWIDTH/2.0f;
 			base->_pos.y = SCREENHEIGHT/2.0f;
+
+			int* isDead = deadState(NULL);
+			*isDead = 0;
 			//
 			Enemy *enemy = new Enemy(&layers);
 			enemy->_texture = &getTexture("enemy_down")[0];
 			Spawner *espwn = new Spawner(&layers, enemy);
 			espwn->_pos = (Vector2){5 * TEXTURE_SIZE, 5 * TEXTURE_SIZE};
-			espwn->_speed = 4;
+			espwn->_speed = 0.1;
 			espwn->_layer = ENEMY;
 			AddImageFormatToLayer(layers, ENEMY, espwn);
 
@@ -52,7 +55,6 @@ void GameLoop(Layer &layers, rendermode mode)
 			int randomNumber = std::rand();
 			AddImageFormatToLayer(layers, PLAYER, base);
 			std::srand(std::time(nullptr));
-			int seed = std::rand();
 			SetRandomSeed(randomNumber);
 			Map map(MapOptions(MAP_SIZE, MAP_SIZE, 15, 20));
 			for (size_t i = 0; i < MAP_SIZE; i++) {

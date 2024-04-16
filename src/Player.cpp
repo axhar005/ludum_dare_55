@@ -1,14 +1,14 @@
 #include "../inc/game.hpp"
 
 Player::Player(void) {
-	hp = 0;
+	hp = 100;
 	speed = 2;
 	lookside = 0;
 	_ptr = NULL;
 }
 
 Player::Player(Layer* layer) {
-	hp = 0;
+	hp = 25 * 33;
 	speed = 2;
 	lookside = 0;
 	_ptr = layer;
@@ -71,5 +71,12 @@ void Player::step(void)
 	if (moveplayer)
 	{
 		_pos = newPos;
+	}
+
+	//hp
+	if (hp < 33 || hp > 33 * 25)
+	{
+		int* isDead = deadState(NULL);
+		*isDead = 1;
 	}
 }

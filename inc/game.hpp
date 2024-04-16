@@ -62,6 +62,7 @@ typedef struct MenuStruct
 {
 	MenuType menu_state;
 	float *mastervolume;
+	int *dead;
 
 	// Main Menu Boxes
 	Rectangle playbox;
@@ -103,6 +104,7 @@ float point_direction(Vector2 point1, Vector2 point2);
 void move_in_direction(Vector2& pos, float speed, float direction);
 
 //Main Menu and its utils
+int* deadState(int *var);
 void drawUI(Menu *menu);
 Vector2 getTextCenter(std::string str, int font_size);
 void drawBoxWithText(Rectangle rec, float thick, std::string str, int font_size);

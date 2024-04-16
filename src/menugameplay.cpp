@@ -15,7 +15,7 @@ void drawPauseMenu(Menu *menu)
 
 	//text
 	Vector2 textpos = {SCREENWIDTH / 2, SCREENHEIGHT / 4};
-	drawTextOnPoint(textpos, "PAUSE", LARGE_MENU_TEXT, WHITE);
+	drawTextOnPoint(textpos, "!PAUSE", LARGE_MENU_TEXT, WHITE);
 
 	//buttons
 	drawBoxWithText(menu->resumebox, 5, "RESUME", MEDIUM_MENU_TEXT, LIGHTGRAY, ORANGE, LIGHTGRAY, ORANGE);

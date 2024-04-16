@@ -8,6 +8,7 @@ void logicUI(Menu *menu, GameScreen *currentScreen)
 	{
 		case MAIN:
 		{
+			ShowCursor();
 			if (checkBoxCollision(menu->playbox))
 			{
 				*currentScreen = GAMEPLAY;
@@ -44,6 +45,11 @@ void logicUI(Menu *menu, GameScreen *currentScreen)
 				SetMousePosition(GetMousePosition().x, 0);
 			else if (GetMousePosition().y > SCREENHEIGHT)
 				SetMousePosition(GetMousePosition().x, SCREENHEIGHT);
+			if (*menu->dead)
+			{
+				menu->menu_state = MAIN;
+				*currentScreen = TITLE;
+			}
 		}
 			break;
 		case PAUSEM:
@@ -61,6 +67,7 @@ void logicUI(Menu *menu, GameScreen *currentScreen)
 			{
 				*currentScreen = TITLE;
 				menu->menu_state = MAIN;
+				*menu->dead = 1;
 			}
 		}
 		default: break;

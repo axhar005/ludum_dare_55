@@ -10,6 +10,7 @@ struct Enemy : public ObjFormat {
 	// var
 	unsigned int		hp;
 	unsigned int		speed;
+	unsigned int		damage;
 	short				lookside;
 	vector<Texture2D>	walkL;
 	vector<Texture2D>	walkR;
